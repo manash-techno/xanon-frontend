@@ -1,0 +1,301 @@
+
+src/components/ui/ReactDatePicker/CustomMonth.tsx
+----
+
+import { format } from "date-fns";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import {JSX} from "react";
+
+interface CustomMonthProps {
+    currentMonth: Date;
+    selectedDates: { startDate: Date | null; endDate: Date | null };
+    handleDateSelect: (date: Date) => void;
+    handleNextMonth: () => void;
+    handlePreviousMonth: () => void;
+    isDateInRange: (date: Date) => boolean;
+    isStartOrEndDate: (date: Date) => boolean;
+}
+
+export const CustomMonth: ({
+                               currentMonth,
+                               selectedDates,
+                               handleDateSelect,
+                               handleNextMonth,
+                               handlePreviousMonth,
+                               isDateInRange,
+                               isStartOrEndDate
+                           }: CustomMonthProps) => JSX.Element = ({
+                                                            currentMonth,
+                                                            selectedDates,
+                                                            handleDateSelect,
+                                                            handleNextMonth,
+                                                            handlePreviousMonth,
+                                                            isDateInRange,
+                                                            isStartOrEndDate
+                                                        }) => {
+    const daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
+    const startDayOfWeek = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay();
+
+    const daysArray = Array.from({ length: startDayOfWeek + daysInMonth }, (_, i) =>
+        i >= startDayOfWeek ? i - startDayOfWeek + 1 : null
+    );
+
+    return (
+        <div className="w-[320px]">
+            <div className="flex justify-between items-center mb-4">
+                <button onClick={handlePreviousMonth}>
+                    <ChevronLeft className="w-6 h-6 text-gray-500" />
+                </button>
+                <h3 className="text-lg font-semibold">{format(currentMonth, "MMM yyyy")}</h3>
+                <button onClick={handleNextMonth}>
+                    <ChevronRight className="w-6 h-6 text-gray-500" />
+                </button>
+            </div>
+            <div className="grid grid-cols-7 text-center gap-y-2">
+                {["S", "M", "T", "W", "T", "F", "S"].map((day, index) => (
+                    <div key={index} className="text-sm text-gray-500">{day}</div>
+                ))}
+                {daysArray.map((day, i) => {
+                    if (!day) return <div key={`empty-${i}`}></div>;
+
+                    const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+                    const isInRange = isDateInRange(date);
+                    const isStartOrEnd = isStartOrEndDate(date);
+
+                    return (
+                        <div
+                            key={`${day}-${i}`}
+                            className={`text-sm cursor-pointer p-2 rounded-full 
+                                ${isStartOrEnd ? "bg-blue-500 text-white font-semibold" : isInRange ? "bg-blue-100" : ""}`}
+                            onClick={() => handleDateSelect(date)}
+                        >
+                            {day}
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
+
+
+
+src/components/ui/ReactDatePicker/dateUtils.ts
+----
+
+import { format, addDays, subDays, startOfToday, startOfMonth, endOfMonth, subMonths } from "date-fns";
+
+export type PredefinedRange =
+    | "Today"
+    | "Yesterday"
+    | "Last 7 days"
+    | "Last 30 days"
+    | "Month to date"
+    | "Previous month"
+    | "Custom";
+
+export const getPredefinedRangeDates = (range: PredefinedRange): { from: string; to: string } => {
+    let start: Date, end: Date;
+
+    switch (range) {
+        case "Today":
+            start = subDays(startOfToday(), 1);
+            end = addDays(startOfToday(), 1);
+            break;
+        case "Yesterday":
+            start = subDays(startOfToday(), 2);
+            end = startOfToday();
+            break;
+        case "Last 7 days":
+            start = subDays(startOfToday(), 8);
+            end = addDays(startOfToday(), 1);
+            break;
+        case "Last 30 days":
+            start = subDays(startOfToday(), 31);
+            end = addDays(startOfToday(), 1);
+            break;
+        case "Month to date":
+            start = subDays(startOfMonth(new Date()), 1);
+            end = addDays(startOfToday(), 1);
+            break;
+        case "Previous month":
+            start = subDays(startOfMonth(subMonths(new Date(), 1)), 1);
+            end = addDays(endOfMonth(subMonths(new Date(), 1)), 1);
+            break;
+        default:
+            return "Custom";
+    }
+
+    return { from: format(start, "yyyy-MM-dd"), to: format(end, "yyyy-MM-dd") };
+};
+
+
+
+
+src/components/ui/ReactDatePicker/index.tsx
+----
+
+import { useState, useEffect, useRef } from "react";
+import { addMonths, subMonths, format } from "date-fns";
+import { ReactDropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/ReactDropdownMenu.tsx";
+import { ChevronDown } from "lucide-react";
+import { ReactButton } from "@/components/ui/ReactButton";
+import { CustomMonth } from "@/components/ui/ReactDatePicker/CustomMonth.tsx";
+import { getPredefinedRangeDates, PredefinedRange } from "@/components/ui/ReactDatePicker/dateUtils.ts";
+
+interface ReactDatePickerProps {
+    onDateRangeChange: (range: { from: string|null; to: string|null }) => void;
+    className?: string;
+}
+
+export const ReactDatePicker = ({ onDateRangeChange, className }: ReactDatePickerProps) => {
+    const [selectedLabel, setSelectedLabel] = useState<string | null>(null);
+    const [dateRange, setDateRange] = useState<{ from: string; to: string } | null>(null);
+    const [showCalendar, setShowCalendar] = useState<boolean>(false);
+    const [selectedDates, setSelectedDates] = useState<{ startDate: Date | null; endDate: Date | null }>({
+        startDate: null,
+        endDate: null
+    });
+    const [currentMonth, setCurrentMonth] = useState(new Date());
+    const calendarRef = useRef<HTMLDivElement>(null);
+
+    // Close calendar when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+                setShowCalendar(false);
+            }
+        };
+
+        if (showCalendar) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [showCalendar]);
+
+    const handlePredefinedRange = (range: PredefinedRange) => {
+        setSelectedLabel(range); // Store selected range label
+
+        if (range === "Custom") {
+            setShowCalendar(true);
+            setSelectedLabel(null); // Reset label for custom
+        } else {
+            setShowCalendar(false);
+            const selectedDate = getPredefinedRangeDates(range);
+            setDateRange(selectedDate);
+            onDateRangeChange(selectedDate);
+        }
+    };
+
+    // Handle selecting a date range
+    const handleDateSelect = (date: Date) => {
+        const { startDate, endDate } = selectedDates;
+
+        if (!startDate || (startDate && endDate)) {
+            setSelectedDates({ startDate: date, endDate: null });
+        } else {
+            if (date < startDate) {
+                setSelectedDates({ startDate: date, endDate: startDate });
+            } else {
+                setSelectedDates({ startDate, endDate: date });
+            }
+        }
+    };
+
+    const handleApply = () => {
+        if (selectedDates.startDate && selectedDates.endDate) {
+            const from = format(selectedDates.startDate, "yyyy-MM-dd");
+            const to = format(selectedDates.endDate, "yyyy-MM-dd");
+            setDateRange({from, to});
+            onDateRangeChange({ from, to });
+        }
+        setShowCalendar(false);
+    };
+
+    const handleClear = () => {
+        setSelectedDates({ startDate: null, endDate: null });
+        setDateRange(null);
+        onDateRangeChange({ from: null, to: null });
+    };
+
+    const handleCancel = () => {
+        setShowCalendar(false);
+    };
+
+    const isDateInRange = (date: Date): boolean => {
+        const { startDate, endDate } = selectedDates;
+        return startDate !== null && endDate !== null && date >= startDate && date <= endDate;
+    };
+
+    const isStartOrEndDate = (date: Date): boolean => {
+        const { startDate, endDate } = selectedDates;
+        return (
+            (startDate && date.getTime() === startDate.getTime()) ||
+            (endDate && date.getTime() === endDate.getTime())
+        ) as boolean;
+    };
+
+    const formatReadableDate = (from: string, to: string) => {
+        return `${format(new Date(from), "MMM d, yyyy")} - ${format(new Date(to), "MMM d, yyyy")}`;
+    };
+
+    return (
+        <div className={`relative ${className}`}>
+            <ReactDropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <ReactButton variant="outline" className="w-60 justify-between p-2.5 text-sm">
+                        {selectedLabel
+                            ? selectedLabel  // Show predefined range label
+                            : dateRange
+                                ? formatReadableDate(dateRange.from, dateRange.to)
+                                : <span className="text-[#6E8091]">Select Date Range</span>}
+                        <ChevronDown className="ml-2 h-5 w-5" />
+                    </ReactButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-60">
+                    {["Today", "Yesterday", "Last 7 days", "Last 30 days", "Month to date", "Previous month", "Custom"].map(range => (
+                        <DropdownMenuItem key={range} onSelect={() => handlePredefinedRange(range as PredefinedRange)}>
+                            {range}
+                        </DropdownMenuItem>
+                    ))}
+                </DropdownMenuContent>
+            </ReactDropdownMenu>
+
+            {showCalendar && (
+                <div ref={calendarRef} className="absolute top-12 z-20 bg-white p-4 shadow-lg rounded-md">
+                    <CustomMonth
+                        currentMonth={currentMonth}
+                        selectedDates={selectedDates}
+                        handleDateSelect={handleDateSelect}
+                        handleNextMonth={() => setCurrentMonth(addMonths(currentMonth, 1))}
+                        handlePreviousMonth={() => setCurrentMonth(subMonths(currentMonth, 1))}
+                        isDateInRange={isDateInRange}
+                        isStartOrEndDate={isStartOrEndDate}
+                    />
+
+                    {/* Action Buttons */}
+                    <div className="flex justify-end mt-4 space-x-4">
+                        <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-md" onClick={handleClear}>
+                            Clear
+                        </button>
+                        <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-md" onClick={handleCancel}>
+                            Cancel
+                        </button>
+                        <button className="bg-blue-600 text-white px-4 py-2 rounded-md" onClick={handleApply}>
+                            Apply
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+
+
