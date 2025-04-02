@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import { iCountry, iOrderStatus } from "@/types/orderTypes";
+import { iCountry } from "@/types/orderTypes";
 import { enumFulfillmentTab } from "@/constants/fulfillmentTab.ts";
 import { EnumOrderStatus } from "@/constants/filter.ts";
 
