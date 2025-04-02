@@ -118,17 +118,44 @@ export const shipmentStatusList = Object.entries(shipmentStatusLabels).map(([val
 }));
 
 
-export const repriceFilter = [
-    { name: "All", value: "" },
-    { name: "Repricing", value: "Repricing" },
-    { name: "Not Repricing", value: "Not Repricing" },
-    { name: "Minimum", value: "Minimum" },
-    { name: "Not at Minimum", value: "Not at Minimum" },
-    { name: "Maximum", value: "Maximum" },
-    { name: "Not at Maximum", value: "Not at Maximum" },
-    { name: "Buy Box Win", value: "Buy Box Win" },
-    { name: "Not Buy Box Wi", value: "Not Buy Box Wi" },
-]
+export enum EnumRepriceStatus {
+    All = "",
+    Repricing = "Repricing",
+    NotRepricing = "Not Repricing",
+    Minimum = "Minimum",
+    NotAtMinimum = "Not at Minimum",
+    Maximum = "Maximum",
+    NotAtMaximum = "Not at Maximum",
+    BuyBoxWin = "Buy Box Win",
+    NotBuyBoxWin = "Not Buy Box Wi",
+}
+
+export const repriceStatusLabels: {
+    [EnumRepriceStatus.All]: string;
+    [EnumRepriceStatus.Repricing]: string;
+    [EnumRepriceStatus.NotRepricing]: string;
+    [EnumRepriceStatus.Minimum]: string;
+    [EnumRepriceStatus.NotAtMinimum]: string;
+    [EnumRepriceStatus.Maximum]: string;
+    [EnumRepriceStatus.NotAtMaximum]: string;
+    [EnumRepriceStatus.BuyBoxWin]: string;
+    [EnumRepriceStatus.NotBuyBoxWin]: string;
+} = {
+    [EnumRepriceStatus.All]: "All",
+    [EnumRepriceStatus.Repricing]: "Repricing",
+    [EnumRepriceStatus.NotRepricing]: "Not Repricing",
+    [EnumRepriceStatus.Minimum]: "Minimum",
+    [EnumRepriceStatus.NotAtMinimum]: "Not at Minimum",
+    [EnumRepriceStatus.Maximum]: "Maximum",
+    [EnumRepriceStatus.NotAtMaximum]: "Not at Maximum",
+    [EnumRepriceStatus.BuyBoxWin]: "Buy Box Win",
+    [EnumRepriceStatus.NotBuyBoxWin]: "Not Buy Box Wi",
+};
+
+export const repriceStatusList = Object.entries(repriceStatusLabels).map(([value, name]) => ({
+    name,
+    value: value as EnumRepriceStatus,
+}));
 
 export const expensesCategory = [
     { name: "Accountancy Fees", value: "Accountancy Fees" },

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { setSelectedCountry } from "@/store/slices/shipmentSlice";
+import { setSelectedCountry } from "@/store/slices/repriceSlice";
 import { useGetMarketplaceCountriesQuery } from "@/store/api/orderApi";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 import { ReactButton } from "@/components/ui/ReactButton.tsx";

@@ -1,3 +1,4 @@
+import { parseDateToStandardFormat } from "@/lib/utils";
 import { apiSlice } from "@/store/slices/apiSlice";
 import { iCountry } from "@/types/inventoryTypes";
 import { iShipment } from "@/types/shipmentTypes";
@@ -23,8 +24,8 @@ export const shipmentApi = apiSlice.injectEndpoints?.({
                 params: {
                     page,
                     shipment_status: status,
-                    shipment_date__lt: purchase_date_before,
-                    shipment_date__gt: purchase_date_after,
+                    shipment_date__lt: parseDateToStandardFormat(purchase_date_before),
+                    shipment_date__gt: parseDateToStandardFormat(purchase_date_after),
                     search,
                     marketplace_id: country,
                 },
@@ -42,15 +43,7 @@ export const shipmentApi = apiSlice.injectEndpoints?.({
             }),
             providesTags: ["Shipment"],
         }),
-
-        getMarketplaceCountries: builder.query<iCountry[], void>({
-            query: () => ({
-                url: "/amazon/orders/marketplace_filter_list/",
-                method: "GET",
-            }),
-            providesTags: ["Countries"],
-        }),
     }),
 });
 
-export const { useGetShipmentQuery, useGetMarketplaceCountriesQuery } = shipmentApi;
+export const { useGetShipmentQuery } = shipmentApi;

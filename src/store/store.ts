@@ -4,6 +4,7 @@ import authReducer from "@/store/slices/authSlice";
 import orderReducer from "@/store/slices/orderSlice";
 import inventoryReducer from "@/store/slices/inventorySlice.ts";
 import shipmentReducer from "@/store/slices/shipmentSlice.ts";
+import repriceReducer from "@/store/slices/repriceSlice";
 import { apiSlice } from "@/store/slices/apiSlice.ts";
 import {cookieStorage} from "@/store/cookieStorage.ts";
 import {envConfig} from "@/config/env.ts";
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     order: orderReducer,
     inventory: inventoryReducer,
     shipment: shipmentReducer,
+    reprice: repriceReducer
 });
 
 // Create Redux store

@@ -275,7 +275,7 @@ const ShipmentPage: () => JSX.Element = () => {
                 <div className="absolute -translate-y-2/4 top-2/4 left-3">
                     <ReactImage src={AssetsConfig.icons.search.src} alt={AssetsConfig.icons.search.alt} width={16} height={16} />
                 </div>
-                <ReactInput placeholder="Search inventory" value={search} onChange={handleSearchEvent} className="w-full h-10 pl-10 text-sm" />
+                <ReactInput placeholder="Search shipment" value={search} onChange={handleSearchEvent} className="w-full h-10 pl-10 text-sm" />
             </div>
 
                   <div className="flex items-center mb-6 space-x-5">
