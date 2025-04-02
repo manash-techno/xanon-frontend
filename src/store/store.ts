@@ -3,6 +3,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import authReducer from "@/store/slices/authSlice";
 import orderReducer from "@/store/slices/orderSlice";
 import inventoryReducer from "@/store/slices/inventorySlice.ts";
+import shipmentReducer from "@/store/slices/shipmentSlice.ts";
 import { apiSlice } from "@/store/slices/apiSlice.ts";
 import {cookieStorage} from "@/store/cookieStorage.ts";
 import {envConfig} from "@/config/env.ts";
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     [apiSlice.reducerPath]: apiSlice.reducer,
     order: orderReducer,
     inventory: inventoryReducer,
+    shipment: shipmentReducer,
 });
 
 // Create Redux store

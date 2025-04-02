@@ -14,8 +14,8 @@ export const shipmentApi = apiSlice.injectEndpoints?.({
             status?: string;
             search?: string;
             country?: string;
-            purchase_date_before?: string;
-            purchase_date_after?: string;
+            purchase_date_before?: string | null;
+            purchase_date_after?: string | null;
         }>({
             query: ({ page, status = "", purchase_date_before = "", purchase_date_after = "", search = "", country = ""}) => ({
                 url: "/amazon/shipments/",

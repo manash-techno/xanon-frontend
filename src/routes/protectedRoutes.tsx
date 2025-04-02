@@ -13,7 +13,7 @@ export const protectedRoutes: RouteObject[] = [
             { index: true, element: lazyLoader(() => import("@/pages/dashboard/DashboardPage.tsx")) },
             { path: "orders", element: lazyLoader(() => import("@/pages/dashboard/OrdersPage")) },
             { path: "inventory", element: lazyLoader(() => import("@/pages/dashboard/InventoryPage.tsx")) },
-            { path: "shipment", element: lazyLoader(() => import("@/pages/dashboard/ShipmentPage.tsx")) },
+            { path: "shipment", element: lazyLoader(() => import("@/pages/dashboard/ShipmentsPage")) },
             { path: "*", element: <Navigate to={pagePaths.dashboard.root} replace /> },
         ],
     },

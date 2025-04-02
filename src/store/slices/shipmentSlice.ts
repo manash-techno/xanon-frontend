@@ -1,10 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { iCountry } from "@/types/inventoryTypes";
-import { iShipmentStatus } from "@/types/shipmentTypes";
+import { EnumShipmentStatus } from "@/constants/filter";
 
 interface iShipmentState {
     search: string;
-    selectedStatus: iShipmentStatus | null;
+    selectedStatus: EnumShipmentStatus;
+    startDate: string|null;
+    endDate: string|null;
+    dateRangeLabel: string|null;
     selectedCountry: iCountry | null;
     currentPage: number;
     totalPages: number;
@@ -12,7 +15,10 @@ interface iShipmentState {
 
 const initialState: iShipmentState = {
     search: "",
-    selectedStatus: null,
+    selectedStatus: EnumShipmentStatus.All,
+    startDate: "",
+    endDate: "",
+    dateRangeLabel: null,
     selectedCountry: null,
     currentPage: 1,
     totalPages: 1,
@@ -25,7 +31,7 @@ const shipmentSlice = createSlice({
         setSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload;
         },
-        setSelectedStatus: (state, action: PayloadAction<iShipmentStatus | null>) => {
+        setSelectedStatus: (state, action: PayloadAction<EnumShipmentStatus>) => {
             state.selectedStatus = action.payload;
         },
         setSelectedCountry: (state, action: PayloadAction<iCountry | null>) => {
@@ -37,6 +43,11 @@ const shipmentSlice = createSlice({
         setTotalPages: (state, action: PayloadAction<number>) => {
             state.totalPages = action.payload;
         },
+        setDateRange: (state, action: PayloadAction<{ startDate: string|null; endDate: string|null, label: string|null }>) => {
+            state.startDate = action.payload.startDate;
+            state.endDate = action.payload.endDate;
+            state.dateRangeLabel = action.payload.label;
+        },
     },
 });
 
@@ -46,6 +57,7 @@ export const {
     setSelectedCountry,
     setCurrentPage,
     setTotalPages,
+    setDateRange,
 } = shipmentSlice.actions;
 
 export default shipmentSlice.reducer;

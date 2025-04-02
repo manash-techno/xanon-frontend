@@ -16,10 +16,14 @@ import { ReactButton } from "@/components/ui/ReactButton.tsx";
 import { AssetsConfig } from "@/config/assetsConfig.ts";
 import { formatShortDate, formatTime } from "@/lib/utils";
 import { useGetShipmentQuery } from "@/store/api/shipmentApi";
-import { setCurrentPage, setSearch } from "@/store/slices/inventorySlice.ts";
+import { setCurrentPage, setSearch } from "@/store/slices/shipmentSlice.ts";
 import { RootState } from "@/store/store.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { ShipmentItems } from "@/types/shipmentTypes";
+import { StatusFilter } from "./StatusFilter";
+import { setDateRange } from "@/store/slices/shipmentSlice";
+import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
+import { CountryFilter } from "./CountryFilter";
 
 const ShipmentPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
@@ -31,7 +35,10 @@ const ShipmentPage: () => JSX.Element = () => {
         selectedStatus,
         selectedCountry,
         currentPage,
-    } = useSelector((state: RootState) => state.inventory);
+        startDate,
+        endDate,
+        dateRangeLabel
+    } = useSelector((state: RootState) => state.shipment);
 
     const {
         data: shipmentData,
@@ -42,11 +49,11 @@ const ShipmentPage: () => JSX.Element = () => {
         refetch: shipmentRefetch
     } = useGetShipmentQuery({
         page: currentPage,
-        status: selectedStatus?.value,
+        status: selectedStatus,
         search,
         country: selectedCountry?.marketplace_id,
-        purchase_date_before: "",
-        purchase_date_after: "",
+        purchase_date_before: endDate,
+        purchase_date_after: startDate,
     });
 
     const [showMoreActions, setShowMoreActions] = useState<{ [key: string]: boolean }>({});
@@ -248,6 +255,20 @@ const ShipmentPage: () => JSX.Element = () => {
         dispatch(setSearch(e.target.value));
     };
 
+      const handleDateRangeChange = (value: {
+        from: string | null;
+        to: string | null;
+        label: string | null;
+      }) => {
+        dispatch(
+          setDateRange({
+            startDate: value.from,
+            endDate: value.to,
+            label: value.label,
+          })
+        );
+      };
+
     return (
         <div className="w-full">
             <div className="relative mb-4 w-60">
@@ -256,6 +277,25 @@ const ShipmentPage: () => JSX.Element = () => {
                 </div>
                 <ReactInput placeholder="Search inventory" value={search} onChange={handleSearchEvent} className="w-full h-10 pl-10 text-sm" />
             </div>
+
+                  <div className="flex items-center mb-6 space-x-5">
+                    {/* Filter by Date */}
+                    <ReactDatePicker
+                      onDateRangeChange={handleDateRangeChange}
+                      from={startDate}
+                      to={endDate}
+                      label={dateRangeLabel}
+                    />
+            
+                    {/* Filter by Status */}
+                    <StatusFilter />
+            
+                    {/* Filter by Country */}
+                    <CountryFilter />
+            
+                    {/* Filter by Fulfillment */}
+                    {/* <FulfillmentFilter /> */}
+                  </div>
 
             <div className="overflow-x-auto rounded-lg shadow-md">
                 {isError && (

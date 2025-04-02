@@ -72,19 +72,51 @@ export const inventoryStatusList = [
     { name: "Deleted", value: "deleted" },
 ]
 
-export const shipmentStatusList = [
-    { name: "All", value: "" },
-    { name: "Working", value: "Working" },
-    { name: "Ready to ship", value: "Ready to ship" },
-    { name: "Shipped", value: "Shipped" },
-    { name: "In transit", value: "IN_TRANSIT" },
-    { name: "Delivered", value: "Delivered" },
-    { name: "Checked in", value: "Checked in" },
-    { name: "Receiving", value: "Receiving" },
-    { name: "Closed", value: "Closed" },
-    { name: "Cancelled", value: "Cancelled" },
-    { name: "Deleted", value: "Deleted" },
-]
+export enum EnumShipmentStatus {
+    All = "",
+    Working = "Working",
+    ReadyToShip = "Ready to ship",
+    Shipped = "Shipped",
+    InTransit = "IN_TRANSIT",
+    Delivered = "Delivered",
+    CheckedIn = "Checked in",
+    Receiving = "Receiving",
+    Closed = "Closed",
+    Cancelled = "Cancelled",
+    Deleted = "Deleted",
+}
+
+export const shipmentStatusLabels: {
+    [EnumShipmentStatus.All]: string;
+    [EnumShipmentStatus.Working]: string;
+    [EnumShipmentStatus.ReadyToShip]: string;
+    [EnumShipmentStatus.Shipped]: string;
+    [EnumShipmentStatus.InTransit]: string;
+    [EnumShipmentStatus.Delivered]: string;
+    [EnumShipmentStatus.CheckedIn]: string;
+    [EnumShipmentStatus.Receiving]: string;
+    [EnumShipmentStatus.Closed]: string;
+    [EnumShipmentStatus.Cancelled]: string;
+    [EnumShipmentStatus.Deleted]: string;
+} = {
+    [EnumShipmentStatus.All]: "All",
+    [EnumShipmentStatus.Working]: "Working",
+    [EnumShipmentStatus.ReadyToShip]: "Ready to ship",
+    [EnumShipmentStatus.Shipped]: "Shipped",
+    [EnumShipmentStatus.InTransit]: "In transit",
+    [EnumShipmentStatus.Delivered]: "Delivered",
+    [EnumShipmentStatus.CheckedIn]: "Checked in",
+    [EnumShipmentStatus.Receiving]: "Receiving",
+    [EnumShipmentStatus.Closed]: "Closed",
+    [EnumShipmentStatus.Cancelled]: "Cancelled",
+    [EnumShipmentStatus.Deleted]: "Deleted",
+};
+
+export const shipmentStatusList = Object.entries(shipmentStatusLabels).map(([value, name]) => ({
+    name,
+    value: value as EnumShipmentStatus,
+}));
+
 
 export const repriceFilter = [
     { name: "All", value: "" },
