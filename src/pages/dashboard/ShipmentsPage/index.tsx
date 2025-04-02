@@ -314,7 +314,7 @@ const ShipmentPage: () => JSX.Element = () => {
                 )}
 
                 <Table className="min-w-full">
-                    <TableHeader className="sticky top-0 bg-gray-100 z-10">
+                    <TableHeader className="sticky top-0 bg-gray-100 dark:bg-gray-800 z-10">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (
