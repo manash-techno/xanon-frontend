@@ -13,6 +13,7 @@ import {
     getCoreRowModel,
     getPaginationRowModel,
     getSortedRowModel,
+    RowSelectionState,
     useReactTable
 } from "@tanstack/react-table";
 import { ChangeEvent, JSX, useMemo, useState } from "react";
@@ -24,16 +25,17 @@ import { setDateRange } from "@/store/slices/shipmentSlice";
 import { Link } from "react-router-dom";
 import { CategoryFilter } from "./CategoryFilter";
 import { FulfillmentFilter } from "./FulfillmentFilter";
+import { Checkbox } from "@mui/material";
 
 const ExpensesPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
     const [showConfirmationModal, setShowConfirmationModal] = useState(false)
     const [selectedId, setSelectedId] = useState("");
-
+    const [rowSelection, setRowSelection] = useState<RowSelectionState>({}) //manage your own row selection state
+    let rowSize = Object.keys(rowSelection).length;
 
     const {
         search,
-        fulfillmentChannel,
         selectedCategory,
         currentPage,
         startDate,
@@ -67,27 +69,38 @@ const ExpensesPage: () => JSX.Element = () => {
             amount: item.amount,
             recur: item.recur,
             vat: item.vat,
-            
+
         }));
     }, [expensesData, isSuccess]);
 
+    console.log('rowSelection', rowSelection, rowSize);
+
     const columns: ColumnDef<typeof Expenses[0]>[] = [
         {
+            accessorKey: "selection-col",
+            header: ({ table }) => (
+                <Checkbox
+                    checked={table.getIsAllRowsSelected()}
+                    indeterminate={table.getIsSomeRowsSelected()}
+                    onChange={table.getToggleAllRowsSelectedHandler()} //or getToggleAllPageRowsSelectedHandler
+                />
+            ),
+            cell: ({ row }) => <Checkbox checked={row.getIsSelected()} onChange={row.getToggleSelectedHandler()} />,
+        },
+        {
             accessorKey: "date",
-            header: "Date",
+            header: () =>  rowSize > 0 ? <div>{rowSize} Selected </div> : "Date",
             cell: ({ row }) => <div>{formatShortDate(new Date(row.getValue("date")))}</div>,
         },
         {
             accessorKey: "category",
-            header: () => {
-                return (
-                    <div
-                    >
-                        <span className="block">Category</span>
-                        <span className="block !text-[#6E8091] text-xs">Recurs</span>
-                    </div>
-                )
-            },
+            header: () =>  rowSize > 0 ? "" :  (
+                <div
+                >
+                    <span className="block">Category</span>
+                    <span className="block !text-[#6E8091] text-xs">Recurs</span>
+                </div>
+            ),
             accessorFn: row => <div>{row.category}
                 <span className="text-xs text-[#6E8091] block">{row.recur}</span>
             </div>,
@@ -95,12 +108,12 @@ const ExpensesPage: () => JSX.Element = () => {
         },
         {
             accessorKey: "description",
-            header: "Description",
+            header: () =>  rowSize > 0 ? "" :  "Description",
             cell: ({ row }) => <div>{row.getValue("description")}</div>,
         },
         {
             accessorKey: "amount",
-            header: () => <div className="text-right">Total Amount</div>,
+            header: () =>  rowSize > 0 ? "" :  <div className="text-right">Total Amount</div>,
             accessorFn: row =>
                 <div className="text-right">-£{row.amount}
                     <div className="flex justify-between">
@@ -112,8 +125,7 @@ const ExpensesPage: () => JSX.Element = () => {
         },
         {
             id: "actions",
-            header: "Action",
-            enableHiding: false,
+            header: () =>  rowSize > 0 ? "" : "Action",
             cell: ({ row }) => {
                 return (
                     <div className="flex flex-col">
@@ -126,8 +138,13 @@ const ExpensesPage: () => JSX.Element = () => {
     ];
 
     const table = useReactTable({
+        getRowId: row => row.id,
         data: Expenses,
         columns,
+        onRowSelectionChange: setRowSelection, //hoist up the row selection state to your own scope
+        state: {
+            rowSelection, //pass the row selection state back to the table instance
+        },
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getSortedRowModel: getSortedRowModel(),
@@ -138,19 +155,19 @@ const ExpensesPage: () => JSX.Element = () => {
         dispatch(setSearch(e.target.value));
     };
 
-      const handleDateRangeChange = (value: {
+    const handleDateRangeChange = (value: {
         from: string | null;
         to: string | null;
         label: string | null;
-      }) => {
+    }) => {
         dispatch(
-          setDateRange({
-            startDate: value.from,
-            endDate: value.to,
-            label: value.label,
-          })
+            setDateRange({
+                startDate: value.from,
+                endDate: value.to,
+                label: value.label,
+            })
         );
-      };
+    };
 
     return (
         <div className="w-full">
@@ -161,24 +178,24 @@ const ExpensesPage: () => JSX.Element = () => {
                 <ReactInput placeholder="Search expenses" value={search} onChange={handleSearchEvent} className="w-full h-10 pl-10 text-sm" />
             </div>
 
-                  <div className="flex items-center mb-6 space-x-5">
-                    {/* Filter by Date */}
-                    <ReactDatePicker
-                      onDateRangeChange={handleDateRangeChange}
-                      from={startDate}
-                      to={endDate}
-                      label={dateRangeLabel}
-                    />
-            
-                    {/* Filter by Status */}
-                    <CategoryFilter />
-            
-                    {/* Filter by Country */}
-                    {/* <CountryFilter /> */}
-            
-                    {/* Filter by Fulfillment */}
-                    <FulfillmentFilter />
-                  </div>
+            <div className="flex items-center mb-6 space-x-5">
+                {/* Filter by Date */}
+                <ReactDatePicker
+                    onDateRangeChange={handleDateRangeChange}
+                    from={startDate}
+                    to={endDate}
+                    label={dateRangeLabel}
+                />
+
+                {/* Filter by Status */}
+                <CategoryFilter />
+
+                {/* Filter by Country */}
+                {/* <CountryFilter /> */}
+
+                {/* Filter by Fulfillment */}
+                <FulfillmentFilter />
+            </div>
 
             <div className="overflow-x-auto rounded-lg shadow-md">
                 {isError && (
