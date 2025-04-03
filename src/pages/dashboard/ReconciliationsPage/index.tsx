@@ -1,8 +1,18 @@
 import { JSX } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 
 const ReconciliationsPage: () => JSX.Element = () => {
     return (
-        <div>ReconciliationsPage</div>
+        <div>
+            <Link to="/dashboard/reconciliation">
+                Inventory
+            </Link>
+            <Link to="/dashboard/reconciliation/shipment">
+                Shipment
+            </Link>
+            
+            <Outlet />
+        </div>
     )
 }
 
