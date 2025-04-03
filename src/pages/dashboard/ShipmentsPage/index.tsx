@@ -101,7 +101,7 @@ const ShipmentPage: () => JSX.Element = () => {
             accessorKey: "date",
             header: "Date",
             accessorFn: row => <div>{row?.date} </div>,
-            cell: ({ row }) => <div>{formatShortDate(new Date(row.original.date))} <span className="block text-xs text-[#6E8091]">{formatTime(new Date(row.original.date))}</span></div>,
+            cell: ({ row }) => <div className="w-[100px]">{formatShortDate(new Date(row.original.date))} <span className="block text-xs text-[#6E8091]">{formatTime(new Date(row.original.date))}</span></div>,
             size: 100
         },
         {
@@ -122,7 +122,7 @@ const ShipmentPage: () => JSX.Element = () => {
                             {/* First Tracking ID */}
                             <div className="flex items-center">
                                 <span className="block text-xs text-[#6E8091]">
-                                    {row.original.trackingId}
+                                    {row.original.trackingId || "xxx-xxx-xxxxx"}
                                 </span>
                                 <ReactImage src={AssetsConfig.icons.rightUp.src} width={20} height={20} alt={AssetsConfig.icons.rightUp.alt} />
                                 {/* Show "+X" only if there are more shipment IDs */}

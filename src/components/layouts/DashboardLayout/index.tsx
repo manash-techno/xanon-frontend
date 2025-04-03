@@ -156,14 +156,14 @@ const DashboardLayout = ({
 
               {/* Page Title with Icon - Hidden on Small Devices */}
               <div className="flex items-center gap-3 hidden xs:flex sm:flex">
-                {currentMenuItem && (
+                {/* {currentMenuItem && (
                     <ReactImage
                         src={currentMenuItem.icon.src}
                         width={24}
                         height={24}
                         alt={currentMenuItem.icon.alt}
                     />
-                )}
+                )} */}
                 <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                   {pageTitle || currentMenuItem?.name}
                 </h1>
