@@ -19,6 +19,8 @@ import {PaginationControls} from "@/components/common/PaginationControls.tsx";
 import {AssetsConfig} from "@/config/assetsConfig.ts";
 import CaretSortIcon from "@/components/ui/CaretSortIcon.tsx";
 import {ReactButton} from "@/components/ui/ReactButton.tsx";
+import { CountryFilter } from "./CountryFilter";
+import { StatusFilter } from "./StatusFilter";
 
 const InventoryPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
@@ -39,7 +41,7 @@ const InventoryPage: () => JSX.Element = () => {
         refetch: inventoryRefetch
     } = useGetInventoryQuery({
         page: currentPage,
-        status: selectedStatus?.value,
+        status: selectedStatus,
         search,
         country: selectedCountry?.marketplace_id,
     });
@@ -272,10 +274,10 @@ const InventoryPage: () => JSX.Element = () => {
                 <ReactInput placeholder="Search inventory" value={search} onChange={handleSearchEvent} className="w-full h-10 pl-10 text-sm" />
             </div>
 
-            {/*<div className="flex items-center mb-6 space-x-5">
-                <InventoryStatusFilter />
+            <div className="flex items-center mb-6 space-x-5">
+                <StatusFilter />
                 <CountryFilter />
-            </div>*/}
+            </div>
 
             <div className="overflow-x-auto rounded-lg shadow-md">
                 {isError && (

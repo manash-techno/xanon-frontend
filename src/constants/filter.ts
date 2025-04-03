@@ -60,17 +60,44 @@ export const orderStatusList = Object.entries(orderStatusLabels).map(([value, na
 }));
 
 
-export const inventoryStatusList = [
-    { name: "All", value: "" },
-    { name: "In Stock", value: "in_stock" },
-    { name: "Out of Stock", value: "out_of_stock" },
-    { name: "Inbound", value: "inbound" },
-    { name: "Reserved", value: "reserved" },
-    { name: "Unfulfillable", value: "unfulfillable" },
-    { name: "No CoG", value: "no_cog" },
-    { name: "Losers", value: "losers" },
-    { name: "Deleted", value: "deleted" },
-]
+export enum EnumInventoryStatus {
+    All = "",
+    InStock = "in_stock",
+    OutOfStock = "out_of_stock",
+    Inbound = "inbound",
+    Reserved = "reserved",
+    Unfulfillable = "unfulfillable",
+    NoCoG = "no_cog",
+    Losers = "losers",
+    Deleted = "deleted",
+}
+
+export const inventoryStatusLabels: {
+    [EnumInventoryStatus.All]: string;
+    [EnumInventoryStatus.InStock]: string;
+    [EnumInventoryStatus.OutOfStock]: string;
+    [EnumInventoryStatus.Inbound]: string;
+    [EnumInventoryStatus.Reserved]: string;
+    [EnumInventoryStatus.Unfulfillable]: string;
+    [EnumInventoryStatus.NoCoG]: string;
+    [EnumInventoryStatus.Losers]: string;
+    [EnumInventoryStatus.Deleted]: string;
+} = {
+    [EnumInventoryStatus.All]: "All",
+    [EnumInventoryStatus.InStock]: "In Stock",
+    [EnumInventoryStatus.OutOfStock]: "Out of Stock",
+    [EnumInventoryStatus.Inbound]: "Inbound",
+    [EnumInventoryStatus.Reserved]: "Reserved",
+    [EnumInventoryStatus.Unfulfillable]: "Unfulfillable",
+    [EnumInventoryStatus.NoCoG]: "No CoG",
+    [EnumInventoryStatus.Losers]: "Losers",
+    [EnumInventoryStatus.Deleted]: "Deleted",
+};
+
+export const inventoryStatusList = Object.entries(inventoryStatusLabels).map(([value, name]) => ({
+    name,
+    value: value as EnumInventoryStatus,
+}));
 
 export enum EnumShipmentStatus {
     All = "",

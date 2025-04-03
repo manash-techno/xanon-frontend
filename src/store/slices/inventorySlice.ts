@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { iCountry, iInventoryStatus } from "@/types/inventoryTypes";
+import { EnumInventoryStatus } from "@/constants/filter";
 
 interface iInventoryState {
     search: string;
-    selectedStatus: iInventoryStatus | null;
+    selectedStatus: EnumInventoryStatus;
     selectedCountry: iCountry | null;
     currentPage: number;
     totalPages: number;
@@ -11,7 +12,7 @@ interface iInventoryState {
 
 const initialState: iInventoryState = {
     search: "",
-    selectedStatus: null,
+    selectedStatus: EnumInventoryStatus.All,
     selectedCountry: null,
     currentPage: 1,
     totalPages: 1,
@@ -24,7 +25,7 @@ const inventorySlice = createSlice({
         setSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload;
         },
-        setSelectedStatus: (state, action: PayloadAction<iInventoryStatus | null>) => {
+        setSelectedStatus: (state, action: PayloadAction<EnumInventoryStatus>) => {
             state.selectedStatus = action.payload;
         },
         setSelectedCountry: (state, action: PayloadAction<iCountry | null>) => {
