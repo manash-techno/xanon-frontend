@@ -184,32 +184,92 @@ export const repriceStatusList = Object.entries(repriceStatusLabels).map(([value
     value: value as EnumRepriceStatus,
 }));
 
-export const expensesCategory = [
-    { name: "Accountancy Fees", value: "Accountancy Fees" },
-    { name: "Salary", value: "Salary" },
-    { name: "Virtual Assistant", value: "Virtual Assistant" },
-    { name: "Prepping Service", value: "Prepping Service" },
-    { name: "Prepping Supplies", value: "Prepping Supplies" },
-    { name: "Subscriptions", value: "Subscriptions" },
-    { name: "Postage", value: "Postage" },
-    { name: "Equipment", value: "Equipment" },
-    { name: "Office Rent", value: "Office Rent" },
-    { name: "Training", value: "Training" },
-    { name: "Interest", value: "Interest" },
-    { name: "Bank Charge", value: "Bank Charge" },
-    { name: "Insurance Costs", value: "Insurance Costs" },
-    { name: "Office expenses and supplies", value: "Office expenses and supplies" },
-    { name: "Warehouse expenses and supplies", value: "Warehouse expenses and supplies" },
-    { name: "Maintenance and repair costs", value: "Maintenance and repair costs" },
-    { name: "Utility", value: "Utility" },
-    { name: "Travel", value: "Travel" },
-    { name: "Fuel", value: "Fuel" },
-    { name: "Mileage", value: "Mileage" },
-    { name: "Phone", value: "Phone" },
-    { name: "Broadband", value: "Broadband" },
-    { name: "Cashback", value: "Cashback" },
-    { name: "Miscellaneous", value: "Miscellaneous" },
-]
+export enum EnumExpensesCategory {
+    All = "",
+    AccountancyFees = "Accountancy Fees",
+    Salary = "Salary",
+    VirtualAssistant = "Virtual Assistant",
+    PreppingService = "Prepping Service",
+    PreppingSupplies = "Prepping Supplies",
+    Subscriptions = "Subscriptions",
+    Postage = "Postage",
+    Equipment = "Equipment",
+    OfficeRent = "Office Rent",
+    Training = "Training",
+    Interest = "Interest",
+    BankCharge = "Bank Charge",
+    InsuranceCosts = "Insurance Costs",
+    OfficeExpensesAndSupplies = "Office expenses and supplies",
+    WarehouseExpensesAndSupplies = "Warehouse expenses and supplies",
+    MaintenanceAndRepairCosts = "Maintenance and repair costs",
+    Utility = "Utility",
+    Travel = "Travel",
+    Fuel = "Fuel",
+    Mileage = "Mileage",
+    Phone = "Phone",
+    Broadband = "Broadband",
+    Cashback = "Cashback",
+    Miscellaneous = "Miscellaneous"
+}
+
+export const expensesCategoryLabels: {
+    [EnumExpensesCategory.All]: string;
+    [EnumExpensesCategory.AccountancyFees]: string;
+    [EnumExpensesCategory.Salary]: string;
+    [EnumExpensesCategory.VirtualAssistant]: string;
+    [EnumExpensesCategory.PreppingService]: string;
+    [EnumExpensesCategory.PreppingSupplies]: string;
+    [EnumExpensesCategory.Subscriptions]: string;
+    [EnumExpensesCategory.Postage]: string;
+    [EnumExpensesCategory.Equipment]: string;
+    [EnumExpensesCategory.OfficeRent]: string;
+    [EnumExpensesCategory.Training]: string;
+    [EnumExpensesCategory.Interest]: string;
+    [EnumExpensesCategory.BankCharge]: string;
+    [EnumExpensesCategory.InsuranceCosts]: string;
+    [EnumExpensesCategory.OfficeExpensesAndSupplies]: string;
+    [EnumExpensesCategory.WarehouseExpensesAndSupplies]: string;
+    [EnumExpensesCategory.MaintenanceAndRepairCosts]: string;
+    [EnumExpensesCategory.Utility]: string;
+    [EnumExpensesCategory.Travel]: string;
+    [EnumExpensesCategory.Fuel]: string;
+    [EnumExpensesCategory.Mileage]: string;
+    [EnumExpensesCategory.Phone]: string;
+    [EnumExpensesCategory.Broadband]: string;
+    [EnumExpensesCategory.Cashback]: string;
+    [EnumExpensesCategory.Miscellaneous]: string;
+} = {
+    [EnumExpensesCategory.All]: "All",
+    [EnumExpensesCategory.AccountancyFees]: "Accountancy Fees",
+    [EnumExpensesCategory.Salary]: "Salary",
+    [EnumExpensesCategory.VirtualAssistant]: "Virtual Assistant",
+    [EnumExpensesCategory.PreppingService]: "Prepping Service",
+    [EnumExpensesCategory.PreppingSupplies]: "Prepping Supplies",
+    [EnumExpensesCategory.Subscriptions]: "Subscriptions",
+    [EnumExpensesCategory.Postage]: "Postage",
+    [EnumExpensesCategory.Equipment]: "Equipment",
+    [EnumExpensesCategory.OfficeRent]: "Office Rent",
+    [EnumExpensesCategory.Training]: "Training",
+    [EnumExpensesCategory.Interest]: "Interest",
+    [EnumExpensesCategory.BankCharge]: "Bank Charge",
+    [EnumExpensesCategory.InsuranceCosts]: "Insurance Costs",
+    [EnumExpensesCategory.OfficeExpensesAndSupplies]: "Office expenses and supplies",
+    [EnumExpensesCategory.WarehouseExpensesAndSupplies]: "Warehouse expenses and supplies",
+    [EnumExpensesCategory.MaintenanceAndRepairCosts]: "Maintenance and repair costs",
+    [EnumExpensesCategory.Utility]: "Utility",
+    [EnumExpensesCategory.Travel]: "Travel",
+    [EnumExpensesCategory.Fuel]: "Fuel",
+    [EnumExpensesCategory.Mileage]: "Mileage",
+    [EnumExpensesCategory.Phone]: "Phone",
+    [EnumExpensesCategory.Broadband]: "Broadband",
+    [EnumExpensesCategory.Cashback]: "Cashback",
+    [EnumExpensesCategory.Miscellaneous]: "Miscellaneous"
+};
+
+export const expensesCategoryList = Object.entries(expensesCategoryLabels).map(([value, name]) => ({
+    name,
+    value: value as EnumExpensesCategory,
+}));
 
 export const recursList = [
     { name: "Never", value: "one_time" },
