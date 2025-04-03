@@ -24,7 +24,7 @@ import {
 } from "@/store/slices/repriceSlice.ts";
 import { RootState } from "@/store/store.ts";
 
-import { countryFilter } from "@/constants/filter";
+import { countryFilter, repriceRuleList } from "@/constants/filter";
 import {
     ColumnDef,
     flexRender,
@@ -33,11 +33,13 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import { ChangeEvent, JSX, useMemo, useState } from "react";
+import React, { ChangeEvent, JSX, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import RepriceOverview from "./RepriceOverview";
-
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+import { ReactButton } from "@/components/ui/ReactButton";
+import { ChevronDownIcon } from "lucide-react";
 const RepricesPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
 
@@ -349,11 +351,57 @@ const RepricesPage: () => JSX.Element = () => {
                                     <TableRow className="border-t-0">
                                         <TableCell>&nbsp;</TableCell>
                                         <TableCell colSpan={2}>
-                                            &nbsp;
+                                            <DropdownMenu>
+                                                <DropdownMenuTrigger asChild>
+                                                    <ReactButton variant="outline" className="w-60 justify-between">
+                                                        {selectedRepriceRule[row.original.id] || <span className="text-[#6E8091]">Price</span>}{" "}
+                                                        <ChevronDownIcon className="ml-2 h-5 w-5" />
+                                                    </ReactButton>
+                                                </DropdownMenuTrigger>
+                                                <DropdownMenuContent align="start" className="z-50 w-60 h-40 overflow-y-auto rounded-md border bg-white p-1 text-gray-900
+                shadow-md dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 transition-all duration-150 ease-in-out">
+                                                    {repriceRuleList.map((repriceRule) => (
+                                                        <DropdownMenuItem
+                                                            key={repriceRule.name}
+                                                            onSelect={() => setSelectedRepriceRule((prev) => ({
+                                                                ...prev,
+                                                                [row.original.id]: repriceRule.name
+                                                            }))}
+                                                            className="relative flex cursor-pointer select-none items-center justify-between rounded-md px-3 py-2 text-sm
+                                outline-none transition-colors hover:bg-gray-100 dark:hover:bg-gray-700
+                                focus:bg-gray-200 dark:focus:bg-gray-800 data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+                                                        >
+                                                            <span className="text-sm">{repriceRule.name}</span>
+                                                        </DropdownMenuItem>
+                                                    ))}
+                                                </DropdownMenuContent>
+                                            </DropdownMenu>
                                         </TableCell>
                                         <TableCell className="align-top">
-                                            &nbsp;
-                                            Select menu to be added
+                                            <div className="flex flex-col gap-2">
+                                                <div className="flex flex-col gap-1 items-end">
+                                                    <label className="text-xs">Min {selectedRepriceRule[row.original.id] || 'Price'} (£)</label>
+                                                    {selectedRepriceRule[row.original.id] == "Roi" ?
+                                                        <ReactInput type="number" placeholder="0" className='w-60 text-right' value={row.original.min_roi} disabled />
+                                                        :
+                                                        selectedRepriceRule[row.original.id] == "Margin" ?
+                                                            <ReactInput type="number" placeholder="0" className='w-60 text-right' value={row.original.min_margin} disabled /> :
+                                                            selectedRepriceRule[row.original.id] == "Profit" ?
+                                                                <ReactInput type="number" placeholder="0" className='w-60 text-right' value={row.original.min_profit} disabled /> :
+                                                                <ReactInput type="number" placeholder="0" className='w-60 text-right' value={row.original.min_price} disabled />}
+                                                </div>
+                                                <div className="flex flex-col gap-1 items-end">
+                                                    <label className="text-xs">Max {selectedRepriceRule[row.original.id] || 'Price'} (£)</label>
+                                                    {selectedRepriceRule[row.original.id] == "Roi" ?
+                                                        <ReactInput type="number" placeholder="0" className='w-60 text-right' value={row.original.max_roi} disabled />
+                                                        :
+                                                        selectedRepriceRule[row.original.id] == "Margin" ?
+                                                            <ReactInput type="number" placeholder="0" className='w-60 text-right' value={row.original.max_margin} disabled /> :
+                                                            selectedRepriceRule[row.original.id] == "Profit" ?
+                                                                <ReactInput type="number" placeholder="0" className='w-60 text-right' value={row.original.max_profit} disabled /> :
+                                                                <ReactInput type="number" placeholder="0" className='w-60 text-right' value={row.original.max_price} disabled />}
+                                                </div>
+                                            </div>
                                         </TableCell>
                                         <TableCell colSpan={5}>
                                             &nbsp;
