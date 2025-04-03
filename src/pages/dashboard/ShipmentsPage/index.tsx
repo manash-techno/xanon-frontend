@@ -9,7 +9,6 @@ import {
     useReactTable
 } from "@tanstack/react-table";
 import { ChangeEvent, JSX, useMemo, useState } from "react";
-// import { useGetInventoryQuery } from "@/store/api/inventoryApi.ts";
 import { BarLoader } from "@/components/common/BarLoader.tsx";
 import { PaginationControls } from "@/components/common/PaginationControls.tsx";
 import { ReactButton } from "@/components/ui/ReactButton.tsx";
@@ -301,7 +300,7 @@ const ShipmentPage: () => JSX.Element = () => {
                 {isError && (
                     <div className="p-4 bg-red-100 text-red-700 rounded-md flex items-center">
                         <span>
-                            Error fetching inventory
+                            Error fetching Shipment
                         </span>
                         <ReactButton
                             variant="outline"
