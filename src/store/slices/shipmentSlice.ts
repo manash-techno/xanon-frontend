@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { iCountry } from "@/types/inventoryTypes";
+import { iCountry } from "@/types/countriesTypes";
 import { EnumShipmentStatus } from "@/constants/filter";
 
 interface iShipmentState {

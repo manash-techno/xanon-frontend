@@ -42,7 +42,3 @@ export interface iShipmentStatus {
     value: string;
 }
 
-export interface iCountry {
-    country: string;
-    marketplace_id: string;
-}

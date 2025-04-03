@@ -1,6 +1,6 @@
+import { parseDateToStandardFormat } from "@/lib/utils.ts";
 import { apiSlice } from "@/store/slices/apiSlice";
-import { iOrder, iCountry } from "@/types/orderTypes";
-import {parseDateToStandardFormat} from "@/lib/utils.ts";
+import { iOrder } from "@/types/orderTypes";
 
 export const orderApi = apiSlice.injectEndpoints?.({
     endpoints: (builder) => ({
@@ -34,15 +34,7 @@ export const orderApi = apiSlice.injectEndpoints?.({
             }),
             providesTags: ["Orders"],
         }),
-
-        getMarketplaceCountries: builder.query<iCountry[], void>({
-            query: () => ({
-                url: "/amazon/orders/marketplace_filter_list/",
-                method: "GET",
-            }),
-            providesTags: ["Countries"],
-        }),
     }),
 });
 
-export const { useGetOrdersQuery, useGetMarketplaceCountriesQuery } = orderApi;
+export const { useGetOrdersQuery } = orderApi;

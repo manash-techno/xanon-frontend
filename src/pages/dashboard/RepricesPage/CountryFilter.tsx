@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { setSelectedCountry } from "@/store/slices/repriceSlice";
-import { useGetMarketplaceCountriesQuery } from "@/store/api/orderApi";
+import { useGetMarketplaceCountriesQuery } from "@/store/api/countriesApi";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 import { ReactButton } from "@/components/ui/ReactButton.tsx";
 import { ChevronDownIcon, RefreshCwIcon, CheckIcon } from "lucide-react";
@@ -12,7 +12,7 @@ import { ReactNode } from "react";
 
 export const CountryFilter = () => {
     const dispatch = useDispatch();
-    const selectedCountry = useSelector((state: RootState) => state.shipment.selectedCountry);
+    const selectedCountry = useSelector((state: RootState) => state.reprice.selectedCountry);
 
     const {
         data: countryList,

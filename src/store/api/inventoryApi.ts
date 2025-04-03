@@ -1,5 +1,5 @@
 import { apiSlice } from "@/store/slices/apiSlice";
-import { iInventoryItem, iCountry } from "@/types/inventoryTypes";
+import { iInventoryItem } from "@/types/inventoryTypes";
 
 export const inventoryApi = apiSlice.injectEndpoints?.({
     endpoints: (builder) => ({
@@ -37,15 +37,7 @@ export const inventoryApi = apiSlice.injectEndpoints?.({
             }),
             providesTags: ["Inventory"],
         }),
-
-        getMarketplaceCountries: builder.query<iCountry[], void>({
-            query: () => ({
-                url: "/amazon/orders/marketplace_filter_list/",
-                method: "GET",
-            }),
-            providesTags: ["Countries"],
-        }),
     }),
 });
 
-export const { useGetInventoryQuery, useGetMarketplaceCountriesQuery } = inventoryApi;
+export const { useGetInventoryQuery} = inventoryApi;

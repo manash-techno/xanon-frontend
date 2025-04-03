@@ -29,8 +29,3 @@ export interface iInventoryStatus {
     name: string;
     value: string;
 }
-
-export interface iCountry {
-    country: string;
-    marketplace_id: string;
-}

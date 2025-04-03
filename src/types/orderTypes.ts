@@ -46,14 +46,6 @@ export interface iOrder {
     order_items: iOrderItem[];
 }
 
-export interface iCountry {
-    country: string;
-    marketplace_id: string;
-    country_code: string;
-    sales_channel: string;
-    currency: string;
-}
-
 export interface iOrderStatus {
     name: string;
     value: string;

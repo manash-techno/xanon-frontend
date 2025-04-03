@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { iCountry, iInventoryStatus } from "@/types/inventoryTypes";
 import { EnumInventoryStatus } from "@/constants/filter";
+import { iCountry } from "@/types/countriesTypes";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface iInventoryState {
     search: string;
