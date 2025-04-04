@@ -14,7 +14,7 @@ export const StatusFilter = () => {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <ReactButton variant="outline" className="w-60 justify-between p-2.5 text-sm">
-                    {shipmentStatusList.find(status => status.value === selectedStatus)?.name || "All"}
+                    {shipmentStatusList.find(status => status.value === selectedStatus)?.name || "All status"}
                     <ChevronDownIcon className="ml-2 h-5 w-5" />
                 </ReactButton>
             </DropdownMenuTrigger>

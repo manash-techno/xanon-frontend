@@ -73,8 +73,6 @@ const ExpensesPage: () => JSX.Element = () => {
         }));
     }, [expensesData, isSuccess]);
 
-    console.log('rowSelection', rowSelection, rowSize);
-
     const columns: ColumnDef<typeof Expenses[0]>[] = [
         {
             accessorKey: "selection-col",
@@ -189,9 +187,6 @@ const ExpensesPage: () => JSX.Element = () => {
 
                 {/* Filter by Status */}
                 <CategoryFilter />
-
-                {/* Filter by Country */}
-                {/* <CountryFilter /> */}
 
                 {/* Filter by Fulfillment */}
                 <FulfillmentFilter />

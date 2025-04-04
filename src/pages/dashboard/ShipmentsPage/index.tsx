@@ -74,8 +74,6 @@ const ShipmentPage: () => JSX.Element = () => {
     const shipmentItems = useMemo(() => {
         if (!isSuccess || !shipmentData?.results) return [];
 
-        console.log('shipmentData', shipmentData)
-
         return shipmentData.results.map((item) => ({
             id: item.id,
             date: item.shipment_date,

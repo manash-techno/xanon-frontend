@@ -40,7 +40,7 @@ export const orderStatusLabels: {
     [EnumOrderStatus.Pending]: string;
     [EnumOrderStatus.Refunded]: string
 } = {
-    [EnumOrderStatus.All]: "All Status",
+    [EnumOrderStatus.All]: "All status",
     [EnumOrderStatus.Pending]: "Pending",
     [EnumOrderStatus.Shipped]: "Shipped",
     [EnumOrderStatus.SellerInitiated]: "Seller Initiated",
@@ -83,7 +83,7 @@ export const inventoryStatusLabels: {
     [EnumInventoryStatus.Losers]: string;
     [EnumInventoryStatus.Deleted]: string;
 } = {
-    [EnumInventoryStatus.All]: "All",
+    [EnumInventoryStatus.All]: "All status",
     [EnumInventoryStatus.InStock]: "In Stock",
     [EnumInventoryStatus.OutOfStock]: "Out of Stock",
     [EnumInventoryStatus.Inbound]: "Inbound",
@@ -126,7 +126,7 @@ export const shipmentStatusLabels: {
     [EnumShipmentStatus.Cancelled]: string;
     [EnumShipmentStatus.Deleted]: string;
 } = {
-    [EnumShipmentStatus.All]: "All",
+    [EnumShipmentStatus.All]: "All status",
     [EnumShipmentStatus.Working]: "Working",
     [EnumShipmentStatus.ReadyToShip]: "Ready to ship",
     [EnumShipmentStatus.Shipped]: "Shipped",
@@ -168,7 +168,7 @@ export const repriceStatusLabels: {
     [EnumRepriceStatus.BuyBoxWin]: string;
     [EnumRepriceStatus.NotBuyBoxWin]: string;
 } = {
-    [EnumRepriceStatus.All]: "All",
+    [EnumRepriceStatus.All]: "All status",
     [EnumRepriceStatus.Repricing]: "Repricing",
     [EnumRepriceStatus.NotRepricing]: "Not Repricing",
     [EnumRepriceStatus.Minimum]: "Minimum",
@@ -239,7 +239,7 @@ export const expensesCategoryLabels: {
     [EnumExpensesCategory.Cashback]: string;
     [EnumExpensesCategory.Miscellaneous]: string;
 } = {
-    [EnumExpensesCategory.All]: "All",
+    [EnumExpensesCategory.All]: "All category",
     [EnumExpensesCategory.AccountancyFees]: "Accountancy Fees",
     [EnumExpensesCategory.Salary]: "Salary",
     [EnumExpensesCategory.VirtualAssistant]: "Virtual Assistant",

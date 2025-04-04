@@ -89,8 +89,6 @@ const RepricesPage: () => JSX.Element = () => {
     const reprices = useMemo(() => {
         if (!isSuccess || !repriceData?.results) return [];
 
-        console.log('repriceData', repriceData)
-
         return repriceData.results.map((item) => ({
             ...item,
         }));
