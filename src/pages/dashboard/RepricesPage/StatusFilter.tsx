@@ -8,7 +8,7 @@ import { ChevronDownIcon } from "lucide-react";
 
 export const StatusFilter = () => {
     const dispatch = useDispatch();
-    const selectedStatus = useSelector((state: RootState) => state.shipment.selectedStatus) || EnumRepriceStatus.All;
+    const selectedStatus = useSelector((state: RootState) => state.reprice.selectedStatus) || EnumRepriceStatus.All;
 
     return (
         <DropdownMenu>

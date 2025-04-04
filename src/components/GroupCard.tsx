@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { Card } from './ui/Card'
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 import { ReactButton } from './ui/ReactButton';
-import { MoreVertical } from 'lucide-react';
+import { Copy, MoreVertical } from 'lucide-react';
 import { ReactImage } from './ui/ReactImage';
 import { Avatar } from '@mui/material';
+import { AssetsConfig } from '@/config/assetsConfig';
 
 export interface GroupCardProps {
     name: string
@@ -35,10 +36,10 @@ const GroupCard: FC<GroupCardProps> = ({ name, memberCount, id, isPrivate, onLea
                             <DropdownMenuContent align="end">
                                 <DropdownMenuItem className="text-red-600 gap-1 hover:!text-red-600">
                                     <ReactImage
-                                        src={"/leave.svg"}
+                                        src={AssetsConfig.icons.leave.src}
                                         width={20}
                                         height={20}
-                                        alt="leave"
+                                        alt={AssetsConfig.icons.leave.alt}
                                     />
                                     Leave
                                 </DropdownMenuItem>
@@ -58,7 +59,7 @@ const GroupCard: FC<GroupCardProps> = ({ name, memberCount, id, isPrivate, onLea
                         <div className="flex gap-4">
                             <div className="flex gap-1.5 items-center">
                                 <ReactImage
-                                    src={isPrivate ? "/private.svg" : "/public.svg"}
+                                    src={isPrivate ? AssetsConfig.icons.private.src : AssetsConfig.icons.public.src}
                                     width={16}
                                     height={16}
                                     alt="profile"
@@ -70,10 +71,10 @@ const GroupCard: FC<GroupCardProps> = ({ name, memberCount, id, isPrivate, onLea
                             </div>
                             <div className="flex gap-1.5 items-center">
                                 <ReactImage
-                                    src={"/profile.svg"}
+                                    src={AssetsConfig.icons.profile.src}
                                     width={16}
                                     height={16}
-                                    alt="profile"
+                                    alt={AssetsConfig.icons.profile.alt}
                                 />
                                 <p className="text-sm text-[#6E8091]">
                                     {memberCount} members
@@ -89,7 +90,7 @@ const GroupCard: FC<GroupCardProps> = ({ name, memberCount, id, isPrivate, onLea
                                 className="h-6 w-6"
                                 onClick={copyId}
                             >
-                                {/* <Copy className="h-3 w-3" /> */}
+                                <Copy className="h-3 w-3 text-[]" />
                             </ReactButton>
                         </div>
                     </div>

@@ -15,6 +15,10 @@ export const AssetsConfig = {
         search: { src: `${ASSET_BASE_PATH}/icons/search.svg`, alt: "Search Icon" },
         menu_icon: { src: `${ASSET_BASE_PATH}/icons/menu.svg`, alt: "Menu Icon" },
         leaderboard_big: { src: `${ASSET_BASE_PATH}/icons/leaderboard-big.svg`, alt: "Leaderboard" },
+        private: { src: `${ASSET_BASE_PATH}/icons/private.svg`, alt: "Private" },
+        public: { src: `${ASSET_BASE_PATH}/icons/public.svg`, alt: "Public" },
+        leave: { src: `${ASSET_BASE_PATH}/icons/leave.svg`, alt: "Leave" },
+        profile: { src: `${ASSET_BASE_PATH}/icons/profile.svg`, alt: "Profile" },
         menu: {
             dashboardActive: { src: `${ASSET_BASE_PATH}/icons/menu/dashboard-active.svg`, alt: "Dashboard Active Icon" },
             dashboard: { src: `${ASSET_BASE_PATH}/icons/menu/dashboard.svg`, alt: "Dashboard Icon" },
