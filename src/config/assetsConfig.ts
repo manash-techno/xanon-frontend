@@ -14,6 +14,7 @@ export const AssetsConfig = {
         rightUp: { src: `${ASSET_BASE_PATH}/icons/right-up.svg`, alt: "Right Up Icon" },
         search: { src: `${ASSET_BASE_PATH}/icons/search.svg`, alt: "Search Icon" },
         menu_icon: { src: `${ASSET_BASE_PATH}/icons/menu.svg`, alt: "Menu Icon" },
+        leaderboard_big: { src: `${ASSET_BASE_PATH}/icons/leaderboard-big.svg`, alt: "Leaderboard" },
         menu: {
             dashboardActive: { src: `${ASSET_BASE_PATH}/icons/menu/dashboard-active.svg`, alt: "Dashboard Active Icon" },
             dashboard: { src: `${ASSET_BASE_PATH}/icons/menu/dashboard.svg`, alt: "Dashboard Icon" },
