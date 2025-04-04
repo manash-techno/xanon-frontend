@@ -40,7 +40,7 @@ const ForgetPasswordPage: () => JSX.Element = () => {
         <form
             className="p-8 rounded-2xl w-96 flex flex-col gap-6
                        bg-white text-gray-900 shadow-md
-                       dark:bg-gray-800 dark:text-gray-100 dark:shadow-lg"
+                       dark:bg-[#242424] dark:text-gray-100 dark:shadow-lg"
         >
             {/* Back Button & Title */}
             <div className="flex items-center gap-2 mb-6">

@@ -33,7 +33,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
-import React, { ChangeEvent, JSX, useMemo, useState } from "react";
+import { ChangeEvent, JSX, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import RepriceOverview from "./RepriceOverview";
@@ -49,7 +49,6 @@ const RepricesPage: () => JSX.Element = () => {
         selectedCountry,
         startDate,
         endDate,
-        fulfillmentChannel,
         currentPage,
         dateRangeLabel,
     } = useSelector((state: RootState) => state.reprice);
@@ -63,11 +62,10 @@ const RepricesPage: () => JSX.Element = () => {
     } = useGetRepricesQuery({
         page: currentPage,
         order_status: selectedStatus,
-        purchase_date_before: endDate,
-        purchase_date_after: startDate,
+        repricing_date__lt: endDate,
+        repricing_date__gt: startDate,
         search,
         country: selectedCountry?.marketplace_id,
-        fulfillmentChannel,
     });
 
     const [showMoreActions, setShowMoreActions] = useState<{
@@ -298,11 +296,11 @@ const RepricesPage: () => JSX.Element = () => {
                     label={dateRangeLabel}
                 />
 
-                {/* Filter by Status */}
-                <StatusFilter />
-
                 {/* Filter by Country */}
                 <CountryFilter />
+
+                {/* Filter by Status */}
+                <StatusFilter />
 
                 {/* Filter by Fulfillment */}
                 <FulfillmentFilter />

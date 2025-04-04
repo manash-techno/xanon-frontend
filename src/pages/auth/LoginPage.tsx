@@ -41,11 +41,13 @@ const LoginPage: () => JSX.Element = () => {
         <form
             className="p-8 rounded-2xl w-96 flex flex-col gap-6
                        bg-white text-gray-900 shadow-md
-                       dark:bg-gray-800 dark:text-gray-100 dark:shadow-lg"
+                       dark:bg-[#242424] dark:text-gray-100 dark:shadow-lg"
             onSubmit={handleSubmit}
         >
+            <div className="flex justify-center">
             <img src={AssetsConfig.images.branding.logoSingle.src} width={60} height={60} alt={AssetsConfig.images.branding.logoSingle.alt} />
-            <h1 className="text-[#15355E] dark:text-gray-100 font-bold text-xl">Sign In</h1>
+            </div>
+            <h1 className="text-[#15355E] dark:text-[#F2F2F2] font-bold text-xl">Sign In</h1>
 
             <div className="flex flex-col gap-3">
                 {/* Display Correct Error Message */}
@@ -53,15 +55,15 @@ const LoginPage: () => JSX.Element = () => {
 
                 {/* Email Input */}
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="email" className="text-xs text-gray-700 dark:text-gray-300">Email</label>
+                    <label htmlFor="email" className="text-xs text-gray-700 dark:text-[#F2F2F2]">Email</label>
                     <input
                         type="email"
                         placeholder="Enter Email"
                         id="email"
                         className="rounded-md px-3 py-2.5 border text-sm
-                                   bg-gray-100 dark:bg-gray-700
-                                   border-gray-300 dark:border-gray-600
-                                   text-gray-900 dark:text-gray-100"
+                                   bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff]"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -70,16 +72,16 @@ const LoginPage: () => JSX.Element = () => {
 
                 {/* Password Input */}
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="password" className="text-xs text-gray-700 dark:text-gray-300">Password</label>
+                    <label htmlFor="password" className="text-xs text-gray-700 dark:text-[#F2F2F2]">Password</label>
                     <div className="relative">
                         <input
                             type={showPassword ? "text" : "password"}
                             placeholder="Enter Password"
                             id="password"
                             className="rounded-md px-3 py-2.5 border text-sm w-full pr-11
-                                       bg-gray-100 dark:bg-gray-700
-                                       border-gray-300 dark:border-gray-600
-                                       text-gray-900 dark:text-gray-100"
+                                       bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff]"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -95,7 +97,7 @@ const LoginPage: () => JSX.Element = () => {
                     </div>
                 </div>
 
-                <Link className="text-xs text-[#0077E5] dark:text-[#68A0FF] cursor-pointer" to={pagePaths.auth.forgetPassword}>
+                <Link className="text-xs text-[#0077E5] dark:text-[#1A91FF] cursor-pointer" to={pagePaths.auth.forgetPassword}>
                     Forgot Password?
                 </Link>
             </div>
@@ -103,7 +105,7 @@ const LoginPage: () => JSX.Element = () => {
             {/* Sign Up Link */}
             <div className="text-xs text-gray-700 dark:text-gray-300">
                 Don’t have an account?
-                <Link className="text-[#0077E5] dark:text-[#68A0FF] font-semibold ml-1" to={pagePaths.auth.register}>
+                <Link className="text-[#0077E5] dark:text-[#1A91FF] font-semibold ml-1" to={pagePaths.auth.register}>
                     Sign up
                 </Link>
             </div>
@@ -112,8 +114,9 @@ const LoginPage: () => JSX.Element = () => {
             <button
                 type="submit"
                 className={`text-center rounded-md w-full py-3 font-semibold text-sm 
-                           bg-[#0077E5] dark:bg-[#005bb5] 
-                           text-white hover:bg-[#005bb5] dark:hover:bg-[#003f80] 
+                           bg-[#0077E5] dark:bg-[#292929] 
+                           text-white hover:bg-[#005bb5] dark:hover:bg-[#100F0F] 
+                           cursor-pointer
                            ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={isLoading}
             >

@@ -70,11 +70,11 @@ const RegisterPage: () => JSX.Element = () => {
         <form
             className="p-8 rounded-2xl w-96 flex flex-col gap-6
                        bg-white text-gray-900 shadow-md
-                       dark:bg-gray-800 dark:text-gray-100 dark:shadow-lg"
+                       dark:bg-[#242424] dark:text-gray-100 dark:shadow-lg"
             onSubmit={handleRegister}
         >
             <img className="mx-auto" src={AssetsConfig.images.branding.logoSingle.src} width={60} height={60} alt={AssetsConfig.images.branding.logoSingle.alt}/>
-            <h1 className="text-[#15355E] dark:text-gray-100 font-bold text-xl">Sign Up</h1>
+            <h1 className="text-[#15355E] dark:text-[#F2F2F2] font-bold text-xl">Sign Up</h1>
 
             {/* Success & Error Messages */}
             {error && (
@@ -93,13 +93,15 @@ const RegisterPage: () => JSX.Element = () => {
             <div className="flex flex-col gap-3">
                 {/* Username Input */}
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="username" className="text-xs text-gray-700 dark:text-gray-300">Username</label>
+                    <label htmlFor="username" className="text-xs text-gray-700 dark:text-[#F2F2F2]">Username</label>
                     <input
                         type="text"
                         placeholder="Enter Username"
                         id="username"
-                        className="rounded-md px-3 py-2.5 border text-sm bg-gray-100 dark:bg-gray-700
-                                   border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100"
+                        className="rounded-md px-3 py-2.5 border text-sm
+                                   bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff]"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
@@ -108,13 +110,15 @@ const RegisterPage: () => JSX.Element = () => {
 
                 {/* Email Input */}
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="email" className="text-xs text-gray-700 dark:text-gray-300">Email</label>
+                    <label htmlFor="email" className="text-xs text-gray-700 dark:text-[#F2F2F2]">Email</label>
                     <input
                         type="email"
                         placeholder="Enter Email"
                         id="email"
-                        className="rounded-md px-3 py-2.5 border text-sm bg-gray-100 dark:bg-gray-700
-                                   border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100"
+                        className="rounded-md px-3 py-2.5 border text-sm
+                                   bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff]"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -123,15 +127,17 @@ const RegisterPage: () => JSX.Element = () => {
 
                 {/* Password Input */}
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="password" className="text-xs text-gray-700 dark:text-gray-300">Create
+                    <label htmlFor="password" className="text-xs text-gray-700 dark:text-[#F2F2F2]">Create
                         Password</label>
                     <div className="relative">
                         <input
                             type={showPassword ? "text" : "password"}
                             placeholder="Enter Password"
                             id="password"
-                            className="rounded-md px-3 py-2.5 border text-sm w-full pr-11 bg-gray-100 dark:bg-gray-700
-                                       border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100"
+                            className="rounded-md px-3 py-2.5 border text-sm w-full pr-11
+                                       bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff]"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -149,15 +155,17 @@ const RegisterPage: () => JSX.Element = () => {
 
                 {/* Confirm Password Input */}
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="confirmPassword" className="text-xs text-gray-700 dark:text-gray-300">Confirm
+                    <label htmlFor="confirmPassword" className="text-xs text-gray-700 dark:text-[#F2F2F2]">Confirm
                         Password</label>
                     <div className="relative">
                         <input
                             type={showConPassword ? "text" : "password"}
                             placeholder="Re-enter Password"
                             id="confirmPassword"
-                            className="rounded-md px-3 py-2.5 border text-sm w-full pr-11 bg-gray-100 dark:bg-gray-700
-                                       border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100"
+                            className="rounded-md px-3 py-2.5 border text-sm
+                                   bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff]"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
@@ -178,8 +186,9 @@ const RegisterPage: () => JSX.Element = () => {
             <button
                 type="submit"
                 className={`text-center rounded-md w-full py-3 font-semibold text-sm 
-                           bg-[#0077E5] dark:bg-[#005bb5] 
-                           text-white hover:bg-[#005bb5] dark:hover:bg-[#003f80] 
+                           bg-[#0077E5] dark:bg-[#292929] 
+                           text-white hover:bg-[#005bb5] dark:hover:bg-[#100F0F] 
+                           cursor-pointer 
                            ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={isLoading}
             >
@@ -187,11 +196,11 @@ const RegisterPage: () => JSX.Element = () => {
             </button>
 
             {/* Links: Login & Forgot Password */}
-            <div className="text-xs text-center text-gray-700 dark:text-gray-300">
+            <div className="text-xs text-center text-gray-700 dark:text-[#F2F2F2]">
                 Already have an account?
-                <Link className="text-[#0077E5] dark:text-[#68A0FF] font-semibold ml-1" to={pagePaths.auth.login}>Sign in</Link>
+                <Link className="text-[#0077E5] dark:text-[#1A91FF] font-semibold ml-1" to={pagePaths.auth.login}>Sign in</Link>
                 <br/>
-                <Link className="text-[#0077E5] dark:text-[#68A0FF] font-semibold" to={pagePaths.auth.forgetPassword}>Forgot
+                <Link className="text-[#0077E5] dark:text-[#1A91FF] font-semibold" to={pagePaths.auth.forgetPassword}>Forgot
                     Password?</Link>
             </div>
         </form>

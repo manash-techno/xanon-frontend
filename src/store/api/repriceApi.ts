@@ -7,20 +7,20 @@ export const repriceApi = apiSlice.injectEndpoints?.({
         getReprices: builder.query<{ results: RepriceList[]; count: number; next?: string; previous?: string }, {
             page: number;
             order_status?: string;
-            purchase_date_before?: string | null;
-            purchase_date_after?: string | null;
+            repricing_date__lt?: string | null;
+            repricing_date__gt?: string | null;
             search?: string;
             country?: string;
             fulfillmentChannel?: string;
         }>({
-            query: ({ page, order_status = "", purchase_date_before = "", purchase_date_after = "", search = "", country = "", fulfillmentChannel = "" }) => ({
+            query: ({ page, order_status = "", repricing_date__lt = "", repricing_date__gt = "", search = "", country = "", fulfillmentChannel = "" }) => ({
                 url: `/amazon/listings/`,
                 method: "GET",
                 params: {
                     page,
                     order_status,
-                    purchase_date_before: parseDateToStandardFormat(purchase_date_before) ?? '',
-                    purchase_date_after: parseDateToStandardFormat(purchase_date_after) ?? '',
+                    repricing_date__lt: parseDateToStandardFormat(repricing_date__lt) ?? '',
+                    repricing_date__gt: parseDateToStandardFormat(repricing_date__gt) ?? '',
                     search,
                     marketplace_id: country,
                     fulfillment_channel: fulfillmentChannel,

@@ -1,4 +1,3 @@
-import { BarLoader } from "@/components/common/BarLoader.tsx";
 import { ReactButton } from '@/components/ui/ReactButton';
 import { ReactImage } from "@/components/ui/ReactImage.tsx";
 import { ReactInput } from "@/components/ui/ReactInput.tsx";
@@ -71,11 +70,11 @@ const Inventory: () => JSX.Element = () => {
   const [search, setSearch] = useState<string>("");
 
 
-  const columns: ColumnDef<Inventory>[] = [
+  const columns = [
     {
       accessorKey: "image",
       header: "Image",
-      cell: ({ row }) => row.getValue("image") ? <ReactImage src={row.getValue("image")} width={48} height={48} alt="product" className="rounded-sm" /> : <ReactImage src={AssetsConfig.icons.fallbackImage.src} width={48} height={48} alt={AssetsConfig.icons.fallbackImage.alt} />,
+      cell: ({ row }) => <ReactImage src={row.getValue("image")} width={48} height={48} alt="product" className="rounded-sm" fallbackSrc={AssetsConfig.icons.defaultProductImage.src} />,
       size: 50
     },
     {
@@ -133,8 +132,6 @@ const Inventory: () => JSX.Element = () => {
       header: "Action",
       enableHiding: false,
       cell: ({ row }) => {
-        const id = row.original.id;
-
         return (
           <div className="flex flex-col">
             <span className="flex items-center text-[#0077E5]">Listing <ReactImage src={AssetsConfig.icons.arrowUpRightOrange.src} width={20} height={20} alt={AssetsConfig.icons.arrowUpRightOrange.alt} /></span>
@@ -145,7 +142,7 @@ const Inventory: () => JSX.Element = () => {
       },
       size: 80
     },
-  ];
+  ] as ColumnDef<Inventory>[];
 
   const table = useReactTable({
     data: data,
@@ -232,24 +229,18 @@ const Inventory: () => JSX.Element = () => {
           </TableHeader>
           <TableBody>
             {
-              false
-                ? (
-                  <TableRow>
-                    <TableCell colSpan={columns.length} className="text-center">
-                      <BarLoader color={"#0077E5"} />
-                    </TableCell>
-                  </TableRow>
-                ) : table.getRowModel().rows.length ? (
+              table.getRowModel().rows.length ? (
                   table.getRowModel().rows.map((row) => (
-                    <TableRow key={row.id}>{row.getVisibleCells().map((cell) => <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>)}</TableRow>
+                      <TableRow key={row.id}>{row.getVisibleCells().map((cell) => <TableCell
+                          key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>)}</TableRow>
                   ))
-                ) : (
+              ) : (
                   <TableRow>
                     <TableCell colSpan={columns.length} className="text-center">
                       No results found.
                     </TableCell>
                   </TableRow>
-                )}
+              )}
           </TableBody>
         </Table>
       </div>
