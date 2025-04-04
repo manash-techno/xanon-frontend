@@ -1,4 +1,5 @@
 import EmptyLeaderboard from '@/components/EmptyLeaderBoard'
+import GroupCard from '@/components/GroupCard'
 import { ReactImage } from '@/components/ui/ReactImage'
 import { ReactInput } from '@/components/ui/ReactInput'
 import { AssetsConfig } from '@/config/assetsConfig'
@@ -30,6 +31,13 @@ const LeaderboardsPage: () => JSX.Element = () => {
             </div>
 
             <EmptyLeaderboard />
+            <GroupCard
+                id="1"
+                name="Group Name"
+                isPrivate={false}
+                memberCount={2}
+                onLeave={() => {}}
+            />
         </div>
     )
 }

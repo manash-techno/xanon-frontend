@@ -1,7 +1,8 @@
 import { AssetsConfig } from "@/config/assetsConfig"
 import { ReactImage } from "./ui/ReactImage"
+import { FC } from "react"
 
-const EmptyLeaderboard = () => {
+const EmptyLeaderboard: FC = () => {
     return (
         <div className="flex flex-col justify-center items-center w-[360px] py-16">
             <ReactImage
