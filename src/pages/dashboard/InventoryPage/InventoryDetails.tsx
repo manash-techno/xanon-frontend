@@ -37,6 +37,7 @@ import { FulfillmentFilter } from "@/pages/dashboard/OrdersPage/FulfillmentFilte
 import { StatusFilter } from "@/pages/dashboard/OrdersPage/StatusFilter.tsx";
 import { CountryFilter } from "@/pages/dashboard/OrdersPage/CountryFilter.tsx";
 import { NotepadModal } from "@/components/modals/NotepadModal";
+import { Box, Typography } from "@mui/material";
 
 const OrdersPage: () => JSX.Element = () => {
   const dispatch = useDispatch();
@@ -420,7 +421,257 @@ const OrdersPage: () => JSX.Element = () => {
         {/* Filter by Fulfillment */}
         <FulfillmentFilter />
       </div>
+      <Box className="flex flex-wrap -m-[15px] -m-[15px] mb-6">
+        <Box className="w-full lg:max-w-[50%] p-[15px]">
+          <Box className="flex gap-4 items-center">
+            <Box className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+              <img src="/assets/images/box-icon.svg" alt="" />
+            </Box>
+            <Box className="">
+              <Typography className="text-[#1E1E1E] dark:text-[#fff]">
+                Schwarzkopf Silhouette Super Hold Hairspray 300ml
+              </Typography>
+              <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                3V-YU78-8UOF
+              </Typography>
+              <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                B007OTJ4D4
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+        <Box className="w-full lg:max-w-[50%] p-[15px]">
+          <Box className="flex flex-wrap">
+            <Box className="w-full max-w-[120px]">
+              <Typography className="text-[#1E1E1E]  dark:text-[#fff]">
+                New
+              </Typography>
+              <Typography className="text-[#6E8091] text-[14px] text-[#828282]">
+                Beauty
+              </Typography>
+            </Box>
+            <Box className="w-full max-w-[120px]">
+              <Typography className="text-[#1E1E1E]  dark:text-[#fff]">
+                Pending
+              </Typography>
+              <Typography className="text-[#6E8091] text-[14px] text-[#828282]">
+                Amazon.uk
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+        <Box className="w-full lg:max-w-[50%] p-[15px]">
+          <Box className="flex flex-wrap -mx-[20px]">
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#1E1E1E]  dark:text-[#fff]">
+                  Available - 🇬🇧UK
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#1E1E1E]  dark:text-[#fff]">
+                  46
+                </Typography>
+              </Box>
+            </Box>
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#1E1E1E]  dark:text-[#fff]">
+                  Price
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#1E1E1E]  dark:text-[#fff]">
+                  £8.14
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box className="flex flex-wrap -mx-[20px]">
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Inbound
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  0
+                </Typography>
+              </Box>
+            </Box>
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  CoG
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  £5.50
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
 
+          <Box className="flex flex-wrap -mx-[20px]">
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Processing
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  1
+                </Typography>
+              </Box>
+            </Box>
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Fees
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  £2.19
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+
+          <Box className="flex flex-wrap -mx-[20px]">
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Buy box price
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  £7.99
+                </Typography>
+              </Box>
+            </Box>
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  VAT
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  £0.44
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box className="flex flex-wrap -mx-[20px]">
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Position
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  4 (4)
+                </Typography>
+              </Box>
+            </Box>
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Profit
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  £0.01
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+
+          <Box className="flex flex-wrap -mx-[20px]">
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Buy Box Last Seen
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Jun 26, 24 <br />
+                  12:20AM
+                </Typography>
+              </Box>
+            </Box>
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Margin
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  0.15%
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+
+          <Box className="flex flex-wrap -mx-[20px]">
+            <Box className="flex w-full max-w-[50%] px-[20px]">
+              <Box className="w-full max-w-[120px]">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Last Order
+                </Typography>
+              </Box>
+              <Box className="w-full max-w-[120px] text-right">
+                <Typography className="text-[#6E8091]  dark:text-[#fff]">
+                  Jun 26, 24 <br />
+                  12:20AM
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+        <Box className="w-full lg:max-w-[50%] p-[15px] flex flex-col gap-3">
+          <Box className="">
+            <Box className="text-[12px] mb-1  dark:text-[#fff]">Notepad</Box>
+            <textarea
+              id="message"
+              rows={5}
+              className="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 
+              focus:ring-blue-500 focus:border-blue-500 dark:bg-[transparent] dark:border-[#4F4F4F] dark:placeholder-[#B4B4B4] 
+              dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              style={{ resize: "none" }}
+              placeholder="Description"
+            ></textarea>
+          </Box>
+          <Box className="flex gap-4 pb-4">
+            <button
+              onClick={() => setShowNotepadModal(false)}
+              type="button"
+              className="cursor-pointer bg-[#F0F0F0] dark:bg-[#292929] hover:bg-gray-400 
+              text-[#6E8091] dark:text-[#696969] text-[12px] font-medium p-0 rounded 
+              inline-flex items-center w-[100px] h-[36px] justify-center"
+            >
+              Save
+            </button>
+            <button
+              onClick={() => setShowNotepadModal(false)}
+              type="button"
+              className="cursor-pointer bg-[transparent] hover:bg-[#F0F0F0] text-[#6E8091] dark:text-[#828282] text-[12px] font-medium p-0 rounded 
+              inline-flex items-center w-[100px] h-[36px] justify-center"
+            >
+              Save
+            </button>
+          </Box>
+        </Box>
+      </Box>
       <div className="overflow-x-auto rounded-lg shadow-md">
         {/* Handle errors */}
         {isError && (
