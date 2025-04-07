@@ -332,28 +332,65 @@ const ShipmentPage: () => JSX.Element = () => {
                         ) : table.getRowModel().rows.length ? (
                             table.getRowModel().rows.map((row) => (<>
                                 <TableRow key={row.id} className={showMoreActions[row.original.id] ? "border-b-0" : ""}>{row.getVisibleCells().map((cell) => <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>)}</TableRow>
-                                {showMoreActions[row.original.id] && (
-                                    <TableRow className="border-t-0">
-                                        <TableCell>&nbsp;</TableCell>
-                                        <TableCell colSpan={2}>
-                                            <p>Ship from</p>
-                                            <p className="text-[#6E8091] text-xs">
-                                                {row.original.shipFrom.Name} <br />
-                                                {row.original.shipFrom.AddressLine1} <br />
-                                                {row.original.shipFrom.City}, {row.original.shipFrom.StateOrProvinceCode} {row.original.shipFrom.PostalCode} {row.original.shipFrom.CountryCode}<br />
-                                            </p>
-                                        </TableCell>
-                                        <TableCell className="align-top">
-                                            <p>Ship to</p>
-                                            <p className="text-[#6E8091] text-xs">
-                                                {row.original.destinationFulfillment}
-                                            </p>
-                                        </TableCell>
-                                        <TableCell colSpan={5}>
-                                            &nbsp;
-                                        </TableCell>
-                                    </TableRow>
-                                )}
+                                {showMoreActions[row.original.id] &&
+                                            <>
+                                                {row.original.items.slice(1).map((item, index) => (
+                                                    <TableRow className="border-0 items-center" key={index}>
+                                                        <TableCell>&nbsp;</TableCell>
+                                                        <TableCell>
+                                                            <div className="flex items-center">
+                                                                <span className="block text-xs text-[#6E8091]">
+                                                                    {row.original.trackingId}
+                                                                </span>
+                                                                <ReactImage src={AssetsConfig.icons.rightUp.src} width={20} height={20} alt={AssetsConfig.icons.rightUp.alt} />
+                                                            </div>
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            <ReactImage src={row.original.image[index + 1] || AssetsConfig.icons.defaultProductImage.src} width={48} height={48} alt={AssetsConfig.icons.defaultProductImage.alt} className="rounded-sm w-12 h-12 object-contain" />
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            <div className="flex flex-col">
+                                                                <span>{row.original.product[index + 1]}</span>
+                                                                <span className="text-xs text-[#6E8091] block">{row.original.sku[index + 1]}</span>
+                                                                <span className="text-xs text-[#6E8091] block">{row.original.asin[index + 1]}</span>
+                                                            </div>
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            <div>{row.original.status}<span className="text-xs text-[#6E8091] block">Amazon.uk</span></div>
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            {row.original.quantity[index + 1]}
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            {row.original.cog[index + 1] != "" ? <div className="text-right">£{row.original?.cog[index + 1]}</div> : <div className="text-right text-sm text-[#0077E5] cursor-pointer" onClick={() => { setShowCogsModal(true); setSelectedItem(row.original.items[index + 1]) }}>Add COG</div>}
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            {row.original.cog[index + 1] != "" && <span className="flex items-center text-[#0077E5] cursor-pointer" onClick={() => { setShowCogsModal(true); setSelectedItem(item) }}>Edit COG</span>}
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ))}
+                                                <TableRow className="border-t-0">
+                                                    <TableCell>&nbsp;</TableCell>
+                                                    <TableCell colSpan={2}>
+                                                        <p>Ship from</p>
+                                                        <p className="text-[#6E8091] text-xs">
+                                                            {row.original.shipFrom.Name} <br />
+                                                            {row.original.shipFrom.AddressLine1} <br />
+                                                            {row.original.shipFrom.City}, {row.original.shipFrom.StateOrProvinceCode} {row.original.shipFrom.PostalCode} {row.original.shipFrom.CountryCode}<br />
+                                                        </p>
+                                                    </TableCell>
+                                                    <TableCell className="align-top">
+                                                        <p>Ship to</p>
+                                                        <p className="text-[#6E8091] text-xs">
+                                                            {row.original.destinationFulfillment}
+                                                        </p>
+                                                    </TableCell>
+                                                    <TableCell colSpan={5}>
+                                                        &nbsp;
+                                                    </TableCell>
+                                                </TableRow>
+                                            </>
+                                        }
                             </>))
                         ) : (
                             <TableRow>
