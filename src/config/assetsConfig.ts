@@ -3,6 +3,7 @@ const ASSET_BASE_PATH = "/assets";
 export const AssetsConfig = {
     icons: {
         back: { src: `${ASSET_BASE_PATH}/icons/back.svg`, alt: "Back Icon" },
+        check: { src: `${ASSET_BASE_PATH}/icons/check.svg`, alt: "Check Icon" },
         eye: { src: `${ASSET_BASE_PATH}/icons/eye.svg`, alt: "Eye Icon" },
         eyeOff: { src: `${ASSET_BASE_PATH}/icons/eyeOff.svg`, alt: "Eye Icon" },
         logout: { src: `${ASSET_BASE_PATH}/icons/logout.svg`, alt: "Logout Icon" },
