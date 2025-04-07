@@ -139,7 +139,7 @@ const RegisterPage: () => JSX.Element = () => {
                         />
                         <img
                             className="absolute top-2.5 right-3 cursor-pointer dark:invert"
-                            src={AssetsConfig.icons.eye.src}
+                            src={showPassword ? AssetsConfig.icons.eyeOff.src : AssetsConfig.icons.eye.src}
                             width={20}
                             height={20}
                             alt={AssetsConfig.icons.eye.alt}
@@ -157,8 +157,8 @@ const RegisterPage: () => JSX.Element = () => {
                             type={showConPassword ? "text" : "password"}
                             placeholder="Re-enter Password"
                             id="confirmPassword"
-                            className="rounded-md px-3 py-2.5 border text-sm
-                                   bg-white dark:bg-[#242424]
+                            className="rounded-md px-3 py-2.5 border text-sm w-full pr-11
+                                       bg-white dark:bg-[#242424]
                                    border-[#EEEEEE] dark:border-[#373737]
                                    text-[#1E1E1E] dark:text-[#fff]"
                             value={confirmPassword}
@@ -167,7 +167,7 @@ const RegisterPage: () => JSX.Element = () => {
                         />
                         <img
                             className="absolute top-2.5 right-3 cursor-pointer dark:invert"
-                            src={AssetsConfig.icons.eye.src}
+                            src={showConPassword ? AssetsConfig.icons.eyeOff.src : AssetsConfig.icons.eye.src}
                             width={20}
                             height={20}
                             alt={AssetsConfig.icons.eye.alt}
