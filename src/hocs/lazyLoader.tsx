@@ -1,14 +1,16 @@
-import { Suspense, lazy, ComponentType } from "react";
+import {Suspense, lazy, ComponentType, JSX} from "react";
 import PageLoader from "@/components/PageLoader.tsx";
 
-// HOC for lazy loading with a fallback loader
 export const lazyLoader = <P extends object>(
-    importFn: () => Promise<{ default: ComponentType<P> }>
+    importFn: () => Promise<{ default: React.ComponentType<P> }>,
+    wrapper?: (Comp) => (props: unknown) => JSX.Element
 ) => {
     const Component = lazy(importFn);
+    const Wrapped = wrapper ? (wrapper(Component) as ComponentType<P>) : Component;
+
     return (
         <Suspense fallback={<PageLoader />}>
-            <Component />
+            <Wrapped />
         </Suspense>
     );
 };

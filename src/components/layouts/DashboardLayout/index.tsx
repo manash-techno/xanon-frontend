@@ -88,28 +88,37 @@ const DashboardLayout = ({
   };
 
   return (
-      <div className='flex'>
-        <div className={cn(
-            "sticky left-0 z-50 py-3 px-2 min-h-screen border-r-2 overflow-hidden transition-[width] duration-300",
-            isSidebarOpen ? "w-[248px]" : "w-16",
-            "bg-[#F2F5F8] dark:bg-[#1E1E1E] border-r-[#E0E0E0] dark:border-r-[#3B3B3B]"
-        )}>
-          <Link to={pagePaths.dashboard.root} className={`${!isSidebarOpen && "flex justify-center"}`}>
-            <ReactImage
-                src={isSidebarOpen ? AssetsConfig.images.branding.logo.src : AssetsConfig.images.branding.logoX.src}
-                width={120}
-                height={48}
-                alt={isSidebarOpen ? AssetsConfig.images.branding.logo.alt : AssetsConfig.images.branding.logoX.alt}
+      <div className="flex">
+        <div
+            className={cn(
+                "sticky left-0 z-50 py-3 px-2 min-h-screen border-r-2 overflow-hidden transition-[width] duration-300",
+                isSidebarOpen ? "w-[248px]" : "w-16",
+                "bg-[#F2F5F8] dark:bg-[#1E1E1E] border-r-[#E0E0E0] dark:border-r-[#3B3B3B]"
+            )}
+        >
+          <Link
+              to={pagePaths.dashboard.root}
+              className="flex items-center"
+          >
+            <div
                 className={cn(
-                    "transition-opacity transition-all duration-300 ease-in-out",
-                    isSidebarOpen ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                    "relative h-[34px] overflow-hidden transition-all duration-300 ease-in-out flex",
+                    isSidebarOpen ? "w-[140px]" : "w-[40px]"
                 )}
-            />
+            >
+              <ReactImage
+                  src={AssetsConfig.images.branding.logo.src}
+                  alt="Full Logo"
+                  className="h-full w-auto min-w-[140px] object-left"
+              />
+            </div>
           </Link>
-          <div className={cn(
-              "flex flex-col mt-10 transition-all",
-              isSidebarOpen ? "w-48" : "w-fit"
-          )}>
+          <div
+              className={cn(
+                  "flex flex-col mt-10 transition-all",
+                  isSidebarOpen ? "w-48" : "w-fit"
+              )}
+          >
             {ListMenuItem.map((item, index) => {
               const isActive = currentMenuItem?.path === item.path;
               return (
@@ -130,17 +139,21 @@ const DashboardLayout = ({
                         alt={isActive ? item.iconActive.alt : item.icon.alt}
                         className={isActive ? "opacity-90" : "opacity-100"}
                     />
-                    <span className={cn(
-                        "text-sm font-medium transition-opacity duration-300",
-                        { "opacity-0 w-0 overflow-hidden": !isSidebarOpen }
-                    )}>{item.name}</span>
+                    <span
+                        className={cn(
+                            "text-sm font-medium transition-opacity duration-300",
+                            { "opacity-0 w-0 overflow-hidden": !isSidebarOpen }
+                        )}
+                    >
+                  {item.name}
+                </span>
                   </NavLink>
               );
             })}
           </div>
         </div>
 
-        <div className='w-full max-h-screen overflow-auto'>
+        <div className="w-full max-h-screen overflow-auto">
           <div className="sticky top-0 z-50 flex justify-between items-center px-5 py-2 h-fit w-full bg-[#F2F5F8] dark:bg-[#1E1E1E] border-b-2 border-b-[#E0E0E0] dark:border-b-[#3B3B3B] transition-colors">
             {/* Left Section - Menu Icon */}
             <div className="flex items-center gap-6">
@@ -151,19 +164,19 @@ const DashboardLayout = ({
                   alt={AssetsConfig.icons.menu_icon.alt}
                   className="cursor-pointer"
                   onClick={() => toggleSidebar()}
-                  invertColor={appliedTheme === 'dark'}
+                  invertColor={appliedTheme === "dark"}
               />
 
               {/* Page Title with Icon - Hidden on Small Devices */}
               <div className="flex items-center gap-3 hidden xs:flex sm:flex">
-                {/* {currentMenuItem && (
+                {currentMenuItem && (
                     <ReactImage
                         src={currentMenuItem.icon.src}
                         width={24}
                         height={24}
                         alt={currentMenuItem.icon.alt}
                     />
-                )} */}
+                )}
                 <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                   {pageTitle || currentMenuItem?.name}
                 </h1>
@@ -191,16 +204,13 @@ const DashboardLayout = ({
 
               <FAQs />
 
-              <NotificationPopover/>
+              <NotificationPopover />
 
-              <ThemeSwitcher className="cursor-pointer"/>
+              <ThemeSwitcher className="cursor-pointer" />
             </div>
           </div>
 
-          <div className="p-5">
-            {children}
-          </div>
-
+          <div className="p-5">{children}</div>
         </div>
       </div>
   );

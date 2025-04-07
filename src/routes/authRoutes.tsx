@@ -3,6 +3,7 @@ import AuthMiddleware from "@/middleware/AuthMiddleware";
 import { AuthOutlet } from "@/routes/outlets/AuthOutlet";
 import { lazyLoader } from "@/hocs/lazyLoader.tsx";
 import {pagePaths} from "@/config/pagePaths.ts";
+import {withPageMeta} from "@/hocs/withPageMeta.tsx";
 
 export const authRoutes: RouteObject[] = [
     {
@@ -13,9 +14,16 @@ export const authRoutes: RouteObject[] = [
         ),
         children: [
             { index: true, element: <Navigate to="login" replace /> },
-            { path: "login", element: lazyLoader(() => import("@/pages/auth/LoginPage")) },
-            { path: "register", element: lazyLoader(() => import("@/pages/auth/RegisterPage.tsx")) },
-            { path: "forget-password", element: lazyLoader(() => import("@/pages/auth/ForgetPasswordPage.tsx")) },
+            { path: "login", element: lazyLoader(
+                    () => import("@/pages/auth/LoginPage"),
+                    (Comp) =>
+                        withPageMeta(Comp, {
+                            title: "Login to Your Account | MyAppName",
+                            description: "Access your dashboard securely with your credentials.",
+                        })
+                ), },
+            { path: "register", element: lazyLoader(() => import("@/pages/auth/RegisterPage.tsx"))},
+            { path: "forget-password", element: lazyLoader(() => import("@/pages/auth/ForgetPasswordPage"))},
             { path: "*", element: <Navigate to="/auth/login" replace /> },
         ],
     },

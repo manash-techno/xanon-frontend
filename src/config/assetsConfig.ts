@@ -4,6 +4,7 @@ export const AssetsConfig = {
     icons: {
         back: { src: `${ASSET_BASE_PATH}/icons/back.svg`, alt: "Back Icon" },
         eye: { src: `${ASSET_BASE_PATH}/icons/eye.svg`, alt: "Eye Icon" },
+        eyeOff: { src: `${ASSET_BASE_PATH}/icons/eyeOff.svg`, alt: "Eye Icon" },
         logout: { src: `${ASSET_BASE_PATH}/icons/logout.svg`, alt: "Logout Icon" },
         notification: { src: `${ASSET_BASE_PATH}/icons/notification.svg`, alt: "Notification Icon" },
         arrowUpRightOrange: { src: `${ASSET_BASE_PATH}/icons/arrow-up-right-orange.svg`, alt: "Up Right Icon" },
@@ -15,6 +16,10 @@ export const AssetsConfig = {
         search: { src: `${ASSET_BASE_PATH}/icons/search.svg`, alt: "Search Icon" },
         menu_icon: { src: `${ASSET_BASE_PATH}/icons/menu.svg`, alt: "Menu Icon" },
         leaderboard_big: { src: `${ASSET_BASE_PATH}/icons/leaderboard-big.svg`, alt: "Leaderboard" },
+        emailBlue: {
+            src: `${ASSET_BASE_PATH}/icons/email-blue-icon.png`,
+            alt: "Email Icon"
+        },
         private: { src: `${ASSET_BASE_PATH}/icons/private.svg`, alt: "Private" },
         public: { src: `${ASSET_BASE_PATH}/icons/public.svg`, alt: "Public" },
         leave: { src: `${ASSET_BASE_PATH}/icons/leave.svg`, alt: "Leave" },

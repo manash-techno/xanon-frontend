@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { iLoginResponse } from "@/types/authTypes.ts";
 import {AssetsConfig} from "@/config/assetsConfig.ts";
 import {pagePaths} from "@/config/pagePaths.ts";
+import {ReactButton} from "@/components/ui/ReactButton.tsx";
+import {AuthFormWrapper} from "@/components/AuthFormWrapper.tsx";
 
 const LoginPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
@@ -38,14 +40,11 @@ const LoginPage: () => JSX.Element = () => {
         : "An error occurred. Please try again.";
 
     return (
-        <form
-            className="p-8 rounded-2xl w-96 flex flex-col gap-6
-                       bg-white text-gray-900 shadow-md
-                       dark:bg-[#242424] dark:text-gray-100 dark:shadow-lg"
+        <AuthFormWrapper
             onSubmit={handleSubmit}
         >
             <div className="flex justify-center">
-            <img src={AssetsConfig.images.branding.logoSingle.src} width={60} height={60} alt={AssetsConfig.images.branding.logoSingle.alt} />
+            <img src={AssetsConfig.images.branding.logo.src} width={130} alt={AssetsConfig.images.branding.logo.alt} />
             </div>
             <h1 className="text-[#15355E] dark:text-[#F2F2F2] font-bold text-xl">Sign In</h1>
 
@@ -88,7 +87,7 @@ const LoginPage: () => JSX.Element = () => {
                         />
                         <img
                             className="absolute top-2.5 right-3 cursor-pointer dark:invert"
-                            src={AssetsConfig.icons.eye.src}
+                            src={showPassword ? AssetsConfig.icons.eyeOff.src : AssetsConfig.icons.eye.src}
                             width={20}
                             height={20}
                             alt={AssetsConfig.icons.eye.alt}
@@ -111,18 +110,18 @@ const LoginPage: () => JSX.Element = () => {
             </div>
 
             {/* Submit Button */}
-            <button
+            <ReactButton
                 type="submit"
                 className={`text-center rounded-md w-full py-3 font-semibold text-sm 
                            bg-[#0077E5] dark:bg-[#292929] 
                            text-white hover:bg-[#005bb5] dark:hover:bg-[#100F0F] 
                            cursor-pointer
                            ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
-                disabled={isLoading}
+                disabled={isLoading || !email.trim() || !password.trim()}
             >
                 {isLoading ? "Logging in..." : "Sign in"}
-            </button>
-        </form>
+            </ReactButton>
+        </AuthFormWrapper>
     );
 };
 

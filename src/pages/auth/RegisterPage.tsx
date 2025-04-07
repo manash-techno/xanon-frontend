@@ -1,9 +1,9 @@
 import { FormEvent, JSX, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "@/store/api/authApi.ts";
 import {AssetsConfig} from "@/config/assetsConfig.ts";
 import {pagePaths} from "@/config/pagePaths.ts";
+import {AuthFormWrapper} from "@/components/AuthFormWrapper.tsx";
 
 const RegisterPage: () => JSX.Element = () => {
     const navigate = useNavigate();
@@ -67,12 +67,7 @@ const RegisterPage: () => JSX.Element = () => {
     };
 
     return (
-        <form
-            className="p-8 rounded-2xl w-96 flex flex-col gap-6
-                       bg-white text-gray-900 shadow-md
-                       dark:bg-[#242424] dark:text-gray-100 dark:shadow-lg"
-            onSubmit={handleRegister}
-        >
+        <AuthFormWrapper onSubmit={handleRegister}>
             <img className="mx-auto" src={AssetsConfig.images.branding.logoSingle.src} width={60} height={60} alt={AssetsConfig.images.branding.logoSingle.alt}/>
             <h1 className="text-[#15355E] dark:text-[#F2F2F2] font-bold text-xl">Sign Up</h1>
 
@@ -203,7 +198,7 @@ const RegisterPage: () => JSX.Element = () => {
                 <Link className="text-[#0077E5] dark:text-[#1A91FF] font-semibold" to={pagePaths.auth.forgetPassword}>Forgot
                     Password?</Link>
             </div>
-        </form>
+        </AuthFormWrapper>
     );
 };
 
