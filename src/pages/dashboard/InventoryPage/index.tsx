@@ -77,18 +77,18 @@ const InventoryPage: () => JSX.Element = () => {
             inboundQuantity: parseValue(item.inbound_quantity, 0),
             fc_processing_quantity: parseValue(item.fc_processing_quantity, 0),
             position: parseValue(item.position, "N/A"),
-            buyBoxPrice: parseValue(item.buy_box_price, 0),
+            buyBoxPrice: parseValue(item.buy_box_price, "0"),
             buy_box_last_seen: parseValue(item.buy_box_last_seen, "N/A"),
             lastOrderDate: parseValue(item.last_order_date, "N/A"),
             sales_channel: parseValue(item.market_place?.sales_channel, 'N/A'),
             marketplace_country: parseValue(item.market_place?.country, null),
             price: parseValue(item.price, 0),
-            costOfGoods: parseValue(item.cost_of_goods, 0),
-            fees: parseValue(item.fees, 0),
-            vat: parseValue(item.vat, 0),
-            profit: parseValue(item.profit, 0),
-            roi: parseValue(item.roi, 0),
-            margin: parseValue(item.margin, 0),
+            costOfGoods: parseValue(item.cost_of_goods, "0"),
+            fees: parseValue(item.fees, "0"),
+            vat: parseValue(item.vat, "0"),
+            profit: parseValue(item.profit, "0"),
+            roi: parseValue(item.roi, "0"),
+            margin: parseValue(item.margin, "0"),
         }));
     }, [inventoryData, isSuccess]);
 
@@ -158,7 +158,7 @@ const InventoryPage: () => JSX.Element = () => {
             header: "Status",
             cell: ({ row }) => (
                 <div>
-                    <div className="capitalize">{row.original.status.replaceAll("_", " ")}</div>
+                    <div className="capitalize">{row.original?.status?.replaceAll("_", " ")}</div>
                     <span className="text-xs text-[#6E8091]">{row.original.sales_channel}</span>
                 </div>
             ),
@@ -223,8 +223,47 @@ const InventoryPage: () => JSX.Element = () => {
         },*/
         {
             accessorKey: "price",
-            header: "Price",
-            cell: ({ row }) => <div>£{row.getValue("price")}</div>,
+            header: "Your Price",
+            cell: ({ row }) => {
+                const id = row.original.id;
+                const isMoreActionsVisible = showMoreActions[id];
+                return (
+                    <div className="text-right">
+                        <span>£{row.original.price}</span>
+                        {isMoreActionsVisible &&
+                            <>
+                                <div className="flex justify-between text-xs text-[#6E8091]">
+                                    <span>CoG</span>
+                                    <span>£{row.original.cost_of_goods}</span>
+                                </div>
+                                <div className="flex justify-between text-xs text-[#6E8091]">
+                                    <span>Fees</span>
+                                    <span>£{row.original.fees}</span>
+                                </div>
+                                <div className="flex justify-between text-xs text-[#6E8091]">
+                                    <span>VAT</span>
+                                    <span>£{row.original.vat}</span>
+                                </div>
+                                <div className="flex justify-between text-xs text-[#6E8091]">
+                                    <span>Profit</span>
+                                    <span>£{row.original.profit}</span>
+                                </div>
+                            </>
+                        }
+                        <div className="flex justify-between text-xs text-[#6E8091]">
+                            <span>ROI</span>
+                            <span>{row.original.roi}%</span>
+                        </div>
+                        {
+                            isMoreActionsVisible &&
+                            <div className="flex justify-between text-xs text-[#6E8091]">
+                                <span>Margin</span>
+                                <span>{row.original.margin}%</span>
+                            </div>
+                        }
+                    </div>
+                )
+            },
             size: 100,
         },
         {
