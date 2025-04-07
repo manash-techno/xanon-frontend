@@ -71,8 +71,7 @@ const OrdersPage: () => JSX.Element = () => {
   const [showMoreActions, setShowMoreActions] = useState<{
     [key: string]: boolean;
   }>({});
-  const [showNotepadModal, setShowNotepadModal] = useState(false)
-
+  const [showNotepadModal, setShowNotepadModal] = useState(false);
 
   // Toggle More/Less actions
   const toggleMoreActions = (id: string) => {
@@ -83,31 +82,31 @@ const OrdersPage: () => JSX.Element = () => {
     () =>
       isSuccess
         ? orderData?.results?.map((order) => ({
-          images: order.order_items?.map((item) => item.image_url) || [],
-          products: order.order_items?.map((item) => item.title) || [],
-          skus: order.order_items?.map((item) => item.seller_sku) || [],
-          asins: order.order_items?.map((item) => item.asin) || [],
-          conditions: order.order_items?.map((item) => item.condition) || [],
-          quantities:
-            order.order_items?.map((item) => item.quantity_ordered) || [],
-          itemPrices: order.order_items?.map((item) => item.item_price) || [],
-          vatAmounts: order.order_items?.map((item) => item.vat) || [],
-          roiPercentages: order.order_items?.map((item) => item.roi) || [],
-          costOfGoods:
-            order.order_items?.map((item) => item.cost_of_goods) || [],
-          fees: order.order_items?.map((item) => item.fees) || [],
-          profits: order.order_items?.map((item) => item.profit) || [],
-          margins: order.order_items?.map((item) => item.margin) || [],
-          orderType: order.order_type, // Fixed: `order.order_items.order_type` to `order.order_type`
-          date: formatShortDate(new Date(order.purchase_date)),
-          time: formatTime(new Date(), { hour12: true, showSeconds: false }),
-          orderId: order.amazon_order_id,
-          status: order.order_status,
-          totalAmount: order.order_total_amount,
-          totalCurrency: order.order_total_currency_code || "-",
-          salesChannel: order.sales_channel,
-          fulfillmentChannel: order.fulfillment_channel,
-        })) || []
+            images: order.order_items?.map((item) => item.image_url) || [],
+            products: order.order_items?.map((item) => item.title) || [],
+            skus: order.order_items?.map((item) => item.seller_sku) || [],
+            asins: order.order_items?.map((item) => item.asin) || [],
+            conditions: order.order_items?.map((item) => item.condition) || [],
+            quantities:
+              order.order_items?.map((item) => item.quantity_ordered) || [],
+            itemPrices: order.order_items?.map((item) => item.item_price) || [],
+            vatAmounts: order.order_items?.map((item) => item.vat) || [],
+            roiPercentages: order.order_items?.map((item) => item.roi) || [],
+            costOfGoods:
+              order.order_items?.map((item) => item.cost_of_goods) || [],
+            fees: order.order_items?.map((item) => item.fees) || [],
+            profits: order.order_items?.map((item) => item.profit) || [],
+            margins: order.order_items?.map((item) => item.margin) || [],
+            orderType: order.order_type, // Fixed: `order.order_items.order_type` to `order.order_type`
+            date: formatShortDate(new Date(order.purchase_date)),
+            time: formatTime(new Date(), { hour12: true, showSeconds: false }),
+            orderId: order.amazon_order_id,
+            status: order.order_status,
+            totalAmount: order.order_total_amount,
+            totalCurrency: order.order_total_currency_code || "-",
+            salesChannel: order.sales_channel,
+            fulfillmentChannel: order.fulfillment_channel,
+          })) || []
         : [],
     [orderData, isSuccess]
   );
@@ -150,8 +149,12 @@ const OrdersPage: () => JSX.Element = () => {
         return (
           <div className="flex gap-2.5">
             <ReactImage
-              src={row.original.images[0] || AssetsConfig.icons.defaultProductImage.src}
-              width={48} height={48}
+              src={
+                row.original.images[0] ||
+                AssetsConfig.icons.defaultProductImage.src
+              }
+              width={48}
+              height={48}
               alt={AssetsConfig.icons.defaultProductImage.alt}
               className="rounded-sm w-12 h-12 object-contain"
               fallbackSrc={AssetsConfig.icons.defaultProductImage.src}
@@ -334,9 +337,10 @@ const OrdersPage: () => JSX.Element = () => {
             </span>
             {isMoreActionsVisible && (
               <Fragment>
-                <span 
-                onClick={() => setShowNotepadModal(true)}
-                className="flex items-center text-[#0077E5] cursor-pointer">
+                <span
+                  onClick={() => setShowNotepadModal(true)}
+                  className="flex items-center text-[#0077E5] cursor-pointer"
+                >
                   Notepad
                 </span>
                 <Link to={`/inventory/detail/${row.original.skus[0]}`}>
@@ -396,35 +400,20 @@ const OrdersPage: () => JSX.Element = () => {
 
   return (
     <div className="w-full">
-      <div className="relative mb-4 w-60">
-        <div className="absolute -translate-y-2/4 top-2/4 left-3">
-          <ReactImage
-            src={AssetsConfig.icons.search.src}
-            width={16}
-            height={16}
-            alt={AssetsConfig.icons.search.alt}
-          />
-        </div>
-        <ReactInput
-          placeholder="Search order"
-          value={search}
-          onChange={handleSearchEvent}
-          className="w-full h-10 pl-10 text-sm"
+      <div className="flex items-center gap-2 mb-6">
+        <img
+          src={AssetsConfig.icons.back.src}
+          width={20}
+          height={20}
+          alt={AssetsConfig.icons.back.alt}
+          className="cursor-pointer"
         />
+        <h1 className="text-[#1E1E1E] dark:text-[#F2F2F2] font-bold text-xl">
+          Inventory detail
+        </h1>
       </div>
 
       <div className="flex items-center mb-6 space-x-5">
-        {/* Filter by Date */}
-        <ReactDatePicker
-          onDateRangeChange={handleDateRangeChange}
-          from={startDate}
-          to={endDate}
-          label={dateRangeLabel}
-        />
-
-        {/* Filter by Status */}
-        <StatusFilter />
-
         {/* Filter by Country */}
         <CountryFilter />
 
@@ -496,8 +485,10 @@ const OrdersPage: () => JSX.Element = () => {
         onPageChange={(page) => dispatch(setCurrentPage(page))}
         totalPages={orderData?.count ? Math.ceil(orderData.count / 10) : 1}
       />
-      <NotepadModal showNotepadModal={showNotepadModal} setShowNotepadModal={setShowNotepadModal} />
-
+      <NotepadModal
+        showNotepadModal={showNotepadModal}
+        setShowNotepadModal={setShowNotepadModal}
+      />
     </div>
   );
 };
