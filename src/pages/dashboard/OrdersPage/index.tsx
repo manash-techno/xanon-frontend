@@ -37,6 +37,7 @@ import { FulfillmentFilter } from "@/pages/dashboard/OrdersPage/FulfillmentFilte
 import { StatusFilter } from "@/pages/dashboard/OrdersPage/StatusFilter.tsx";
 import { CountryFilter } from "@/pages/dashboard/OrdersPage/CountryFilter.tsx";
 import { NotepadModal } from "@/components/modals/NotepadModal";
+import { pagePaths } from "@/config/pagePaths";
 
 const OrdersPage: () => JSX.Element = () => {
   const dispatch = useDispatch();
@@ -339,7 +340,7 @@ const OrdersPage: () => JSX.Element = () => {
                 className="flex items-center text-[#0077E5] cursor-pointer">
                   Notepad
                 </span>
-                <Link to={`/inventory/detail/${row.original.skus[0]}`}>
+                <Link to={`${pagePaths.dashboard.inventoryDetails}/${row.original.skus[0]}`} replace>
                   <span className="flex items-center text-[#0077E5]">
                     Inventory
                   </span>

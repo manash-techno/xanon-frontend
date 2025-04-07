@@ -21,6 +21,7 @@ const EmailVerificationPage: () => JSX.Element = () => {
     }
 
     useEffect(() => {
+        setMessage(null);
         setError(null);
     }, [otp]);
 

@@ -13,7 +13,7 @@ export const pagePaths = {
         root: "/dashboard",
         orders: "/dashboard/orders",
         inventory: "/dashboard/inventory",
-        inventoryDettails: "/dashboard/inventory/details",
+        inventoryDetails: "/dashboard/inventory/details",
         shipment: "/dashboard/shipment",
         expenses: "/dashboard/expenses",
         reprice: "/dashboard/reprice",
