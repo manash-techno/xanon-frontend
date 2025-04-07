@@ -4,9 +4,14 @@ import { useRegisterMutation } from "@/store/api/authApi.ts";
 import {AssetsConfig} from "@/config/assetsConfig.ts";
 import {pagePaths} from "@/config/pagePaths.ts";
 import {AuthFormWrapper} from "@/components/AuthFormWrapper.tsx";
+import { useDispatch, useSelector } from "react-redux";
+import {setUserId, setRegisterEmail} from "@/store/slices/registerSlice";
+import { RootState } from "@/store/store";
 
 const RegisterPage: () => JSX.Element = () => {
     const navigate = useNavigate();
+    const dispacth = useDispatch();
+    const userEmail = useSelector((state: RootState) => state.register.userEmail); 
 
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
@@ -29,6 +34,10 @@ const RegisterPage: () => JSX.Element = () => {
         setMessage(null);
     }, []);
 
+    useEffect(() => {
+      setEmail(userEmail || "");  
+    }, [userEmail]);
+
     const handleRegister = async (e: FormEvent) => {
         e.preventDefault();
         setError(null);
@@ -45,17 +54,19 @@ const RegisterPage: () => JSX.Element = () => {
         }
 
         try {
-            await register({ username, email, password }).unwrap();
+            const res = await register({ username, email, password }).unwrap();
+            dispacth(setUserId(res.id));
+            dispacth(setRegisterEmail(res.email));
 
             // dispatch(setCredentials({ token: response.access, refresh: response.refresh }));
 
-            setMessage("Registration successful! Redirecting to login...");
+            setMessage("Registration successful! Redirecting to Email Verification...");
             setUsername("");
             setEmail("");
             setPassword("");
             setConfirmPassword("");
 
-            setTimeout(() => navigate(pagePaths.auth.login), 2000); // Redirect after success
+            setTimeout(() => navigate(pagePaths.auth.emailVerification), 2000); // Redirect after success
         } catch (err: unknown) {
             console.log("err => ", {err})
             if (err instanceof Error) {

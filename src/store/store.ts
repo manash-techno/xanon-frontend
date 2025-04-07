@@ -9,6 +9,7 @@ import expensesReducer from "@/store/slices/expensesSlice";
 import { apiSlice } from "@/store/slices/apiSlice.ts";
 import {cookieStorage} from "@/store/cookieStorage.ts";
 import {envConfig} from "@/config/env.ts";
+import { registerReducer } from "./slices/registerSlice";
 
 // Configure Redux Persist with custom cookie storage
 const authPersistConfig = {
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
     shipment: shipmentReducer,
     reprice: repriceReducer,
     expenses: expensesReducer,
+    register: registerReducer,
 });
 
 // Create Redux store

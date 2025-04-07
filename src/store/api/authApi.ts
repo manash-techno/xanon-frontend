@@ -29,10 +29,17 @@ export const authApi = apiSlice.injectEndpoints?.({
                 }
             },
         }),
-        register: builder.mutation<void, { username: string; email: string; password: string }>({
+        register: builder.mutation<{email: string, id: number}, { username: string; email: string; password: string }>({
             query: (data) => ({
                 url: API_AUTH_PATHS.REGISTER.path,
                 method: API_AUTH_PATHS.REGISTER.method,
+                body: data,
+            }),
+        }),
+        verifyOTP: builder.mutation<{message: string, error: string}, { user_id: string; otp_code: string }>({
+            query: (data) => ({
+                url: API_AUTH_PATHS.VERIFY_OTP.path,
+                method: API_AUTH_PATHS.VERIFY_OTP.method,
                 body: data,
             }),
         }),
@@ -65,4 +72,4 @@ export const authApi = apiSlice.injectEndpoints?.({
     }),
 });
 
-export const { useLoginMutation, useOauthLoginQuery, useRegisterMutation, useForgotPasswordMutation, useGetUserDetailsQuery, useLogoutMutation } = authApi;
+export const { useLoginMutation, useOauthLoginQuery, useRegisterMutation, useForgotPasswordMutation, useGetUserDetailsQuery, useLogoutMutation, useVerifyOTPMutation } = authApi;
