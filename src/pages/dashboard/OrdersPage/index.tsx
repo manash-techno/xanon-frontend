@@ -36,6 +36,7 @@ import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
 import { FulfillmentFilter } from "@/pages/dashboard/OrdersPage/FulfillmentFilter.tsx";
 import { StatusFilter } from "@/pages/dashboard/OrdersPage/StatusFilter.tsx";
 import { CountryFilter } from "@/pages/dashboard/OrdersPage/CountryFilter.tsx";
+import { NotepadModal } from "@/components/modals/NotepadModal";
 
 const OrdersPage: () => JSX.Element = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,8 @@ const OrdersPage: () => JSX.Element = () => {
   const [showMoreActions, setShowMoreActions] = useState<{
     [key: string]: boolean;
   }>({});
+  const [showNotepadModal, setShowNotepadModal] = useState(false)
+
 
   // Toggle More/Less actions
   const toggleMoreActions = (id: string) => {
@@ -80,31 +83,31 @@ const OrdersPage: () => JSX.Element = () => {
     () =>
       isSuccess
         ? orderData?.results?.map((order) => ({
-            images: order.order_items?.map((item) => item.image_url) || [],
-            products: order.order_items?.map((item) => item.title) || [],
-            skus: order.order_items?.map((item) => item.seller_sku) || [],
-            asins: order.order_items?.map((item) => item.asin) || [],
-            conditions: order.order_items?.map((item) => item.condition) || [],
-            quantities:
-              order.order_items?.map((item) => item.quantity_ordered) || [],
-            itemPrices: order.order_items?.map((item) => item.item_price) || [],
-            vatAmounts: order.order_items?.map((item) => item.vat) || [],
-            roiPercentages: order.order_items?.map((item) => item.roi) || [],
-            costOfGoods:
-              order.order_items?.map((item) => item.cost_of_goods) || [],
-            fees: order.order_items?.map((item) => item.fees) || [],
-            profits: order.order_items?.map((item) => item.profit) || [],
-            margins: order.order_items?.map((item) => item.margin) || [],
-            orderType: order.order_type, // Fixed: `order.order_items.order_type` to `order.order_type`
-            date: formatShortDate(new Date(order.purchase_date)),
-            time: formatTime(new Date(), { hour12: true, showSeconds: false }),
-            orderId: order.amazon_order_id,
-            status: order.order_status,
-            totalAmount: order.order_total_amount,
-            totalCurrency: order.order_total_currency_code || "-",
-            salesChannel: order.sales_channel,
-            fulfillmentChannel: order.fulfillment_channel,
-          })) || []
+          images: order.order_items?.map((item) => item.image_url) || [],
+          products: order.order_items?.map((item) => item.title) || [],
+          skus: order.order_items?.map((item) => item.seller_sku) || [],
+          asins: order.order_items?.map((item) => item.asin) || [],
+          conditions: order.order_items?.map((item) => item.condition) || [],
+          quantities:
+            order.order_items?.map((item) => item.quantity_ordered) || [],
+          itemPrices: order.order_items?.map((item) => item.item_price) || [],
+          vatAmounts: order.order_items?.map((item) => item.vat) || [],
+          roiPercentages: order.order_items?.map((item) => item.roi) || [],
+          costOfGoods:
+            order.order_items?.map((item) => item.cost_of_goods) || [],
+          fees: order.order_items?.map((item) => item.fees) || [],
+          profits: order.order_items?.map((item) => item.profit) || [],
+          margins: order.order_items?.map((item) => item.margin) || [],
+          orderType: order.order_type, // Fixed: `order.order_items.order_type` to `order.order_type`
+          date: formatShortDate(new Date(order.purchase_date)),
+          time: formatTime(new Date(), { hour12: true, showSeconds: false }),
+          orderId: order.amazon_order_id,
+          status: order.order_status,
+          totalAmount: order.order_total_amount,
+          totalCurrency: order.order_total_currency_code || "-",
+          salesChannel: order.sales_channel,
+          fulfillmentChannel: order.fulfillment_channel,
+        })) || []
         : [],
     [orderData, isSuccess]
   );
@@ -147,11 +150,11 @@ const OrdersPage: () => JSX.Element = () => {
         return (
           <div className="flex gap-2.5">
             <ReactImage
-                            src={row.original.images[0] || AssetsConfig.icons.defaultProductImage.src}
-                            width={48} height={48}
-                            alt={AssetsConfig.icons.defaultProductImage.alt}
-                            className="rounded-sm w-12 h-12 object-contain"
-                            fallbackSrc={AssetsConfig.icons.defaultProductImage.src}
+              src={row.original.images[0] || AssetsConfig.icons.defaultProductImage.src}
+              width={48} height={48}
+              alt={AssetsConfig.icons.defaultProductImage.alt}
+              className="rounded-sm w-12 h-12 object-contain"
+              fallbackSrc={AssetsConfig.icons.defaultProductImage.src}
             />
             {row.original.images.length > 1 && (
               <span className="text-sm text-[#0077E5] font-medium">
@@ -331,7 +334,9 @@ const OrdersPage: () => JSX.Element = () => {
             </span>
             {isMoreActionsVisible && (
               <Fragment>
-                <span className="flex items-center text-[#0077E5] cursor-pointer">
+                <span 
+                onClick={() => setShowNotepadModal(true)}
+                className="flex items-center text-[#0077E5] cursor-pointer">
                   Notepad
                 </span>
                 <Link to={`/inventory/detail/${row.original.skus[0]}`}>
@@ -491,6 +496,8 @@ const OrdersPage: () => JSX.Element = () => {
         onPageChange={(page) => dispatch(setCurrentPage(page))}
         totalPages={orderData?.count ? Math.ceil(orderData.count / 10) : 1}
       />
+      <NotepadModal showNotepadModal={showNotepadModal} setShowNotepadModal={setShowNotepadModal} />
+
     </div>
   );
 };
