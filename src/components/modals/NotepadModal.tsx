@@ -189,7 +189,7 @@ export const NotepadModal = ({
             className="cursor-pointer bg-[transparent] hover:bg-[#F0F0F0] text-[#6E8091] dark:text-[#828282] text-[12px] font-medium p-0 rounded 
               inline-flex items-center w-[100px] h-[36px] justify-center"
           >
-            Save
+            Cancel
           </button>
         </Box>
       </Box>
