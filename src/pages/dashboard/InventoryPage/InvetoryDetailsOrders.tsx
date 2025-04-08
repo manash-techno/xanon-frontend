@@ -14,6 +14,7 @@ import {
   TableRow,
 } from "@/components/ui/Table.tsx";
 import { BarLoader } from '@/components/common/BarLoader';
+import { NotepadModal } from '@/components/modals/NotepadModal';
 
 interface InvetoryDetailsOrdersPageProps {
   orders: Array<any>; // Replace with your actual order type
@@ -21,15 +22,15 @@ interface InvetoryDetailsOrdersPageProps {
 }
 
 const InvetoryDetailsOrdersPage: React.FC<InvetoryDetailsOrdersPageProps> = ({ orders, isFetching }) => {
-    const [showMoreActions, setShowMoreActions] = useState<{
-      [key: string]: boolean;
-    }>({});
-    const [showNotepadModal, setShowNotepadModal] = useState(false);
-  
-    // Toggle More/Less actions
-    const toggleMoreActions = (id: string) => {
-      setShowMoreActions((prev) => ({ ...prev, [id]: !prev[id] }));
-    };
+  const [showMoreActions, setShowMoreActions] = useState<{
+    [key: string]: boolean;
+  }>({});
+  const [showNotepadModal, setShowNotepadModal] = useState(false);
+
+  // Toggle More/Less actions
+  const toggleMoreActions = (id: string) => {
+    setShowMoreActions((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const columns: ColumnDef<(typeof orders)[0]>[] = [
     {
@@ -301,50 +302,56 @@ const InvetoryDetailsOrdersPage: React.FC<InvetoryDetailsOrdersPageProps> = ({ o
   });
 
   return (
-    <Table className="min-w-full">
-    <TableHeader className="sticky top-0 bg-gray-100 dark:bg-gray-800 z-10">
-      {table.getHeaderGroups().map((headerGroup) => (
-        <TableRow key={headerGroup.id}>
-          {headerGroup.headers.map((header) => (
-            <TableHead key={header.id} className="p-3">
-              {flexRender(
-                header.column.columnDef.header,
-                header.getContext()
-              )}
-            </TableHead>
+    <Fragment>
+      <Table className="min-w-full">
+        <TableHeader className="sticky top-0 bg-gray-100 dark:bg-gray-800 z-10">
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id} className="p-3">
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </TableHead>
+              ))}
+            </TableRow>
           ))}
-        </TableRow>
-      ))}
-    </TableHeader>
-    <TableBody>
-      {isFetching ? (
-        <TableRow>
-          <TableCell colSpan={columns.length} className="text-center">
-            <BarLoader color={"#0077E5"} />
-          </TableCell>
-        </TableRow>
-      ) : table.getRowModel().rows.length ? (
-        table.getRowModel().rows.map((row) => (
-          <TableRow key={row.id}>
-            {row.getVisibleCells().map((cell) => (
-              <TableCell key={cell.id} className="p-3">
-                {flexRender(
-                  cell.column.columnDef.cell,
-                  cell.getContext()
-                )}
+        </TableHeader>
+        <TableBody>
+          {isFetching ? (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="text-center">
+                <BarLoader color={"#0077E5"} />
               </TableCell>
-            ))}
-          </TableRow>
-        ))
-      ) : (
-        <TableRow>
-          <TableCell colSpan={columns.length} className="text-center">
-            No results found.
-          </TableCell>
-        </TableRow>
-      )}
-    </TableBody>
-  </Table>
+            </TableRow>
+          ) : table.getRowModel().rows.length ? (
+            table.getRowModel().rows.map((row) => (
+              <TableRow key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id} className="p-3">
+                    {flexRender(
+                      cell.column.columnDef.cell,
+                      cell.getContext()
+                    )}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="text-center">
+                No results found.
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+      <NotepadModal
+        showNotepadModal={showNotepadModal}
+        setShowNotepadModal={setShowNotepadModal}
+      />
+    </Fragment>
   )
 }
 

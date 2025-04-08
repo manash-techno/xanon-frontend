@@ -21,15 +21,14 @@ interface InvetoryDetailsReplenishmentsPageProps {
 }
 
 const InvetoryDetailsReplenishmentsPage: React.FC<InvetoryDetailsReplenishmentsPageProps> = ({ orders, isFetching }) => {
-    const [showMoreActions, setShowMoreActions] = useState<{
-      [key: string]: boolean;
-    }>({});
-    const [showNotepadModal, setShowNotepadModal] = useState(false);
-  
+    // const [showMoreActions, setShowMoreActions] = useState<{
+    //   [key: string]: boolean;
+    // }>({});
+
     // Toggle More/Less actions
-    const toggleMoreActions = (id: string) => {
-      setShowMoreActions((prev) => ({ ...prev, [id]: !prev[id] }));
-    };
+    // const toggleMoreActions = (id: string) => {
+    //   setShowMoreActions((prev) => ({ ...prev, [id]: !prev[id] }));
+    // };
 
   const columns: ColumnDef<(typeof orders)[0]>[] = [
     {
@@ -185,11 +184,11 @@ const InvetoryDetailsReplenishmentsPage: React.FC<InvetoryDetailsReplenishmentsP
       },
       cell: ({ row }) => {
         const id = row.original.orderId;
-        const isMoreActionsVisible = showMoreActions[id];
+        // const isMoreActionsVisible = showMoreActions[id];
 
         return (
           <div className="text-right">
-            {isMoreActionsVisible && (
+            {/* {isMoreActionsVisible && ( */}
               <Fragment>
                 <span>£{row.original.totalAmount}</span>
                 <div className="flex justify-between text-xs text-[#6E8091]">
@@ -197,31 +196,31 @@ const InvetoryDetailsReplenishmentsPage: React.FC<InvetoryDetailsReplenishmentsP
                   <span>£{row.original.profits[0]}</span>
                 </div>
               </Fragment>
-            )}
+            {/* )} */}
             <div className="flex justify-between text-xs text-[#6E8091]">
               <span>ROI</span>
               <span>{row.original.roiPercentages[0]}%</span>
             </div>
-            {isMoreActionsVisible && (
+            {/* {isMoreActionsVisible && ( */}
               <Fragment>
                 <div className="flex justify-between text-xs text-[#6E8091]">
                   <span>Margin</span>
                   <span>{row.original.margins[0]}%</span>
                 </div>
               </Fragment>
-            )}
+            {/* )} */}
             <div className="flex justify-between text-xs text-[#6E8091]">
               <span>VAT</span>
               <span>£{row.original.vatAmounts[0]}</span>
             </div>
-            {isMoreActionsVisible && (
+            {/* {isMoreActionsVisible && ( */}
               <Fragment>
                 <div className="flex justify-between text-xs text-[#6E8091]">
                   <span>Fees</span>
                   <span>£{row.original.fees[0]}</span>
                 </div>
               </Fragment>
-            )}
+            {/* )} */}
           </div>
         );
       },
@@ -233,7 +232,7 @@ const InvetoryDetailsReplenishmentsPage: React.FC<InvetoryDetailsReplenishmentsP
       enableHiding: false,
       cell: ({ row }) => {
         const id = row.original.orderId;
-        const isMoreActionsVisible = showMoreActions[id];
+        // const isMoreActionsVisible = showMoreActions[id];
 
         return (
           <div className="flex flex-col">
@@ -255,10 +254,9 @@ const InvetoryDetailsReplenishmentsPage: React.FC<InvetoryDetailsReplenishmentsP
                 alt={AssetsConfig.icons.arrowUpRightOrange.alt}
               />
             </span>
-            {isMoreActionsVisible && (
+            {/* {isMoreActionsVisible && ( */}
               <Fragment>
                 <span
-                  onClick={() => setShowNotepadModal(true)}
                   className="flex items-center text-[#0077E5] cursor-pointer"
                 >
                   Notepad
@@ -269,22 +267,7 @@ const InvetoryDetailsReplenishmentsPage: React.FC<InvetoryDetailsReplenishmentsP
                   </span>
                 </Link>
               </Fragment>
-            )}
-            <span
-              className="flex items-center cursor-pointer"
-              onClick={() => toggleMoreActions(id)}
-            >
-              <ReactImage
-                src={
-                  isMoreActionsVisible
-                    ? AssetsConfig.icons.chevronUp.src
-                    : AssetsConfig.icons.chevronDown.src
-                }
-                width={20}
-                height={20}
-                alt="toggle"
-              />
-            </span>
+            {/* )} */}
           </div>
         );
       },
