@@ -4,7 +4,7 @@ import { JSX } from "react";
 const ResetPasswordPage: () => JSX.Element = () => {
     return (
         <form
-            className="p-8 rounded-2xl w-96 flex flex-col gap-6
+            className="p-8 rounded-2xl w-[345px] flex flex-col gap-6
                        bg-white text-gray-900 shadow-md
                        dark:bg-[#242424] dark:text-gray-100 dark:shadow-lg min-h-[400px]"
         >
@@ -34,7 +34,7 @@ const ResetPasswordPage: () => JSX.Element = () => {
                 <div className="flex flex-col gap-1">
                     <label
                         htmlFor="password"
-                        className="text-xs text-gray-700 dark:text-[#F2F2F2]"
+                        className="text-[14px] text-[#1E1E1E] dark:text-[#F2F2F2]"
                     >
                         Create Password
                     </label>
@@ -57,7 +57,7 @@ const ResetPasswordPage: () => JSX.Element = () => {
                             alt={AssetsConfig.icons.eye.alt}
                         />
                     </div>
-                    <ul className="list-disc list-inside text-[#6E8091] dark:text-[#828282] font-normal pl-2">
+                    <ul className="list-disc list-inside text-[#6E8091] dark:text-[#828282] font-normal pl-2 text-xs flex flex-col gap-1 mt-2">
                         <li>Has at least 8 characters (no spaces)</li>
                         <li>Has letters, numbers, and special characters</li>
                     </ul>
@@ -65,7 +65,7 @@ const ResetPasswordPage: () => JSX.Element = () => {
                 <div className="flex flex-col gap-1">
                     <label
                         htmlFor="password"
-                        className="text-xs text-gray-700 dark:text-[#F2F2F2]"
+                        className="text-[14px] text-[#1E1E1E] dark:text-[#F2F2F2]"
                     >
                         Confirm Password
                     </label>
