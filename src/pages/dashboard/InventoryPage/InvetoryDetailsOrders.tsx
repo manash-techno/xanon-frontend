@@ -15,13 +15,17 @@ import {
 } from "@/components/ui/Table.tsx";
 import { BarLoader } from '@/components/common/BarLoader';
 import { NotepadModal } from '@/components/modals/NotepadModal';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
 
 interface InvetoryDetailsOrdersPageProps {
   orders: Array<any>; // Replace with your actual order type
   isFetching: boolean; // Add this prop to indicate loading state
+  isError: boolean;
+  error: FetchBaseQueryError | SerializedError | undefined
 }
 
-const InvetoryDetailsOrdersPage: React.FC<InvetoryDetailsOrdersPageProps> = ({ orders, isFetching }) => {
+const InvetoryDetailsOrdersPage: React.FC<InvetoryDetailsOrdersPageProps> = ({ orders, isFetching, isError, error }) => {
   const [showMoreActions, setShowMoreActions] = useState<{
     [key: string]: boolean;
   }>({});
@@ -303,6 +307,16 @@ const InvetoryDetailsOrdersPage: React.FC<InvetoryDetailsOrdersPageProps> = ({ o
 
   return (
     <Fragment>
+      {/* Handle errors */}
+      {isError && (
+        <div className="p-4 rounded-md text-sm font-medium flex items-center space-x-2 bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200">
+          <span>❌</span>
+          <span>
+            Error fetching orders:{" "}
+            {error instanceof Error ? error.message : "Unknown error"}
+          </span>
+        </div>
+      )}
       <Table className="min-w-full">
         <TableHeader className="sticky top-0 bg-gray-100 dark:bg-gray-800 z-10">
           {table.getHeaderGroups().map((headerGroup) => (

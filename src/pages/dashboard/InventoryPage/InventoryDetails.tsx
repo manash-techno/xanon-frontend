@@ -5,23 +5,25 @@ import { CountryFilter } from "@/pages/dashboard/OrdersPage/CountryFilter.tsx";
 import { FulfillmentFilter } from "@/pages/dashboard/OrdersPage/FulfillmentFilter.tsx";
 import { useGetOrdersQuery } from "@/store/api/orderApi.ts";
 import {
-  setCurrentPage,
-  setDateRange,
-  setSearch,
+  setCurrentPage
 } from "@/store/slices/orderSlice.ts";
 import { RootState } from "@/store/store.ts";
+import { iOrder } from "@/types/orderTypes";
 import { Box, Typography } from "@mui/material";
-import { ChangeEvent, JSX, useMemo, useState } from "react";
+import { JSX, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InvetoryDetailsOrdersPage from "./InvetoryDetailsOrders";
 import InvetoryDetailsReplenishmentsPage from "./InvetoryDetailsReplenishments";
+import { useLocation } from "react-router-dom";
+import { useGetShipmentQuery } from "@/store/api/shipmentApi";
 
 const OrdersPage: () => JSX.Element = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const id = pathname.split("/").pop();
   const [tab, setTab] = useState<"orders" | "replenishments">("orders");
 
   const {
-    search,
     selectedStatus,
     selectedCountry,
     startDate,
@@ -41,24 +43,41 @@ const OrdersPage: () => JSX.Element = () => {
     order_status: selectedStatus,
     purchase_date_before: endDate,
     purchase_date_after: startDate,
-    search,
+    search: id,
     country: selectedCountry?.marketplace_id,
     fulfillmentChannel,
   });
 
-  const [showMoreActions, setShowMoreActions] = useState<{
-    [key: string]: boolean;
-  }>({});
+  const {
+    data: shipmentData,
+    isFetching: shipmentIsFetching,
+    isSuccess: shipmentIsSuccess,
+    isError: shipmentIsError,
+    error: shipmentError,
+  } = useGetShipmentQuery({
+    page: currentPage,
+    status: selectedStatus,
+    search: id,
+    country: selectedCountry?.marketplace_id,
+    purchase_date_before: endDate,
+    purchase_date_after: startDate,
+  });
 
-  // Toggle More/Less actions
-  const toggleMoreActions = (id: string) => {
-    setShowMoreActions((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
+  const productDetails = useMemo(() => {
+    if (isSuccess) {
+      return orderData?.results?.flatMap((order: iOrder) =>
+        order.order_items?.map((item) => ({
+          ...item,
+          item_price: item.item_price,
+        }))
+      );
+    }
+  }, [orderData, isSuccess]);
 
   const orders = useMemo(
     () =>
       isSuccess
-        ? orderData?.results?.map((order) => ({
+        ? orderData?.results?.map((order: iOrder) => ({
           images: order.order_items?.map((item) => item.image_url) || [],
           products: order.order_items?.map((item) => item.title) || [],
           skus: order.order_items?.map((item) => item.seller_sku) || [],
@@ -87,7 +106,31 @@ const OrdersPage: () => JSX.Element = () => {
         : [],
     [orderData, isSuccess]
   );
-  
+
+  const shipmentItems = useMemo(() => {
+    if (!shipmentIsSuccess || !shipmentData?.results) return [];
+
+    return shipmentData.results.map((item) => ({
+      id: item.id,
+      date: item.shipment_date,
+      time: item.shipment_date,
+      shipmentId: item.shipment_id,
+      trackingId: item.tracking_id,
+      image: item.items.map((data: any) => data?.image_url),
+      product: item.items.map((data: any) => data?.title),
+      sku: item.items.map((data: any) => data?.sku),
+      asin: item.items.map((data: any) => data?.asin),
+      status: item.shipment_status,
+      quantity: item.items.map((data: any) => data?.quantity_shipped),
+      cog: item.items.map((data: any) => data?.cost_of_goods),
+      items: item.items,
+      shipFrom: item.ship_from_address,
+      salesChannel: item.market_place?.sales_channel,
+      destinationFulfillment: item?.destination_fulfillment_center_id
+    }));
+  }, [shipmentData, shipmentIsSuccess]);
+
+
   return (
     <div className="w-full">
       <div className="flex items-center gap-2 mb-6">
@@ -110,21 +153,21 @@ const OrdersPage: () => JSX.Element = () => {
         {/* Filter by Fulfillment */}
         <FulfillmentFilter />
       </div>
-      <Box className="flex flex-wrap -m-[15px] -m-[15px] mb-6">
+      <Box className="flex flex-wrap -m-[15px] mb-6">
         <Box className="w-full lg:max-w-[50%] p-[15px]">
           <Box className="flex gap-4 items-center">
             <Box className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
-              <img src="/assets/images/box-icon.svg" alt="" />
+              <img src={productDetails?.[0].image_url} alt="" />
             </Box>
             <Box className="">
               <Typography className="text-[#1E1E1E] dark:text-[#fff]">
-                Schwarzkopf Silhouette Super Hold Hairspray 300ml
+                {productDetails?.[0].title}
               </Typography>
               <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
-                3V-YU78-8UOF
+                {productDetails?.[0].seller_sku}
               </Typography>
               <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
-                B007OTJ4D4
+              {productDetails?.[0].asin}
               </Typography>
             </Box>
           </Box>
@@ -363,28 +406,18 @@ const OrdersPage: () => JSX.Element = () => {
       </Box>
 
       <div>
-          <button onClick={() => setTab("orders")} className={`p-2 cursor-pointer ${tab === "orders" ? "font-semibold" : ""}`}>
-            Orders
-          </button>
-          <button onClick={() => setTab("replenishments")} className={`p-2 cursor-pointer ${tab === "replenishments" ? "font-semibold" : ""}`}>
-            Replenishments
-          </button>
-        </div>
+        <button onClick={() => setTab("orders")} className={`p-2 cursor-pointer ${tab === "orders" ? "font-semibold" : ""}`}>
+          Orders
+        </button>
+        <button onClick={() => setTab("replenishments")} className={`p-2 cursor-pointer ${tab === "replenishments" ? "font-semibold" : ""}`}>
+          Replenishments
+        </button>
+      </div>
 
       <div className="overflow-x-auto rounded-lg shadow-md">
-        {/* Handle errors */}
-        {isError && (
-          <div className="p-4 rounded-md text-sm font-medium flex items-center space-x-2 bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200">
-            <span>❌</span>
-            <span>
-              Error fetching orders:{" "}
-              {error instanceof Error ? error.message : "Unknown error"}
-            </span>
-          </div>
-        )}
 
-        {tab === "orders" && <InvetoryDetailsOrdersPage orders={orders} isFetching={isFetching} />}
-        {tab === "replenishments" && <InvetoryDetailsReplenishmentsPage orders={orders} isFetching={isFetching}  />}
+        {tab === "orders" && <InvetoryDetailsOrdersPage orders={orders} isFetching={isFetching} isError={isError} error={error} />}
+        {tab === "replenishments" && <InvetoryDetailsReplenishmentsPage shipmentItems={shipmentItems} isFetching={shipmentIsFetching} isError={shipmentIsError} error={shipmentError} />}
       </div>
 
       {/* Pagination Controls */}
