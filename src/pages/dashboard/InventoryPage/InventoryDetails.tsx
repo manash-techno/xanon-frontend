@@ -1,13 +1,9 @@
-import { ChangeEvent, Fragment, JSX, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+import { BarLoader } from "@/components/common/BarLoader.tsx";
+import { PaginationControls } from "@/components/common/PaginationControls.tsx";
+import { NotepadModal } from "@/components/modals/NotepadModal";
+import CaretSortIcon from "@/components/ui/CaretSortIcon.tsx";
+import { ReactButton } from "@/components/ui/ReactButton.tsx";
+import { ReactImage } from "@/components/ui/ReactImage.tsx";
 import {
   Table,
   TableBody,
@@ -16,31 +12,36 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table.tsx";
-import { ReactInput } from "@/components/ui/ReactInput.tsx";
-import { BarLoader } from "@/components/common/BarLoader.tsx";
-import { RootState } from "@/store/store.ts";
+import { AssetsConfig } from "@/config/assetsConfig.ts";
+import { formatShortDate, formatTime } from "@/lib/utils.ts";
+import { CountryFilter } from "@/pages/dashboard/OrdersPage/CountryFilter.tsx";
+import { FulfillmentFilter } from "@/pages/dashboard/OrdersPage/FulfillmentFilter.tsx";
 import { useGetOrdersQuery } from "@/store/api/orderApi.ts";
 import {
   setCurrentPage,
   setDateRange,
   setSearch,
 } from "@/store/slices/orderSlice.ts";
-import { formatShortDate, formatTime } from "@/lib/utils.ts";
-import { PaginationControls } from "@/components/common/PaginationControls.tsx";
-import { ReactImage } from "@/components/ui/ReactImage.tsx";
-import { AssetsConfig } from "@/config/assetsConfig.ts";
-import { ReactButton } from "@/components/ui/ReactButton.tsx";
-import CaretSortIcon from "@/components/ui/CaretSortIcon.tsx";
-import { Link } from "react-router-dom";
-import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
-import { FulfillmentFilter } from "@/pages/dashboard/OrdersPage/FulfillmentFilter.tsx";
-import { StatusFilter } from "@/pages/dashboard/OrdersPage/StatusFilter.tsx";
-import { CountryFilter } from "@/pages/dashboard/OrdersPage/CountryFilter.tsx";
-import { NotepadModal } from "@/components/modals/NotepadModal";
+import { RootState } from "@/store/store.ts";
 import { Box, Typography } from "@mui/material";
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { ChangeEvent, Fragment, JSX, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import InvetoryDetailsOrdersPage from "./InvetoryDetailsOrders";
+import InvetoryDetailsReplenishmentsPage from "./InvetoryDetailsReplenishments";
 
 const OrdersPage: () => JSX.Element = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const [tab, setTab] = useState<"orders" | "replenishments">("orders");
 
   const {
     search,
@@ -83,31 +84,31 @@ const OrdersPage: () => JSX.Element = () => {
     () =>
       isSuccess
         ? orderData?.results?.map((order) => ({
-            images: order.order_items?.map((item) => item.image_url) || [],
-            products: order.order_items?.map((item) => item.title) || [],
-            skus: order.order_items?.map((item) => item.seller_sku) || [],
-            asins: order.order_items?.map((item) => item.asin) || [],
-            conditions: order.order_items?.map((item) => item.condition) || [],
-            quantities:
-              order.order_items?.map((item) => item.quantity_ordered) || [],
-            itemPrices: order.order_items?.map((item) => item.item_price) || [],
-            vatAmounts: order.order_items?.map((item) => item.vat) || [],
-            roiPercentages: order.order_items?.map((item) => item.roi) || [],
-            costOfGoods:
-              order.order_items?.map((item) => item.cost_of_goods) || [],
-            fees: order.order_items?.map((item) => item.fees) || [],
-            profits: order.order_items?.map((item) => item.profit) || [],
-            margins: order.order_items?.map((item) => item.margin) || [],
-            orderType: order.order_type, // Fixed: `order.order_items.order_type` to `order.order_type`
-            date: formatShortDate(new Date(order.purchase_date)),
-            time: formatTime(new Date(), { hour12: true, showSeconds: false }),
-            orderId: order.amazon_order_id,
-            status: order.order_status,
-            totalAmount: order.order_total_amount,
-            totalCurrency: order.order_total_currency_code || "-",
-            salesChannel: order.sales_channel,
-            fulfillmentChannel: order.fulfillment_channel,
-          })) || []
+          images: order.order_items?.map((item) => item.image_url) || [],
+          products: order.order_items?.map((item) => item.title) || [],
+          skus: order.order_items?.map((item) => item.seller_sku) || [],
+          asins: order.order_items?.map((item) => item.asin) || [],
+          conditions: order.order_items?.map((item) => item.condition) || [],
+          quantities:
+            order.order_items?.map((item) => item.quantity_ordered) || [],
+          itemPrices: order.order_items?.map((item) => item.item_price) || [],
+          vatAmounts: order.order_items?.map((item) => item.vat) || [],
+          roiPercentages: order.order_items?.map((item) => item.roi) || [],
+          costOfGoods:
+            order.order_items?.map((item) => item.cost_of_goods) || [],
+          fees: order.order_items?.map((item) => item.fees) || [],
+          profits: order.order_items?.map((item) => item.profit) || [],
+          margins: order.order_items?.map((item) => item.margin) || [],
+          orderType: order.order_type, // Fixed: `order.order_items.order_type` to `order.order_type`
+          date: formatShortDate(new Date(order.purchase_date)),
+          time: formatTime(new Date(), { hour12: true, showSeconds: false }),
+          orderId: order.amazon_order_id,
+          status: order.order_status,
+          totalAmount: order.order_total_amount,
+          totalCurrency: order.order_total_currency_code || "-",
+          salesChannel: order.sales_channel,
+          fulfillmentChannel: order.fulfillment_channel,
+        })) || []
         : [],
     [orderData, isSuccess]
   );
@@ -672,6 +673,16 @@ const OrdersPage: () => JSX.Element = () => {
           </Box>
         </Box>
       </Box>
+
+      <div>
+          <button onClick={() => setTab("orders")} className={`p-2 cursor-pointer ${tab === "orders" ? "font-semibold" : ""}`}>
+            Orders
+          </button>
+          <button onClick={() => setTab("replenishments")} className={`p-2 cursor-pointer ${tab === "replenishments" ? "font-semibold" : ""}`}>
+            Replenishments
+          </button>
+        </div>
+
       <div className="overflow-x-auto rounded-lg shadow-md">
         {/* Handle errors */}
         {isError && (
@@ -684,50 +695,8 @@ const OrdersPage: () => JSX.Element = () => {
           </div>
         )}
 
-        <Table className="min-w-full">
-          <TableHeader className="sticky top-0 bg-gray-100 dark:bg-gray-800 z-10">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="p-3">
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {isFetching ? (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="text-center">
-                  <BarLoader color={"#0077E5"} />
-                </TableCell>
-              </TableRow>
-            ) : table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="p-3">
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className="text-center">
-                  No results found.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+        {tab === "orders" && <InvetoryDetailsOrdersPage orders={orders} isFetching={isFetching} />}
+        {tab === "replenishments" && <InvetoryDetailsReplenishmentsPage orders={orders} isFetching={isFetching}  />}
       </div>
 
       {/* Pagination Controls */}
