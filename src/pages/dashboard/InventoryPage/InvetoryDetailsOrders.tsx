@@ -17,6 +17,7 @@ import { BarLoader } from '@/components/common/BarLoader';
 import { NotepadModal } from '@/components/modals/NotepadModal';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
+import { pagePaths } from '@/config/pagePaths';
 
 interface InvetoryDetailsOrdersPageProps {
   orders: Array<any>; // Replace with your actual order type
@@ -268,7 +269,7 @@ const InvetoryDetailsOrdersPage: React.FC<InvetoryDetailsOrdersPageProps> = ({ o
                 >
                   Notepad
                 </span>
-                <Link to={`/inventory/detail/${row.original.skus[0]}`}>
+                <Link to={`${pagePaths.dashboard.inventoryDetails}/${row.original.skus[0]}`} replace>
                   <span className="flex items-center text-[#0077E5]">
                     Inventory
                   </span>
