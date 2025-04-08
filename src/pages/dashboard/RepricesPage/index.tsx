@@ -51,6 +51,7 @@ const RepricesPage: () => JSX.Element = () => {
         endDate,
         currentPage,
         dateRangeLabel,
+        fulfillmentChannel,
     } = useSelector((state: RootState) => state.reprice);
 
     const {
@@ -66,6 +67,7 @@ const RepricesPage: () => JSX.Element = () => {
         repricing_date__gt: startDate,
         search,
         country: selectedCountry?.marketplace_id,
+        fulfillmentChannel,
     });
 
     const [showMoreActions, setShowMoreActions] = useState<{

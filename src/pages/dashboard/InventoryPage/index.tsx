@@ -1,4 +1,4 @@
-import { ChangeEvent, JSX, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, Fragment, JSX, useEffect, useMemo, useState } from "react";
 import { ReactImage } from "@/components/ui/ReactImage.tsx";
 import { ReactInput } from "@/components/ui/ReactInput.tsx";
 import { ChevronDownIcon } from "lucide-react";
@@ -21,6 +21,8 @@ import CaretSortIcon from "@/components/ui/CaretSortIcon.tsx";
 import { ReactButton } from "@/components/ui/ReactButton.tsx";
 import { CountryFilter } from "./CountryFilter";
 import { StatusFilter } from "./StatusFilter";
+import { Link } from "react-router-dom";
+import { pagePaths } from "@/config/pagePaths";
 
 const InventoryPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
@@ -239,7 +241,7 @@ const InventoryPage: () => JSX.Element = () => {
                             <>
                                 <div className="flex justify-between text-xs text-[#6E8091]">
                                     <span>CoG</span>
-                                    <span>£{row.original.cost_of_goods}</span>
+                                    <span>£{row.original?.cost_of_goods}</span>
                                 </div>
                                 <div className="flex justify-between text-xs text-[#6E8091]">
                                     <span>Fees</span>
@@ -281,13 +283,52 @@ const InventoryPage: () => JSX.Element = () => {
             id: "actions",
             header: "Actions",
             cell: ({ row }) => {
-                const id = row.original.id;
+                const id = row.original.orderId;
                 const isMoreActionsVisible = showMoreActions[id];
 
                 return (
                     <div className="flex flex-col">
-                        <span className="flex items-center text-blue-500 cursor-pointer" onClick={() => toggleMoreActions(id)}>
-                            {isMoreActionsVisible ? "Less" : "More"} <ChevronDownIcon className="ml-1 w-4 h-4" />
+                        <span className="flex items-center text-[#0077E5]">
+                            Invoice{" "}
+                            <ReactImage
+                                src={AssetsConfig.icons.arrowUpRightOrange.src}
+                                width={20}
+                                height={20}
+                                alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                            />
+                        </span>
+                        <span className="flex items-center text-[#0077E5]">
+                            Listing{" "}
+                            <ReactImage
+                                src={AssetsConfig.icons.arrowUpRightOrange.src}
+                                width={20}
+                                height={20}
+                                alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                            />
+                        </span>
+                        {isMoreActionsVisible && (
+                            <Fragment>
+                                <span
+                                    className="flex items-center text-[#0077E5] cursor-pointer">
+                                    Notepad
+                                </span>
+                                <Link to={`${pagePaths.dashboard.inventoryDetails}}`} replace>
+                                    <span className="flex items-center text-[#0077E5]">
+                                        Inventory
+                                    </span>
+                                </Link>
+                            </Fragment>
+                        )}
+                        <span
+                            className="flex items-center cursor-pointer"
+                            onClick={() => toggleMoreActions(id)}
+                        >
+                            {isMoreActionsVisible ? "Less" : "More"}
+                            <ReactImage
+                                src={isMoreActionsVisible ? AssetsConfig.icons.chevronUp.src : AssetsConfig.icons.chevronDown.src}
+                                alt={isMoreActionsVisible ? AssetsConfig.icons.chevronUp.alt : AssetsConfig.icons.chevronDown.alt}
+                                width={16}
+                                height={16} />
                         </span>
                     </div>
                 );
