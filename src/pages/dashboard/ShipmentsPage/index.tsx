@@ -23,12 +23,13 @@ import { StatusFilter } from "./StatusFilter";
 import { setDateRange } from "@/store/slices/shipmentSlice";
 import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
 import { CountryFilter } from "./CountryFilter";
+import { CostOfGoodsModal } from "@/components/modals/CostOfGoodsModal";
 
 const ShipmentPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
     const [showCogsModal, setShowCogsModal] = useState(false)
     const [selectedItem, setSelectedItem] = useState<ShipmentItems>()
-
+    const [showCostOfGoodsModal, setShowCostOfGoodsModal] = useState(false);
     const {
         search,
         selectedStatus,
@@ -207,7 +208,8 @@ const ShipmentPage: () => JSX.Element = () => {
                         {row.original.cog[0] && row.original.cog[0] != null ? (
                             <div className="text-right">£{row.original.cog[0]}</div>
                         ) : (
-                            <div className="text-right text-sm text-[#0077E5] cursor-pointer" onClick={() => { setShowCogsModal(true); setSelectedItem(row.original.items[0]) }}>Add COG</div>
+                            <div className="text-right text-sm text-[#0077E5] cursor-pointer"
+                             onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[0]) }}>Add COG</div>
                         )}
                     </>
                 );
@@ -362,7 +364,7 @@ const ShipmentPage: () => JSX.Element = () => {
                                                             {row.original.quantity[index + 1]}
                                                         </TableCell>
                                                         <TableCell>
-                                                            {row.original.cog[index + 1] != "" ? <div className="text-right">£{row.original?.cog[index + 1]}</div> : <div className="text-right text-sm text-[#0077E5] cursor-pointer" onClick={() => { setShowCogsModal(true); setSelectedItem(row.original.items[index + 1]) }}>Add COG</div>}
+                                                            {row.original.cog[index + 1] != "" ? <div className="text-right">£{row.original?.cog[index + 1]}</div> : <div className="text-right text-sm text-[#0077E5] cursor-pointer" onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[index + 1]) }}>Add COG</div>}
                                                         </TableCell>
                                                         <TableCell>
                                                             {row.original.cog[index + 1] != "" && <span className="flex items-center text-[#0077E5] cursor-pointer" onClick={() => { setShowCogsModal(true); setSelectedItem(item) }}>Edit COG</span>}
@@ -404,7 +406,12 @@ const ShipmentPage: () => JSX.Element = () => {
             </div>
 
             <PaginationControls currentPage={currentPage} onPageChange={(page) => dispatch(setCurrentPage(page))} totalPages={shipmentData?.count ? Math.ceil(shipmentData.count / 10) : 1} />
+                 <CostOfGoodsModal
+                      showCostOfGoodsModal={showCostOfGoodsModal}
+                      setShowCostOfGoodsModal={setShowCostOfGoodsModal}
+                    />
         </div>
+
     );
 };
 
