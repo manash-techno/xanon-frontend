@@ -24,6 +24,7 @@ import { setDateRange } from "@/store/slices/shipmentSlice";
 import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
 import { CountryFilter } from "./CountryFilter";
 import { CostOfGoodsModal } from "@/components/modals/CostOfGoodsModal";
+import { set } from "date-fns";
 
 const ShipmentPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
@@ -111,28 +112,28 @@ const ShipmentPage: () => JSX.Element = () => {
                 const isMoreActionsVisible = showMoreActions[id] || false;
 
                 return (
-                        <div>
-                            {/* First Shipment ID */}
-                            <div className="flex items-center">
-                                {row.original.shipmentId}
-                                <ReactImage src={AssetsConfig.icons.rightUp.src} width={20} height={20} alt={AssetsConfig.icons.rightUp.alt} />
-                            </div>
+                    <div>
+                        {/* First Shipment ID */}
+                        <div className="flex items-center">
+                            {row.original.shipmentId}
+                            <ReactImage src={AssetsConfig.icons.rightUp.src} width={20} height={20} alt={AssetsConfig.icons.rightUp.alt} />
+                        </div>
 
-                            {/* First Tracking ID */}
-                            <div className="flex items-center">
-                                <span className="block text-xs text-[#6E8091]">
+                        {/* First Tracking ID */}
+                        <div className="flex items-center">
+                            {/* <span className="block text-xs text-[#6E8091]">
                                     {row.original.trackingId || "xxx-xxx-xxxxx"}
                                 </span>
-                                <ReactImage src={AssetsConfig.icons.rightUp.src} width={20} height={20} alt={AssetsConfig.icons.rightUp.alt} />
-                                {/* Show "+X" only if there are more shipment IDs */}
-                                {!isMoreActionsVisible && <span
-                                    className="text-sm text-[#0077E5] font-medium cursor-pointer"
-                                    onClick={() => toggleMoreActions(id.toString())} // Toggle function
-                                >
-                                    {row.original.items.length > 1 ? `+  ${row.original.items.length - 1}` : ""}
-                                </span>}
-                            </div>
+                                <ReactImage src={AssetsConfig.icons.rightUp.src} width={20} height={20} alt={AssetsConfig.icons.rightUp.alt} /> */}
+                            {/* Show "+X" only if there are more shipment IDs */}
+                            {!isMoreActionsVisible && <span
+                                className="text-sm text-[#0077E5] font-medium cursor-pointer"
+                                onClick={() => toggleMoreActions(id.toString())} // Toggle function
+                            >
+                                {row.original.items.length > 1 ? `+  ${row.original.items.length - 1}` : ""}
+                            </span>}
                         </div>
+                    </div>
                 );
             },
         },
@@ -209,7 +210,7 @@ const ShipmentPage: () => JSX.Element = () => {
                             <div className="text-right">£{row.original.cog[0]}</div>
                         ) : (
                             <div className="text-right text-sm text-[#0077E5] cursor-pointer"
-                             onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[0]) }}>Add COG</div>
+                                onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[0]) }}>Add COG</div>
                         )}
                     </>
                 );
@@ -227,7 +228,7 @@ const ShipmentPage: () => JSX.Element = () => {
                 return (
                     <>
                         <div className="flex flex-col">
-                            {row.original.cog[0] != "" && <span className="flex items-center text-[#0077E5] cursor-pointer" onClick={() => { setShowCogsModal(true); setSelectedItem(row.original.items[0]) }}>Edit COG</span>}
+                            {row.original.cog[0] != "" && <span className="flex items-center text-[#0077E5] cursor-pointer" onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[0]) }}>Edit COG</span>}
                             <span
                                 className="flex items-center cursor-pointer"
                                 onClick={() => toggleMoreActions(id.toString())}
@@ -254,19 +255,19 @@ const ShipmentPage: () => JSX.Element = () => {
         dispatch(setSearch(e.target.value));
     };
 
-      const handleDateRangeChange = (value: {
+    const handleDateRangeChange = (value: {
         from: string | null;
         to: string | null;
         label: string | null;
-      }) => {
+    }) => {
         dispatch(
-          setDateRange({
-            startDate: value.from,
-            endDate: value.to,
-            label: value.label,
-          })
+            setDateRange({
+                startDate: value.from,
+                endDate: value.to,
+                label: value.label,
+            })
         );
-      };
+    };
 
     return (
         <div className="w-full">
@@ -277,24 +278,24 @@ const ShipmentPage: () => JSX.Element = () => {
                 <ReactInput placeholder="Search shipment" value={search} onChange={handleSearchEvent} className="w-full h-10 pl-10 text-sm" />
             </div>
 
-                  <div className="flex items-center mb-6 space-x-5">
-                    {/* Filter by Date */}
-                    <ReactDatePicker
-                      onDateRangeChange={handleDateRangeChange}
-                      from={startDate}
-                      to={endDate}
-                      label={dateRangeLabel}
-                    />
-            
-                    {/* Filter by Status */}
-                    <StatusFilter />
-            
-                    {/* Filter by Country */}
-                    <CountryFilter />
-            
-                    {/* Filter by Fulfillment */}
-                    {/* <FulfillmentFilter /> */}
-                  </div>
+            <div className="flex items-center mb-6 space-x-5">
+                {/* Filter by Date */}
+                <ReactDatePicker
+                    onDateRangeChange={handleDateRangeChange}
+                    from={startDate}
+                    to={endDate}
+                    label={dateRangeLabel}
+                />
+
+                {/* Filter by Status */}
+                <StatusFilter />
+
+                {/* Filter by Country */}
+                <CountryFilter />
+
+                {/* Filter by Fulfillment */}
+                {/* <FulfillmentFilter /> */}
+            </div>
 
             <div className="overflow-x-auto rounded-lg shadow-md">
                 {isError && (
@@ -335,64 +336,64 @@ const ShipmentPage: () => JSX.Element = () => {
                             table.getRowModel().rows.map((row) => (<>
                                 <TableRow key={row.id} className={showMoreActions[row.original.id] ? "border-b-0" : ""}>{row.getVisibleCells().map((cell) => <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>)}</TableRow>
                                 {showMoreActions[row.original.id] &&
-                                            <>
-                                                {row.original.items.slice(1).map((item, index) => (
-                                                    <TableRow className="border-0 items-center" key={index}>
-                                                        <TableCell>&nbsp;</TableCell>
-                                                        <TableCell>
-                                                            <div className="flex items-center">
-                                                                <span className="block text-xs text-[#6E8091]">
-                                                                    {row.original.trackingId}
-                                                                </span>
-                                                                <ReactImage src={AssetsConfig.icons.rightUp.src} width={20} height={20} alt={AssetsConfig.icons.rightUp.alt} />
-                                                            </div>
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <ReactImage src={row.original.image[index + 1] || AssetsConfig.icons.defaultProductImage.src} width={48} height={48} alt={AssetsConfig.icons.defaultProductImage.alt} className="rounded-sm w-12 h-12 object-contain" />
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <div className="flex flex-col">
-                                                                <span>{row.original.product[index + 1]}</span>
-                                                                <span className="text-xs text-[#6E8091] block">{row.original.sku[index + 1]}</span>
-                                                                <span className="text-xs text-[#6E8091] block">{row.original.asin[index + 1]}</span>
-                                                            </div>
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <div>{row.original.status}<span className="text-xs text-[#6E8091] block">Amazon.uk</span></div>
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            {row.original.quantity[index + 1]}
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            {row.original.cog[index + 1] != "" ? <div className="text-right">£{row.original?.cog[index + 1]}</div> : <div className="text-right text-sm text-[#0077E5] cursor-pointer" onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[index + 1]) }}>Add COG</div>}
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            {row.original.cog[index + 1] != "" && <span className="flex items-center text-[#0077E5] cursor-pointer" onClick={() => { setShowCogsModal(true); setSelectedItem(item) }}>Edit COG</span>}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                ))}
-                                                <TableRow className="border-t-0">
-                                                    <TableCell>&nbsp;</TableCell>
-                                                    <TableCell colSpan={2}>
-                                                        <p>Ship from</p>
-                                                        <p className="text-[#6E8091] text-xs">
-                                                            {row.original.shipFrom.Name} <br />
-                                                            {row.original.shipFrom.AddressLine1} <br />
-                                                            {row.original.shipFrom.City}, {row.original.shipFrom.StateOrProvinceCode} {row.original.shipFrom.PostalCode} {row.original.shipFrom.CountryCode}<br />
-                                                        </p>
-                                                    </TableCell>
-                                                    <TableCell className="align-top">
-                                                        <p>Ship to</p>
-                                                        <p className="text-[#6E8091] text-xs">
-                                                            {row.original.destinationFulfillment}
-                                                        </p>
-                                                    </TableCell>
-                                                    <TableCell colSpan={5}>
-                                                        &nbsp;
-                                                    </TableCell>
-                                                </TableRow>
-                                            </>
-                                        }
+                                    <>
+                                        {row.original.items.slice(1).map((item, index) => (
+                                            <TableRow className="border-0 items-center" key={index}>
+                                                <TableCell>&nbsp;</TableCell>
+                                                <TableCell>
+                                                    <div className="flex items-center">
+                                                        <span className="block text-xs text-[#6E8091]">
+                                                            {row.original.trackingId}
+                                                        </span>
+                                                        <ReactImage src={AssetsConfig.icons.rightUp.src} width={20} height={20} alt={AssetsConfig.icons.rightUp.alt} />
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <ReactImage src={row.original.image[index + 1] || AssetsConfig.icons.defaultProductImage.src} width={48} height={48} alt={AssetsConfig.icons.defaultProductImage.alt} className="rounded-sm w-12 h-12 object-contain" />
+                                                </TableCell>
+                                                <TableCell>
+                                                    <div className="flex flex-col">
+                                                        <span>{row.original.product[index + 1]}</span>
+                                                        <span className="text-xs text-[#6E8091] block">{row.original.sku[index + 1]}</span>
+                                                        <span className="text-xs text-[#6E8091] block">{row.original.asin[index + 1]}</span>
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <div>{row.original.status}<span className="text-xs text-[#6E8091] block">Amazon.uk</span></div>
+                                                </TableCell>
+                                                <TableCell>
+                                                    {row.original.quantity[index + 1]}
+                                                </TableCell>
+                                                <TableCell>
+                                                    {row.original.cog[index + 1] != "" ? <div className="text-right">£{row.original?.cog[index + 1]}</div> : <div className="text-right text-sm text-[#0077E5] cursor-pointer" onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[index+1]) }}>Add COG</div>}
+                                                </TableCell>
+                                                <TableCell>
+                                                    {row.original.cog[index + 1] != "" && <span className="flex items-center text-[#0077E5] cursor-pointer" onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[index+1]), console.log('row.original.items[index+1]', row.original.items[index+1], showCostOfGoodsModal)  }}>Edit COG</span>}
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                        <TableRow className="border-t-0">
+                                            <TableCell>&nbsp;</TableCell>
+                                            <TableCell colSpan={2}>
+                                                <p>Ship from</p>
+                                                <p className="text-[#6E8091] text-xs">
+                                                    {row.original.shipFrom.Name} <br />
+                                                    {row.original.shipFrom.AddressLine1} <br />
+                                                    {row.original.shipFrom.City}, {row.original.shipFrom.StateOrProvinceCode} {row.original.shipFrom.PostalCode} {row.original.shipFrom.CountryCode}<br />
+                                                </p>
+                                            </TableCell>
+                                            <TableCell className="align-top">
+                                                <p>Ship to</p>
+                                                <p className="text-[#6E8091] text-xs">
+                                                    {row.original.destinationFulfillment}
+                                                </p>
+                                            </TableCell>
+                                            <TableCell colSpan={5}>
+                                                &nbsp;
+                                            </TableCell>
+                                        </TableRow>
+                                    </>
+                                }
                             </>))
                         ) : (
                             <TableRow>
@@ -406,10 +407,11 @@ const ShipmentPage: () => JSX.Element = () => {
             </div>
 
             <PaginationControls currentPage={currentPage} onPageChange={(page) => dispatch(setCurrentPage(page))} totalPages={shipmentData?.count ? Math.ceil(shipmentData.count / 10) : 1} />
-                 <CostOfGoodsModal
-                      showCostOfGoodsModal={showCostOfGoodsModal}
-                      setShowCostOfGoodsModal={setShowCostOfGoodsModal}
-                    />
+            <CostOfGoodsModal
+                selectedItem={selectedItem as ShipmentItems}
+                showCostOfGoodsModal={showCostOfGoodsModal}
+                setShowCostOfGoodsModal={setShowCostOfGoodsModal}
+            />
         </div>
 
     );

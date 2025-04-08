@@ -17,7 +17,7 @@ export const shipmentApi = apiSlice.injectEndpoints?.({
             purchase_date_before?: string | null;
             purchase_date_after?: string | null;
         }>({
-            query: ({ page, status = "", purchase_date_before = "", purchase_date_after = "", search = "", country = ""}) => ({
+            query: ({ page, status = "", purchase_date_before = "", purchase_date_after = "", search = "", country = "" }) => ({
                 url: "/amazon/shipments/",
                 method: "GET",
                 params: {
@@ -42,7 +42,15 @@ export const shipmentApi = apiSlice.injectEndpoints?.({
             }),
             providesTags: ["Shipment"],
         }),
+        updateCOG: builder.mutation<void, { id: string, vat_cog: string, unit_cost: string }>({
+            query: ({ id, ...data }) => ({
+                url: `/amazon/shipment_items/${id}/`,
+                method: "PATCH",
+                body: data,
+            }),
+            invalidatesTags: ["Shipment"],
+        })
     }),
 });
 
-export const { useGetShipmentQuery } = shipmentApi;
+export const { useGetShipmentQuery, useUpdateCOGMutation } = shipmentApi;
