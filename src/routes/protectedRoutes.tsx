@@ -16,6 +16,7 @@ export const protectedRoutes: RouteObject[] = [
             { path: "inventory/details/:id", element: lazyLoader(() => import("@/pages/dashboard/InventoryPage/InventoryDetails"))},
             { path: "shipment", element: lazyLoader(() => import("@/pages/dashboard/ShipmentsPage"))},
             { path: "reprice", element: lazyLoader(() => import("@/pages/dashboard/RepricesPage"))},
+            { path: "reprice/details/:id", element: lazyLoader(() => import("@/pages/dashboard/RepricesPage/RepriceDetails"))},
             { path: "expenses", element: lazyLoader(() => import("@/pages/dashboard/ExpensesPage"))},
             {
                 path: "reconciliation",
