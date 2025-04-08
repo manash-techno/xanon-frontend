@@ -1,8 +1,8 @@
-import {ChangeEvent, JSX, useEffect, useMemo, useState} from "react";
+import { ChangeEvent, JSX, useEffect, useMemo, useState } from "react";
 import { ReactImage } from "@/components/ui/ReactImage.tsx";
 import { ReactInput } from "@/components/ui/ReactInput.tsx";
 import { ChevronDownIcon } from "lucide-react";
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/Table.tsx";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/Table.tsx";
 import {
     ColumnDef, flexRender,
     getCoreRowModel,
@@ -14,11 +14,11 @@ import { useGetInventoryQuery } from "@/store/api/inventoryApi.ts";
 import { RootState } from "@/store/store.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage, setSearch } from "@/store/slices/inventorySlice.ts";
-import {BarLoader} from "@/components/common/BarLoader.tsx";
-import {PaginationControls} from "@/components/common/PaginationControls.tsx";
-import {AssetsConfig} from "@/config/assetsConfig.ts";
+import { BarLoader } from "@/components/common/BarLoader.tsx";
+import { PaginationControls } from "@/components/common/PaginationControls.tsx";
+import { AssetsConfig } from "@/config/assetsConfig.ts";
 import CaretSortIcon from "@/components/ui/CaretSortIcon.tsx";
-import {ReactButton} from "@/components/ui/ReactButton.tsx";
+import { ReactButton } from "@/components/ui/ReactButton.tsx";
 import { CountryFilter } from "./CountryFilter";
 import { StatusFilter } from "./StatusFilter";
 
@@ -115,11 +115,16 @@ const InventoryPage: () => JSX.Element = () => {
                     <ReactButton
                         variant="ghost"
                         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                        className="flex flex-col items-start p-0"
+                        className="flex items-center text-left gap-1 p-0"
                     >
-                        <span className="block">Product</span>
-                        <span className="block !text-[#6E8091] text-xs">SKU - ASIN</span>
-                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                        <div>
+                            <span className="block">Product</span>
+                            <span className="block !text-[#6E8091] text-xs">SKU - ASIN</span>
+                        </div>
+                        <CaretSortIcon
+                            className="ml-2 h-4 w-4"
+                            isSorted={column.getIsSorted()}
+                        />
                     </ReactButton>
                 )
             },
