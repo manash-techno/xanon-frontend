@@ -138,17 +138,30 @@ const InvetoryDetailsOrdersPage: React.FC<InvetoryDetailsOrdersPageProps> = ({ o
         return (
           <div>
             <span className="block">Conditions</span>
+            <span className="block !text-[#6E8091] text-xs">Category</span>
           </div>
         );
       },
       cell: ({ row }) => {
-        return <div>{row.original.conditions[0]}</div>;
+        return (
+        <Fragment>
+          <div>{row.original.conditions[0]}</div>
+          <span className="block !text-[#6E8091] text-xs">Beauty</span>
+        </Fragment>
+        );
       },
       size: 105,
     },
     {
       accessorKey: "status",
-      header: "Status",
+      header: () => {
+        return (
+          <div>
+            <span className="block">Status</span>
+            <span className="block !text-[#6E8091] text-xs">Amazon.co.uk</span>
+          </div>
+        );
+      },
       cell: ({ row }) => (
         <Fragment>
           <div>
