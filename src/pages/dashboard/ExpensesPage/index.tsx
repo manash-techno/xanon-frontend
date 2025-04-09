@@ -176,6 +176,10 @@ const ExpensesPage: () => JSX.Element = () => {
                 <ReactInput placeholder="Search expenses" value={search} onChange={handleSearchEvent} className="w-full h-10 pl-10 text-sm" />
             </div>
 
+            <Link to="add" className="flex items-center mb-6 space-x-2">
+                Add Expense
+            </Link>
+
             <div className="flex items-center mb-6 space-x-5">
                 {/* Filter by Date */}
                 <ReactDatePicker
