@@ -157,17 +157,17 @@ const OrdersPage: () => JSX.Element = () => {
         <Box className="w-full lg:max-w-[50%] p-[15px]">
           <Box className="flex gap-4 items-center">
             <Box className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
-              <img src={productDetails?.[0].image_url} alt="" />
+              <img src={productDetails?.[0]?.image_url} alt="" />
             </Box>
             <Box className="">
               <Typography className="text-[#1E1E1E] dark:text-[#fff]">
-                {productDetails?.[0].title}
+                {productDetails?.[0]?.title}
               </Typography>
               <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
-                {productDetails?.[0].seller_sku}
+                {productDetails?.[0]?.seller_sku}
               </Typography>
               <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
-              {productDetails?.[0].asin}
+              {productDetails?.[0]?.asin}
               </Typography>
             </Box>
           </Box>
