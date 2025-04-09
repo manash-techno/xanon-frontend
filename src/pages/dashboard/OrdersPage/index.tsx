@@ -335,9 +335,9 @@ const OrdersPage: () => JSX.Element = () => {
             </span>
             {isMoreActionsVisible && (
               <Fragment>
-                <span 
-                onClick={() => setShowNotepadModal(true)}
-                className="flex items-center text-[#0077E5] cursor-pointer">
+                <span
+                  onClick={() => setShowNotepadModal(true)}
+                  className="flex items-center text-[#0077E5] cursor-pointer">
                   Notepad
                 </span>
                 <Link to={`${pagePaths.dashboard.inventoryDetails}/${row.original.skus[0]}`} replace>
@@ -351,16 +351,12 @@ const OrdersPage: () => JSX.Element = () => {
               className="flex items-center cursor-pointer"
               onClick={() => toggleMoreActions(id)}
             >
+              {isMoreActionsVisible ? "Less" : "More"}
               <ReactImage
-                src={
-                  isMoreActionsVisible
-                    ? AssetsConfig.icons.chevronUp.src
-                    : AssetsConfig.icons.chevronDown.src
-                }
-                width={20}
-                height={20}
-                alt="toggle"
-              />
+                src={isMoreActionsVisible ? AssetsConfig.icons.chevronUp.src : AssetsConfig.icons.chevronDown.src}
+                alt={isMoreActionsVisible ? AssetsConfig.icons.chevronUp.alt : AssetsConfig.icons.chevronDown.alt}
+                width={16}
+                height={16} />
             </span>
           </div>
         );
