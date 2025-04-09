@@ -26,6 +26,7 @@ import { Link } from "react-router-dom";
 import { CategoryFilter } from "./CategoryFilter";
 import { FulfillmentFilter } from "./FulfillmentFilter";
 import { Checkbox } from "@mui/material";
+import { DeleteExpenseModal } from "@/components/modals/DeleteExpenseModal";
 
 const ExpensesPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const ExpensesPage: () => JSX.Element = () => {
     const [selectedId, setSelectedId] = useState("");
     const [rowSelection, setRowSelection] = useState<RowSelectionState>({}) //manage your own row selection state
     let rowSize = Object.keys(rowSelection).length;
+    const [showDeleteExpenseModal, setShowDeleteExpenseModal] = useState(false);
 
     const {
         search,
@@ -128,7 +130,7 @@ const ExpensesPage: () => JSX.Element = () => {
                 return (
                     <div className="flex flex-col">
                         <Link to={`/expenses/edit/${row.original.id}`}><span className="flex items-center text-xs text-[#0077E5]">Edit</span></Link>
-                        <span className="flex items-center text-xs text-[#E50000] cursor-pointer" onClick={() => { setShowConfirmationModal(true); setSelectedId(row.original.id) }}>Delete</span>
+                        <span className="flex items-center text-xs text-[#E50000] cursor-pointer" onClick={() => { setShowDeleteExpenseModal(true); setSelectedId(row.original.id) }}>Delete</span>
                     </div>
                 );
             },
@@ -247,6 +249,10 @@ const ExpensesPage: () => JSX.Element = () => {
             </div>
 
             <PaginationControls currentPage={currentPage} onPageChange={(page) => dispatch(setCurrentPage(page))} totalPages={expensesData?.count ? Math.ceil(expensesData.count / 10) : 1} />
+       <DeleteExpenseModal
+                       showDeleteExpenseModal={showDeleteExpenseModal}
+                       setShowDeleteExpenseModal={setShowDeleteExpenseModal}
+                   />
         </div>
     );
 };
