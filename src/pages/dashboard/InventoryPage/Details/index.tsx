@@ -405,11 +405,11 @@ const OrdersPage: () => JSX.Element = () => {
         </Box>
       </Box>
 
-      <div>
-        <button onClick={() => setTab("orders")} className={`p-2 cursor-pointer ${tab === "orders" ? "font-semibold" : ""}`}>
+      <div className="flex gap-4 mb-4">
+        <button onClick={() => setTab("orders")} className={`p-0 cursor-pointer ${tab === "orders" ? "font-bold text-[#1E1E1E] dark:text-[#696969]" : "text-[#B4B4B4] dark:text-[#F2F2F2]"}`}>
           Orders
         </button>
-        <button onClick={() => setTab("replenishments")} className={`p-2 cursor-pointer ${tab === "replenishments" ? "font-semibold" : ""}`}>
+        <button onClick={() => setTab("replenishments")} className={`p-0 cursor-pointer ${tab === "replenishments" ? "font-bold text-[#1E1E1E] dark:text-[#696969]" : "text-[#B4B4B4] dark:text-[#F2F2F2]"}`}>
           Replenishments
         </button>
       </div>

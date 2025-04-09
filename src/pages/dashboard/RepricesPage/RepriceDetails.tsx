@@ -58,10 +58,16 @@ const RepriceDetailsPage: () => JSX.Element = () => {
           </Box>
         </Box>
         <Box className="flex">
-          <Box className="w-full ">
-          <Typography className="text-[#1E1E1E]  dark:text-[#fff]">
-          Country:
-                </Typography>
+          <Box className="w-full flex items-center gap-2">
+          <Typography className="text-[#1E1E1E] dark:text-[#fff]">
+              Country:
+            </Typography>
+            <Box className=""><img src="/assets/images/ukLogo.png" alt="" /></Box>
+          </Box>
+        </Box>
+        <Box className="flex flex-col gap-4">
+          <Box className="">
+            <label htmlFor="">Reprice Rule</label>
           </Box>
         </Box>
       </Box>
