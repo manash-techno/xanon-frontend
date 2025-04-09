@@ -127,8 +127,8 @@ const ExpensesPage: () => JSX.Element = () => {
             cell: ({ row }) => {
                 return (
                     <div className="flex flex-col">
-                        <Link to={`/expenses/edit/${row.original.id}`}><span className="flex items-center text-[#0077E5]">Edit</span></Link>
-                        <span className="flex items-center text-[#0077E5] cursor-pointer" onClick={() => { setShowConfirmationModal(true); setSelectedId(row.original.id) }}>Delete</span>
+                        <Link to={`/expenses/edit/${row.original.id}`}><span className="flex items-center text-xs text-[#0077E5]">Edit</span></Link>
+                        <span className="flex items-center text-xs text-[#E50000] cursor-pointer" onClick={() => { setShowConfirmationModal(true); setSelectedId(row.original.id) }}>Delete</span>
                     </div>
                 );
             },
