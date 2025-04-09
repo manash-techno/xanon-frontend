@@ -50,7 +50,6 @@ const ExpensesPage: () => JSX.Element = () => {
         isFetching,
         isSuccess,
         isError,
-        error,
         refetch: expensesRefetch
     } = useGetExpensesQuery({
         page: currentPage,
@@ -89,18 +88,24 @@ const ExpensesPage: () => JSX.Element = () => {
         },
         {
             accessorKey: "date",
-            header: () =>  rowSize > 0 ? <div>{rowSize} Selected </div> : "Date",
+            header: () => rowSize > 0 ? <div>{rowSize} Selected </div> : "Date",
             cell: ({ row }) => <div>{formatShortDate(new Date(row.getValue("date")))}</div>,
         },
         {
             accessorKey: "category",
-            header: () =>  rowSize > 0 ? "" :  (
+            header: () => rowSize > 0 ?
                 <div
-                >
-                    <span className="block">Category</span>
-                    <span className="block !text-[#6E8091] text-xs">Recurs</span>
+                    className="flex items-center text-[#E50000] cursor-pointer"
+                    onClick={() => { setShowDeleteExpenseModal(true) }}>
+                    Delete
                 </div>
-            ),
+                : (
+                    <div
+                    >
+                        <span className="block">Category</span>
+                        <span className="block !text-[#6E8091] text-xs">Recurs</span>
+                    </div>
+                ),
             accessorFn: row => <div>{row.category}
                 <span className="text-xs text-[#6E8091] block">{row.recur}</span>
             </div>,
@@ -108,12 +113,12 @@ const ExpensesPage: () => JSX.Element = () => {
         },
         {
             accessorKey: "description",
-            header: () =>  rowSize > 0 ? "" :  "Description",
+            header: () => rowSize > 0 ? "" : "Description",
             cell: ({ row }) => <div>{row.getValue("description")}</div>,
         },
         {
             accessorKey: "amount",
-            header: () =>  rowSize > 0 ? "" :  <div className="text-right">Total Amount</div>,
+            header: () => rowSize > 0 ? "" : <div className="text-right">Total Amount</div>,
             accessorFn: row =>
                 <div className="text-right">-£{row.amount}
                     <div className="flex justify-between">
@@ -125,7 +130,7 @@ const ExpensesPage: () => JSX.Element = () => {
         },
         {
             id: "actions",
-            header: () =>  rowSize > 0 ? "" : "Action",
+            header: () => rowSize > 0 ? "" : "Action",
             cell: ({ row }) => {
                 return (
                     <div className="flex flex-col">
@@ -171,16 +176,19 @@ const ExpensesPage: () => JSX.Element = () => {
 
     return (
         <div className="w-full">
-            <div className="relative mb-4 w-60">
-                <div className="absolute -translate-y-2/4 top-2/4 left-3">
-                    <ReactImage src={AssetsConfig.icons.search.src} alt={AssetsConfig.icons.search.alt} width={16} height={16} />
-                </div>
-                <ReactInput placeholder="Search expenses" value={search} onChange={handleSearchEvent} className="w-full h-10 pl-10 text-sm" />
-            </div>
 
-            <Link to="add" className="flex items-center mb-6 space-x-2">
-                Add Expense
-            </Link>
+            <div className="flex justify-between">
+                <div className="relative mb-4 w-60">
+                    <div className="absolute -translate-y-2/4 top-2/4 left-3">
+                        <ReactImage src={AssetsConfig.icons.search.src} alt={AssetsConfig.icons.search.alt} width={16} height={16} />
+                    </div>
+                    <ReactInput placeholder="Search expenses" value={search} onChange={handleSearchEvent} className="w-full h-10 pl-10 text-sm" />
+                </div>
+
+                <Link type="button" to="add" className="flex items-center mb-6 space-x-2 border py-2 px-6 text-sm rounded-md text-[#0077E5]  border-[#0077E5]">
+                    Add Expense
+                </Link>
+            </div>
 
             <div className="flex items-center mb-6 space-x-5">
                 {/* Filter by Date */}
@@ -219,7 +227,7 @@ const ExpensesPage: () => JSX.Element = () => {
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (
-                                    <TableHead key={header.id} className="p-3">
+                                    <TableHead key={header.id} className="p-3 nth-[1]:p-2">
                                         {flexRender(header.column.columnDef.header, header.getContext())}
                                     </TableHead>
                                 ))}
@@ -249,10 +257,10 @@ const ExpensesPage: () => JSX.Element = () => {
             </div>
 
             <PaginationControls currentPage={currentPage} onPageChange={(page) => dispatch(setCurrentPage(page))} totalPages={expensesData?.count ? Math.ceil(expensesData.count / 10) : 1} />
-       <DeleteExpenseModal
-                       showDeleteExpenseModal={showDeleteExpenseModal}
-                       setShowDeleteExpenseModal={setShowDeleteExpenseModal}
-                   />
+            <DeleteExpenseModal
+                showDeleteExpenseModal={showDeleteExpenseModal}
+                setShowDeleteExpenseModal={setShowDeleteExpenseModal}
+            />
         </div>
     );
 };

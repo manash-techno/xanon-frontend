@@ -1,4 +1,3 @@
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   Box,
@@ -6,64 +5,24 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
-  Tooltip,
-  Typography,
+  Typography
 } from "@mui/material";
-import { LuInfo } from "react-icons/lu";
 import { Transition } from "../layouts/DashboardLayout/FAQs/Transition";
-import { ShipmentItems } from "@/types/shipmentTypes";
-import { useEffect, useState } from "react";
-import { useUpdateCOGMutation } from "@/store/api/shipmentApi";
 
 export const DeleteExpenseModal = ({
   showDeleteExpenseModal,
   setShowDeleteExpenseModal,
-  selectedItem,
 }: {
   showDeleteExpenseModal: boolean;
   setShowDeleteExpenseModal: (value: boolean) => void;
-  selectedItem: ShipmentItems;
 }) => {
-  const [shippingCost, setShippingCost] = useState("0");
-  const [vatRate, setVatRate] = useState("0");
-  const [unitCost, setUnitCost] = useState<string>("0");
-  // const { updateCog, isUpdateSuccess } = useShipmentStore()
-  const [updateCOG] = useUpdateCOGMutation();
 
-  useEffect(() => {
-    if (selectedItem) {
-      setVatRate(selectedItem?.vat_cog?.toString() || "0");
-      setUnitCost(selectedItem?.unit_cost?.toString() || "0");
-    }
-  }, [selectedItem]);
-
-  const handleSave = async () => {
-    if (selectedItem) {
-      try {
-        const res = await updateCOG({
-          id: selectedItem.id.toString(),
-          unit_cost: unitCost,
-          vat_cog: vatRate,
-        });
-        console.log("res", res);
-        setShowDeleteExpenseModal(false);
-        resetState();
-      } catch (error) {}
-    }
-  };
-
-  const resetState = () => {
-    setShippingCost("0");
-    setVatRate(selectedItem?.vat_cog?.toString() || "0");
-    setUnitCost(selectedItem?.unit_cost?.toString() || "0");
-  };
 
   return (
     <Dialog
       open={showDeleteExpenseModal}
       onClose={() => {
         setShowDeleteExpenseModal(false);
-        resetState();
       }}
       slots={{ transition: Transition }}
       slotProps={{
@@ -113,7 +72,7 @@ export const DeleteExpenseModal = ({
 
           <Box className="flex gap-4 pb-4 mt-4">
             <button
-              onClick={() => handleSave()}
+              onClick={() => setShowDeleteExpenseModal(false)}
               type="button"
               className="cursor-pointer bg-[#E50000] dark:bg-[#292929] hover:bg-gray-400 
                text-[#FFFFFF] dark:text-[#FFFFFF] text-[12px] font-medium p-0 rounded 
@@ -124,7 +83,6 @@ export const DeleteExpenseModal = ({
             <button
               onClick={() => {
                 setShowDeleteExpenseModal(false);
-                resetState();
               }}
               type="button"
               className="cursor-pointer bg-[transparent] hover:bg-[#F0F0F0] text-[#6E8091] dark:text-[#828282] text-[12px] font-medium p-0 rounded 
