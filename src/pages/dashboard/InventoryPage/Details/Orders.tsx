@@ -3,7 +3,7 @@ import { ReactButton } from '@/components/ui/ReactButton';
 import { ReactImage } from '@/components/ui/ReactImage';
 import { AssetsConfig } from '@/config/assetsConfig';
 import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { Fragment, JSX, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Table,

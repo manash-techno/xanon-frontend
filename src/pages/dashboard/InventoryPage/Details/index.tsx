@@ -4,18 +4,18 @@ import { formatShortDate, formatTime } from "@/lib/utils.ts";
 import { CountryFilter } from "@/pages/dashboard/OrdersPage/CountryFilter.tsx";
 import { FulfillmentFilter } from "@/pages/dashboard/OrdersPage/FulfillmentFilter.tsx";
 import { useGetOrdersQuery } from "@/store/api/orderApi.ts";
+import { useGetShipmentQuery } from "@/store/api/shipmentApi";
 import {
   setCurrentPage
 } from "@/store/slices/orderSlice.ts";
 import { RootState } from "@/store/store.ts";
 import { iOrder } from "@/types/orderTypes";
 import { Box, Typography } from "@mui/material";
-import { JSX, useEffect, useMemo, useState } from "react";
+import { JSX, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import InvetoryDetailsOrdersPage from "./InvetoryDetailsOrders";
-import InvetoryDetailsReplenishmentsPage from "./InvetoryDetailsReplenishments";
 import { useLocation } from "react-router-dom";
-import { useGetShipmentQuery } from "@/store/api/shipmentApi";
+import InvetoryDetailsOrdersPage from "./Orders";
+import InvetoryDetailsReplenishmentsPage from "./Replenishments";
 
 const OrdersPage: () => JSX.Element = () => {
   const dispatch = useDispatch();
@@ -178,7 +178,7 @@ const OrdersPage: () => JSX.Element = () => {
               <Typography className="text-[#1E1E1E]  dark:text-[#fff]">
                 New
               </Typography>
-              <Typography className="text-[#6E8091] text-[14px] text-[#828282]">
+              <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
                 Beauty
               </Typography>
             </Box>
@@ -186,7 +186,7 @@ const OrdersPage: () => JSX.Element = () => {
               <Typography className="text-[#1E1E1E]  dark:text-[#fff]">
                 Pending
               </Typography>
-              <Typography className="text-[#6E8091] text-[14px] text-[#828282]">
+              <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
                 Amazon.uk
               </Typography>
             </Box>

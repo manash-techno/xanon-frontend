@@ -1,10 +1,5 @@
-import CaretSortIcon from '@/components/ui/CaretSortIcon';
-import { ReactButton } from '@/components/ui/ReactButton';
+import { BarLoader } from '@/components/common/BarLoader';
 import { ReactImage } from '@/components/ui/ReactImage';
-import { AssetsConfig } from '@/config/assetsConfig';
-import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { Fragment, JSX, useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
     Table,
     TableBody,
@@ -13,10 +8,12 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/Table.tsx";
-import { BarLoader } from '@/components/common/BarLoader';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { SerializedError } from '@reduxjs/toolkit';
+import { AssetsConfig } from '@/config/assetsConfig';
 import { formatShortDate, formatTime } from '@/lib/utils';
+import { SerializedError } from '@reduxjs/toolkit';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { Fragment } from 'react';
 
 interface InvetoryDetailsReplenishmentsPageProps {
     shipmentItems: Array<any>; // Replace with your actual order type
@@ -39,7 +36,6 @@ const InvetoryDetailsReplenishmentsPage: React.FC<InvetoryDetailsReplenishmentsP
                 accessorKey: "shipmentId",
                 header: "Shipment ID",
                 cell: ({ row }) => {
-                    const id = row.original.id;
                     return (
                             <div>
                                 {/* First Shipment ID */}
