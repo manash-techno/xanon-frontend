@@ -1,6 +1,18 @@
+import { BarLoader } from "@/components/common/BarLoader.tsx";
+import { PaginationControls } from "@/components/common/PaginationControls.tsx";
+import { CostOfGoodsModal } from "@/components/modals/CostOfGoodsModal";
+import { ReactButton } from "@/components/ui/ReactButton.tsx";
+import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
 import { ReactImage } from "@/components/ui/ReactImage.tsx";
 import { ReactInput } from "@/components/ui/ReactInput.tsx";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/Table.tsx";
+import { AssetsConfig } from "@/config/assetsConfig.ts";
+import { formatShortDate, formatTime } from "@/lib/utils";
+import { useGetShipmentQuery } from "@/store/api/shipmentApi";
+import { setDateRange } from "@/store/slices/shipmentSlice";
+import { setCurrentPage, setSearch } from "@/store/slices/shipmentSlice.ts";
+import { RootState } from "@/store/store.ts";
+import { ShipmentItems } from "@/types/shipmentTypes";
 import {
     ColumnDef, flexRender,
     getCoreRowModel,
@@ -9,22 +21,9 @@ import {
     useReactTable
 } from "@tanstack/react-table";
 import { ChangeEvent, JSX, useMemo, useState } from "react";
-import { BarLoader } from "@/components/common/BarLoader.tsx";
-import { PaginationControls } from "@/components/common/PaginationControls.tsx";
-import { ReactButton } from "@/components/ui/ReactButton.tsx";
-import { AssetsConfig } from "@/config/assetsConfig.ts";
-import { formatShortDate, formatTime } from "@/lib/utils";
-import { useGetShipmentQuery } from "@/store/api/shipmentApi";
-import { setCurrentPage, setSearch } from "@/store/slices/shipmentSlice.ts";
-import { RootState } from "@/store/store.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { ShipmentItems } from "@/types/shipmentTypes";
-import { StatusFilter } from "./StatusFilter";
-import { setDateRange } from "@/store/slices/shipmentSlice";
-import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
 import { CountryFilter } from "./CountryFilter";
-import { CostOfGoodsModal } from "@/components/modals/CostOfGoodsModal";
-import { set } from "date-fns";
+import { StatusFilter } from "./StatusFilter";
 
 const ShipmentPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
@@ -184,7 +183,14 @@ const ShipmentPage: () => JSX.Element = () => {
         },
         {
             accessorKey: "status",
-            header: "Status",
+            header: () => {
+                return (
+                    <div>
+                        <span className="block">Status</span>
+                        <span className="block !text-[#6E8091] text-xs">Amazon.co.uk</span>
+                    </div>
+                );
+            },
             cell: ({ row }) => {
                 return (
                     <div>{row.original.status}<span className="text-xs text-[#6E8091] block">{row.original.salesChannel}</span></div>
@@ -365,10 +371,10 @@ const ShipmentPage: () => JSX.Element = () => {
                                                     {row.original.quantity[index + 1]}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {row.original.cog[index + 1] != "" ? <div className="text-right">£{row.original?.cog[index + 1]}</div> : <div className="text-right text-sm text-[#0077E5] cursor-pointer" onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[index+1]) }}>Add COG</div>}
+                                                    {row.original.cog[index + 1] != "" ? <div className="text-right">£{row.original?.cog[index + 1]}</div> : <div className="text-right text-sm text-[#0077E5] cursor-pointer" onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[index + 1]) }}>Add COG</div>}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {row.original.cog[index + 1] != "" && <span className="flex items-center text-[#0077E5] cursor-pointer" onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[index+1]), console.log('row.original.items[index+1]', row.original.items[index+1], showCostOfGoodsModal)  }}>Edit COG</span>}
+                                                    {row.original.cog[index + 1] != "" && <span className="flex items-center text-[#0077E5] cursor-pointer" onClick={() => { setShowCostOfGoodsModal(true); setSelectedItem(row.original.items[index + 1]), console.log('row.original.items[index+1]', row.original.items[index + 1], showCostOfGoodsModal) }}>Edit COG</span>}
                                                 </TableCell>
                                             </TableRow>
                                         ))}
