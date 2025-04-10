@@ -176,7 +176,9 @@ const ExpensesPage: () => JSX.Element = () => {
     };
 
     const handleDeleteExpense = () => {
-        deleteExpense(selectedId).unwrap().then(() => { expensesRefetch(); });
+        if (selectedId) {
+            deleteExpense(selectedId).unwrap().then(() => { expensesRefetch(); });
+        }
         setShowDeleteExpenseModal(false);
     };
 
