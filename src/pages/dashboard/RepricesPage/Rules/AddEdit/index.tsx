@@ -1,9 +1,11 @@
 import { AssetsConfig } from "@/config/assetsConfig";
-import { Box, Tooltip, Typography } from "@mui/material";
-import { JSX } from "react";
+import { Box, Tooltip } from "@mui/material";
 import { LuInfo } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 const AddEditRulesPage = () => {
+    const navigate = useNavigate()
+
   return (
     <>
       <Box className="flex justify-between items-center gap-3">
@@ -14,6 +16,7 @@ const AddEditRulesPage = () => {
             height={20}
             alt={AssetsConfig.icons.back.alt}
             className="cursor-pointer"
+            onClick={() => navigate(-1)}
           />
           <h1 className="text-[#1E1E1E] dark:text-[#F2F2F2] font-bold text-xl">
             Add Rules

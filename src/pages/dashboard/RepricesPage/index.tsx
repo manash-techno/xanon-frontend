@@ -228,7 +228,7 @@ const RepricesPage: () => JSX.Element = () => {
 
                 return (
                     <div className="flex flex-col">
-                        <Link to={"/reprice/detail"}>
+                        <Link to={`details/${id}`}>
                             <span className="flex items-center text-[#0077E5]">Reprice</span>
                         </Link>
                         <span
@@ -272,6 +272,11 @@ const RepricesPage: () => JSX.Element = () => {
 
     return (
         <div className="w-full">
+            <div className="flex justify-end mb-3">
+                <Link to="rules" className="text-[#0077E5] text-xs font-semibold cursor-pointer text-right">
+                    Rules
+                </Link>
+            </div>
             <RepriceOverview />
             <div className="relative mb-4 w-60">
 

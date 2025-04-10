@@ -63,7 +63,7 @@ export const expensesApi = apiSlice.injectEndpoints?.({
             vat: number;
             description: string;
             category: string;
-            recur: string;
+            recur: string | undefined;
         }
         >({
             query: (expense) => ({

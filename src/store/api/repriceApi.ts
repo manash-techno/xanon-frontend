@@ -1,6 +1,6 @@
 import { parseDateToStandardFormat } from "@/lib/utils.ts";
 import { apiSlice } from "@/store/slices/apiSlice";
-import { RepriceList } from "@/types/repriceTypes";
+import { RepriceList, RepriceRules } from "@/types/repriceTypes";
 
 export const repriceApi = apiSlice.injectEndpoints?.({
     endpoints: (builder) => ({
@@ -34,7 +34,19 @@ export const repriceApi = apiSlice.injectEndpoints?.({
             }),
             providesTags: ["Reprice"],
         }),
+        getPricingRules: builder.query<{ results: RepriceRules[]; count: number; next?: string; previous?: string }, void>({
+            query: () => ({
+                url: `/amazon/repricing_rules/`,
+                method: "GET",
+            }),
+            transformResponse: (response: { results: RepriceRules[]; count: number; next?: string; previous?: string }) => ({
+                count: response.count,
+                next: response.next,
+                previous: response.previous,
+                results: response.results
+            }),
+        })
     }),
 })
 
-export const { useGetRepricesQuery } = repriceApi;
+export const { useGetRepricesQuery, useGetPricingRulesQuery } = repriceApi;

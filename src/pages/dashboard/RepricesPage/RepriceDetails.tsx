@@ -1,8 +1,10 @@
 import { AssetsConfig } from "@/config/assetsConfig";
 import { Box, Typography } from "@mui/material";
 import { JSX } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RepriceDetailsPage: () => JSX.Element = () => {
+  const navigate = useNavigate()
   return (
     <>
       <Box className="flex justify-between items-center gap-3">
@@ -13,6 +15,7 @@ const RepriceDetailsPage: () => JSX.Element = () => {
             height={20}
             alt={AssetsConfig.icons.back.alt}
             className="cursor-pointer"
+            onClick={() => navigate(-1)}
           />
           <h1 className="text-[#1E1E1E] dark:text-[#F2F2F2] font-bold text-xl">
             Reprice detail
