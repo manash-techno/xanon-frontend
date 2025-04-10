@@ -43,7 +43,8 @@ const ExpensesPage: () => JSX.Element = () => {
         currentPage,
         startDate,
         endDate,
-        dateRangeLabel
+        dateRangeLabel,
+        fulfillmentChannel
     } = useSelector((state: RootState) => state.expenses);
 
     const {
@@ -58,6 +59,7 @@ const ExpensesPage: () => JSX.Element = () => {
         search,
         purchase_date_before: endDate,
         purchase_date_after: startDate,
+        fulfillment_channel: fulfillmentChannel
     });
 
     const Expenses = useMemo(() => {

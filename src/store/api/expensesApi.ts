@@ -14,8 +14,9 @@ export const expensesApi = apiSlice.injectEndpoints?.({
             category: string;
             purchase_date_before: string | null;
             purchase_date_after: string | null;
+            fulfillment_channel: string
         }>({
-            query: ({ page, search = "", category = "", purchase_date_before = "", purchase_date_after = "" }) => ({
+            query: ({ page, search = "", category = "", purchase_date_before = "", purchase_date_after = "", fulfillment_channel = "" }) => ({
                 url: '/expenses/',
                 method: 'GET',
                 params: {
@@ -24,6 +25,7 @@ export const expensesApi = apiSlice.injectEndpoints?.({
                     category,
                     date__gt: purchase_date_after,
                     date__lt: purchase_date_before,
+                    fulfillment_channel,
                 }
             }),
             transformResponse: (response: {
