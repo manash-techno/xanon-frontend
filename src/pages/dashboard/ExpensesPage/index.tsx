@@ -19,14 +19,14 @@ import {
 import { ChangeEvent, JSX, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { DeleteExpenseModal } from "@/components/modals/DeleteExpenseModal";
 import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
 import { useDeleteExpenseMutation, useGetExpensesQuery } from "@/store/api/expensesApi";
 import { setDateRange } from "@/store/slices/shipmentSlice";
+import { Checkbox } from "@mui/material";
 import { Link } from "react-router-dom";
 import { CategoryFilter } from "./CategoryFilter";
 import { FulfillmentFilter } from "./FulfillmentFilter";
-import { Checkbox } from "@mui/material";
-import { DeleteExpenseModal } from "@/components/modals/DeleteExpenseModal";
 
 const ExpensesPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
@@ -135,7 +135,7 @@ const ExpensesPage: () => JSX.Element = () => {
             cell: ({ row }) => {
                 return (
                     <div className="flex flex-col">
-                        <Link to={`/expenses/edit/${row.original.id}`}><span className="flex items-center text-xs text-[#0077E5]">Edit</span></Link>
+                        <Link to={`edit/${row.original.id}`}><span className="flex items-center text-xs text-[#0077E5]">Edit</span></Link>
                         <span className="flex items-center text-xs text-[#E50000] cursor-pointer" onClick={() => { setShowDeleteExpenseModal(true); setSelectedId(row.original.id) }}>Delete</span>
                     </div>
                 );

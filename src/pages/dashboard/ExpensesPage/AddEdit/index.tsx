@@ -9,11 +9,12 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Calendar, ChevronDownIcon } from "lucide-react";
 import { JSX, useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const AddExpensePage = (): JSX.Element => {
     const navigate = useNavigate();
+    const { id } = useParams()
     const [date, setDate] = useState<Date>(new Date())
     const [vatCode, setVatCode] = useState<string>("")
     const [recurs, setRecurs] = useState<string>("")
@@ -46,13 +47,17 @@ const AddExpensePage = (): JSX.Element => {
             console.log('res', res)
             navigate("/dashboard/expenses");
             // clear states
-            setDate(new Date())
-            setVatCode("")
-            setRecurs("")
-            setCategory("")
-            setAmount("")
-            setDescription("")
+           resetState()
         }).catch((err) => console.log(err));
+    }
+
+    const resetState = () => {
+        setDate(new Date())
+        setVatCode("")
+        setRecurs("")
+        setCategory("")
+        setAmount("")
+        setDescription("")
     }
 
     return (
@@ -67,7 +72,7 @@ const AddExpensePage = (): JSX.Element => {
                     onClick={() => navigate(-1)}
                 />
                 <h1 className="text-[#1E1E1E] dark:text-[#F2F2F2] font-bold text-xl">
-                    Add Expense
+                    {id ? "Edit" : "Add"} Expense
                 </h1>
             </div>
 
