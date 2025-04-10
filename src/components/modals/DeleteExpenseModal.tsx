@@ -11,19 +11,19 @@ import { Transition } from "../layouts/DashboardLayout/FAQs/Transition";
 
 export const DeleteExpenseModal = ({
   showDeleteExpenseModal,
-  setShowDeleteExpenseModal,
+  onDelete,
+  onCancel,
 }: {
   showDeleteExpenseModal: boolean;
-  setShowDeleteExpenseModal: (value: boolean) => void;
+  onDelete: () => void;
+  onCancel: () => void;
 }) => {
 
 
   return (
     <Dialog
       open={showDeleteExpenseModal}
-      onClose={() => {
-        setShowDeleteExpenseModal(false);
-      }}
+      onClose={onCancel}
       slots={{ transition: Transition }}
       slotProps={{
         paper: {
@@ -51,7 +51,7 @@ export const DeleteExpenseModal = ({
           </span>
           <IconButton
             type="button"
-            onClick={() => setShowDeleteExpenseModal(false)}
+            onClick={() => onCancel()}
           >
             <CloseIcon className="text-[#7c7c7c] dark:text-gray-[#828282]" />
           </IconButton>
@@ -63,16 +63,18 @@ export const DeleteExpenseModal = ({
         <Box className="flex flex-col gap-3">
           <Box className="flex items-center justify-center w-[80px] h-[80px] rounded-md bg-[#FFEAE5]">
             <img src="/assets/icons/delete-btn.svg" alt="" />
-            </Box>
+          </Box>
           <Box className="flex gap-1 items-center">
             <Typography className="text-[#1E1E1E] dark:text-[#fff]">
-              Are you sure want to delete <strong>2 expenses</strong> from the list?
+              Are you sure want to delete this{" "}
+              {/* <strong>2 expenses</strong>  */}
+              from the list?
             </Typography>
           </Box>
 
           <Box className="flex gap-4 pb-4 mt-4">
             <button
-              onClick={() => setShowDeleteExpenseModal(false)}
+              onClick={() => onDelete()}
               type="button"
               className="cursor-pointer bg-[#E50000] dark:bg-[#292929] hover:bg-gray-400 
                text-[#FFFFFF] dark:text-[#FFFFFF] text-[12px] font-medium p-0 rounded 
@@ -82,7 +84,7 @@ export const DeleteExpenseModal = ({
             </button>
             <button
               onClick={() => {
-                setShowDeleteExpenseModal(false);
+                onCancel();
               }}
               type="button"
               className="cursor-pointer bg-[transparent] hover:bg-[#F0F0F0] text-[#6E8091] dark:text-[#828282] text-[12px] font-medium p-0 rounded 

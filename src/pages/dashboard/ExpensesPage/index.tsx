@@ -20,7 +20,7 @@ import { ChangeEvent, JSX, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
-import { useGetExpensesQuery } from "@/store/api/expensesApi";
+import { useDeleteExpenseMutation, useGetExpensesQuery } from "@/store/api/expensesApi";
 import { setDateRange } from "@/store/slices/shipmentSlice";
 import { Link } from "react-router-dom";
 import { CategoryFilter } from "./CategoryFilter";
@@ -30,11 +30,12 @@ import { DeleteExpenseModal } from "@/components/modals/DeleteExpenseModal";
 
 const ExpensesPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
-    const [showConfirmationModal, setShowConfirmationModal] = useState(false)
     const [selectedId, setSelectedId] = useState("");
+    const [showDeleteExpenseModal, setShowDeleteExpenseModal] = useState(false);
     const [rowSelection, setRowSelection] = useState<RowSelectionState>({}) //manage your own row selection state
     let rowSize = Object.keys(rowSelection).length;
-    const [showDeleteExpenseModal, setShowDeleteExpenseModal] = useState(false);
+
+    const [deleteExpense] = useDeleteExpenseMutation();
 
     const {
         search,
@@ -174,6 +175,11 @@ const ExpensesPage: () => JSX.Element = () => {
         );
     };
 
+    const handleDeleteExpense = () => {
+        deleteExpense(selectedId).unwrap().then(() => { expensesRefetch(); });
+        setShowDeleteExpenseModal(false);
+    };
+
     return (
         <div className="w-full">
 
@@ -259,7 +265,11 @@ const ExpensesPage: () => JSX.Element = () => {
             <PaginationControls currentPage={currentPage} onPageChange={(page) => dispatch(setCurrentPage(page))} totalPages={expensesData?.count ? Math.ceil(expensesData.count / 10) : 1} />
             <DeleteExpenseModal
                 showDeleteExpenseModal={showDeleteExpenseModal}
-                setShowDeleteExpenseModal={setShowDeleteExpenseModal}
+                onDelete={handleDeleteExpense}
+                onCancel={() => {
+                    setShowDeleteExpenseModal(false);
+                    setSelectedId("");
+                }}
             />
         </div>
     );

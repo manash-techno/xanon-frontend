@@ -3,6 +3,7 @@ import { ReactButton } from "@/components/ui/ReactButton";
 import { ReactInput } from "@/components/ui/ReactInput";
 import { AssetsConfig } from "@/config/assetsConfig";
 import { expensesCategoryList, recursList, vatList } from "@/constants/filter";
+import { useAddExpenseMutation } from "@/store/api/expensesApi";
 import { Box } from "@mui/material";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
@@ -13,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddExpensePage = (): JSX.Element => {
     const navigate = useNavigate();
-    const [date, setDate] = useState<Date | undefined>(new Date())
+    const [date, setDate] = useState<Date>(new Date())
     const [vatCode, setVatCode] = useState<string>("")
     const [recurs, setRecurs] = useState<string>("")
     const [category, setCategory] = useState<string>("")
@@ -21,14 +22,41 @@ const AddExpensePage = (): JSX.Element => {
     const [description, setDescription] = useState<string>("")
 
     const handleDateChange = useCallback(
-        (newDate: Date | undefined) => {
+        (newDate: Date) => {
             setDate(newDate);
         },
         []
     );
 
+    const [addExpense] = useAddExpenseMutation();
+
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const expense = {
+            "date": (new Date(date)).toLocaleDateString('en-CA'),
+            "vat": parseInt(vatCode.replace("%", "")) / 100,
+            "recur": recurs,
+            "category": category,
+            "amount": amount,
+            "description": description
+        }
+
+        addExpense(expense).unwrap().then((res) => {
+            console.log('res', res)
+            navigate("/dashboard/expenses");
+            // clear states
+            setDate(new Date())
+            setVatCode("")
+            setRecurs("")
+            setCategory("")
+            setAmount("")
+            setDescription("")
+        }).catch((err) => console.log(err));
+    }
+
     return (
-        <div className="w-full">
+        <form className="w-full" onSubmit={onSubmit}>
             <div className="flex items-center gap-2 mb-6">
                 <img
                     src={AssetsConfig.icons.back.src}
@@ -164,7 +192,7 @@ const AddExpensePage = (): JSX.Element => {
                             {expensesCategoryList.map((status) => (
                                 <DropdownMenuItem
                                     key={status.value}
-                                    onClick={() => setRecurs(status.value)}
+                                    onClick={() => setCategory(status.value)}
                                     className={`relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm 
                             outline-none transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-200 dark:focus:bg-gray-800 
                             data-[disabled]:pointer-events-none data-[disabled]:opacity-50 
@@ -195,7 +223,7 @@ const AddExpensePage = (): JSX.Element => {
             <Box className="flex gap-4 pb-4">
                 <button
                     // onClick={() => setShowNotepadModal(false)}
-                    type="button"
+                    type="submit"
                     className="cursor-pointer bg-[#F0F0F0] dark:bg-[#292929] hover:bg-gray-400 
                       text-[#6E8091] dark:text-[#696969] text-[12px] font-medium p-0 rounded 
                       inline-flex items-center w-[100px] h-[36px] justify-center"
@@ -211,9 +239,7 @@ const AddExpensePage = (): JSX.Element => {
                     Cancel
                 </button>
             </Box>
-
-
-        </div>
+        </form>
     )
 }
 
