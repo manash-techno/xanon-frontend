@@ -90,6 +90,12 @@ html.light {
     .box-shadow-none{
         box-shadow: none !important;
     }
+    .select1{
+        appearance: none !important;
+        background-image: url(../public/assets/chevron-downSmall.svg) !important;
+        background-repeat: no-repeat !important;
+        background-position: center right 10px !important;
+    }
 }
 
 /* Utility Layer */
