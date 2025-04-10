@@ -54,6 +54,23 @@ export const expensesApi = apiSlice.injectEndpoints?.({
             }),
             invalidatesTags: ["Expenses"],
         }),
+        updateExpense: builder.mutation<void, {
+            id: string;
+            date: string;
+            amount: string;
+            vat: number;
+            description: string;
+            category: string;
+            recur: string;
+        }
+        >({
+            query: (expense) => ({
+                url: `/expenses/${expense.id}/`,
+                method: 'PATCH',
+                body: expense,
+            }),
+            invalidatesTags: ["Expenses"],
+        }),
         deleteExpense: builder.mutation<void, string>({
             query: (id) => ({
                 url: `/expenses/${id}/`,
@@ -64,4 +81,4 @@ export const expensesApi = apiSlice.injectEndpoints?.({
     })
 })
 
-export const { useGetExpensesQuery, useAddExpenseMutation, useDeleteExpenseMutation } = expensesApi
+export const { useGetExpensesQuery, useAddExpenseMutation, useUpdateExpenseMutation, useDeleteExpenseMutation } = expensesApi
