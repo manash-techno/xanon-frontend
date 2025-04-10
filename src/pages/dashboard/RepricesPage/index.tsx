@@ -15,16 +15,17 @@ import { AssetsConfig } from "@/config/assetsConfig.ts";
 import { formatShortDate, formatTime } from "@/lib/utils.ts";
 import { FulfillmentFilter } from "@/pages/dashboard/RepricesPage/FulfillmentFilter.tsx";
 import { CountryFilter } from "@/pages/dashboard/RepricesPage/CountryFilter.tsx";
-import { StatusFilter } from "@/pages/dashboard/RepricesPage/StatusFilter.tsx";
+// import { StatusFilter } from "@/pages/dashboard/RepricesPage/StatusFilter.tsx";
 import { useGetRepricesQuery } from "@/store/api/repriceApi";
 import {
     setCurrentPage,
     setDateRange,
     setSearch,
+    setSelectedStatus,
 } from "@/store/slices/repriceSlice.ts";
 import { RootState } from "@/store/store.ts";
 
-import { countryFilter, repriceRuleList } from "@/constants/filter";
+import { countryFilter, EnumRepriceStatus, repriceRuleList, repriceStatusList } from "@/constants/filter";
 import {
     ColumnDef,
     flexRender,
@@ -40,6 +41,7 @@ import RepriceOverview from "./RepriceOverview";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { ReactButton } from "@/components/ui/ReactButton";
 import { ChevronDownIcon } from "lucide-react";
+import StatusFilter from "@/components/StatusFilter";
 const RepricesPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
 
@@ -302,7 +304,12 @@ const RepricesPage: () => JSX.Element = () => {
                 <CountryFilter />
 
                 {/* Filter by Status */}
-                <StatusFilter />
+                {/* <StatusFilter /> */}
+                <StatusFilter<EnumRepriceStatus>
+                    list={repriceStatusList}
+                    selectedStatus={selectedStatus}
+                    setSelectedStatus={setSelectedStatus}
+                />
 
                 {/* Filter by Fulfillment */}
                 <FulfillmentFilter />
