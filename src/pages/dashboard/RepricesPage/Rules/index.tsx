@@ -1,8 +1,8 @@
 
-const RulesPages = () => {
+const RulesPage = () => {
   return (
-    <div>RulesPages</div>
+    <div>RulesPage</div>
   )
 }
 
-export default RulesPages
+export default RulesPage
