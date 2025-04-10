@@ -26,11 +26,169 @@ const RulesPage = () => {
       <Box className="flex flex-wrap -m-[16px]">
         <Box className="w-full max-w-[33.33%] p-[16px]">
           <Box className="border border-solid border-[#EEEEEE] rounded-lg p-4">
-            <div className="flex items-center justify-between">
-              <div className="font-bold text-xl leading-[150%] tracking-[-1%] text-[#1E1E1E]">Main Default Rule</div>
-              <button type="button" className="flex items-center">
+            <div className="flex items-center justify-between mb-4">
+              <div className="font-bold text-xl leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                Main Default Rule
+              </div>
+              <button
+                type="button"
+                className="flex items-center cursor-pointer bg-[transparent]"
+              >
                 <img src="/assets/images/editgray.svg" alt="" />
               </button>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                  Price Match
+                </div>
+                <ul className="list-disc list-outside font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] pl-4">
+                  <li>
+                    If lowest price is Prime offer, then match offer price
+                  </li>
+                  <li>
+                    Do not match Prime Offers that do not have next day delivery
+                    unless no prime with next day delivery
+                  </li>
+                  <li>Do not match Non-Prime Offers</li>
+                </ul>
+              </div>
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                Price Match - Guard
+                </div>
+                <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]">Not Required</div>
+              </div>
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                Min/Max
+                </div>
+                <ul className="list-disc list-outside font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] pl-4">
+                  <li>
+                  Keep a minimum ROI of 5.00%
+                  </li>
+                  <li>There are no maximum set</li>
+                </ul>
+              </div>
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                Exclude Sellers
+                </div>
+               <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]">Not Required</div>
+              </div>
+            </div>
+          </Box>
+        </Box>
+        <Box className="w-full max-w-[33.33%] p-[16px]">
+          <Box className="border border-solid border-[#EEEEEE] rounded-lg p-4">
+            <div className="flex items-center justify-between mb-4">
+              <div className="font-bold text-xl leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                Main Default Rule
+              </div>
+              <button
+                type="button"
+                className="flex items-center cursor-pointer bg-[transparent]"
+              >
+                <img src="/assets/images/editgray.svg" alt="" />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                  Price Match
+                </div>
+                <ul className="list-disc list-outside font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] pl-4">
+                  <li>
+                    If lowest price is Prime offer, then match offer price
+                  </li>
+                  <li>
+                    Do not match Prime Offers that do not have next day delivery
+                    unless no prime with next day delivery
+                  </li>
+                  <li>Do not match Non-Prime Offers</li>
+                </ul>
+              </div>
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                Price Match - Guard
+                </div>
+                <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]">Not Required</div>
+              </div>
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                Min/Max
+                </div>
+                <ul className="list-disc list-outside font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] pl-4">
+                  <li>
+                  Keep a minimum ROI of 5.00%
+                  </li>
+                  <li>There are no maximum set</li>
+                </ul>
+              </div>
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                Exclude Sellers
+                </div>
+               <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]">Not Required</div>
+              </div>
+            </div>
+          </Box>
+        </Box>
+        <Box className="w-full max-w-[33.33%] p-[16px]">
+          <Box className="border border-solid border-[#EEEEEE] rounded-lg p-4">
+            <div className="flex items-center justify-between mb-4">
+              <div className="font-bold text-xl leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                Main Default Rule
+              </div>
+              <button
+                type="button"
+                className="flex items-center cursor-pointer bg-[transparent]"
+              >
+                <img src="/assets/images/editgray.svg" alt="" />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                  Price Match
+                </div>
+                <ul className="list-disc list-outside font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] pl-4">
+                  <li>
+                    If lowest price is Prime offer, then match offer price
+                  </li>
+                  <li>
+                    Do not match Prime Offers that do not have next day delivery
+                    unless no prime with next day delivery
+                  </li>
+                  <li>Do not match Non-Prime Offers</li>
+                </ul>
+              </div>
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                Price Match - Guard
+                </div>
+                <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]">Not Required</div>
+              </div>
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                Min/Max
+                </div>
+                <ul className="list-disc list-outside font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] pl-4">
+                  <li>
+                  Keep a minimum ROI of 5.00%
+                  </li>
+                  <li>There are no maximum set</li>
+                </ul>
+              </div>
+              <div className="w-full">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1">
+                Exclude Sellers
+                </div>
+               <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]">Not Required</div>
+              </div>
             </div>
           </Box>
         </Box>
