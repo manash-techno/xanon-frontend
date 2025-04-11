@@ -88,7 +88,6 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                                            text-[#1E1E1E] dark:text-[#fff]"
                             placeholder="Enter Amount"
                             type="text"
-                            disabled={selectedOption !== "fixed_amount_above"}
                             value={aboveAmount}
                             onChange={(e) => setAboveAmount(e.target.value)}
                             required={selectedOption == "fixed_amount_above"}
@@ -122,10 +121,8 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                                            text-[#1E1E1E] dark:text-[#fff]"
                             placeholder="Enter Amount"
                             type="text"
-                            disabled={selectedOption !== "fixed_amount_above"}
                             value={abovePercent}
                             onChange={(e) => setAbovePercent(e.target.value)}
-                            required={selectedOption == "fixed_amount_above"}
                         ></input>
                     </div>
                 </div>
@@ -156,10 +153,8 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                                            text-[#1E1E1E] dark:text-[#fff]"
                             placeholder="Enter Amount"
                             type="text"
-                            disabled={selectedOption !== "fixed_amount_above"}
                             value={belowPercent}
                             onChange={(e) => setBelowPercent(e.target.value)}
-                            required={selectedOption == "fixed_amount_above"}
                         ></input>
                     </div>
                 </div>

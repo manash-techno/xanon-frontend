@@ -1,59 +1,19 @@
 import { AssetsConfig } from "@/config/assetsConfig";
-import { RepriceRules } from "@/types/repriceTypes";
-import { Box, RadioGroup, Tooltip } from "@mui/material";
-import { useMemo, useState } from "react";
+import { pagePaths } from "@/config/pagePaths";
+import { useAddRuleMutation, useGetPricingRulesQuery, useGetRuleQuery, useUpdateRuleMutation } from "@/store/api/repriceApi";
+import { Box, Tooltip } from "@mui/material";
+import { useEffect, useMemo, useState } from "react";
 import { LuInfo } from "react-icons/lu";
-import { useNavigate } from "react-router-dom";
-import PriceOptions from "./PriceOptions";
-import { useGetPricingRulesQuery } from "@/store/api/repriceApi";
+import { useNavigate, useParams } from "react-router-dom";
 import AutomationRule from "./AutomationRule";
-
-const defaultState: Omit<RepriceRules, "id"> = {
-  rule_name: "",
-  guard_prevent_below_prime: false,
-  guard_prevent_below_non_prime: false,
-  prime_adjustment_type: "",
-  prime_adjustment_value: 0,
-  non_prime_adjustment_value: 0,
-  prime_next_day_adjustment_type: "",
-  prime_next_day_adjustment_value: 0,
-  non_prime_adjustment_type: "",
-  min_roi: null,
-  max_roi: null,
-  abs_min_roi: null,
-  is_min_roi_30_days: false,
-  min_roi_30_days: null,
-  is_min_roi_60_days: false,
-  min_roi_60_days: null,
-  exclude_amazon: false,
-  exclude_amazon_eu: false,
-  no_order_30: false,
-  no_order_30_rule: null,
-  no_order_60: false,
-  no_order_60_rule: null,
-  no_order_90: false,
-  no_order_90_rule: null,
-  stock_drop_20: false,
-  stock_drop_20_rule: null,
-  stock_drop_50: false,
-  stock_drop_50_rule: null,
-  stock_drop_90: false,
-  stock_drop_90_rule: null,
-  stock_age_30: false,
-  stock_age_30_rule: null,
-  stock_age_60: false,
-  stock_age_60_rule: null,
-  stock_age_90: false,
-  stock_age_90_rule: null,
-  is_default: false,
-  non_prime_next_day_adjustment_type: "",
-  non_prime_next_day_adjustment_value: "",
-  exclude_merchant: false
-}
+import PriceOptions from "./PriceOptions";
 
 const AddEditRulesPage = () => {
-  const navigate = useNavigate()
-  const [ruleData, setRuleData] = useState(defaultState)
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const noOrdersArray = [30, 60, 90];
+  const stockDropArray = [20, 50, 90];
+  const stockAgesArray = [30, 60, 90];
 
   const [ruleName, setRuleName] = useState("")
   const [isPriceMatch, setIsPriceMatch] = useState(false)
@@ -65,22 +25,31 @@ const AddEditRulesPage = () => {
   const [primeNextDayAdjustmentValue, setPrimeNextDayAdjustmentValue] = useState("")
   const [nonPrimeAdjustmentType, setNonPrimeAdjustmentType] = useState("do_not_match")
   const [nonPrimeAdjustmentValue, setNonPrimeAdjustmentValue] = useState("")
-  const [excludeAmazon, setExcludeAmazon] = useState(false)
   const [automationConditionOrder, setAutomationConditionOrder] = useState("")
   const [automationConditionStockDrop, setAutomationConditionStockDrop] = useState("")
   const [automationConditionStockAge, setAutomationConditionStockAge] = useState("")
+
+  const [excludeAmazon, setExcludeAmazon] = useState(false)
   const [excludeAmazonEU, setExcludeAmazonEU] = useState(false)
   const [excludeSellers, setExcludeSellers] = useState(false)
+
   const [minRoi, setMinRoi] = useState("")
   const [maxRoi, setMaxRoi] = useState("")
   const [absRoi, setAbsRoi] = useState("")
+
   const [isMinRoi30, setIsMinRoi30] = useState(false)
   const [minRoi30, setMinRoi30] = useState("")
   const [isMinRoi60, setIsMinRoi60] = useState(false)
   const [minRoi60, setMinRoi60] = useState("")
 
-  const { data: pricingRules, isSuccess
+  const { data: pricingRules, isSuccess, refetch
   } = useGetPricingRulesQuery();
+
+  const [addRule, { error }] = useAddRuleMutation();
+  const [updateRule, { error: updateError }] = useUpdateRuleMutation();
+  const { data: rule, isSuccess: isRuleSuccess, isLoading: isRuleLoading, refetch: ruleRefetch } = useGetRuleQuery(id as string, {
+    skip: !id,
+  });
 
   const pricingList = useMemo(() => {
     if (!isSuccess || !pricingRules?.results) return [];
@@ -90,8 +59,117 @@ const AddEditRulesPage = () => {
     }));
   }, [isSuccess, pricingRules]);
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const rule = {
+      rule_name: ruleName,
+
+      min_roi: minRoi,
+      max_roi: maxRoi,
+      abs_min_roi: absRoi,
+
+      prime_adjustment_type: primeAdjustmentType,
+      prime_adjustment_value: primeAdjustmentValue,
+      non_prime_next_day_adjustment_type: primeNextDayAdjustmentType,
+      non_prime_next_day_adjustment_value: primeNextDayAdjustmentValue,
+      non_prime_adjustment_type: nonPrimeAdjustmentType,
+      non_prime_adjustment_value: nonPrimeAdjustmentValue,
+
+      is_min_roi_30_days: isMinRoi30,
+      min_roi_30_days: minRoi30,
+      is_min_roi_60_days: isMinRoi60,
+      min_roi_60_days: minRoi60,
+
+      exclude_amazon: excludeAmazon,
+      exclude_amazon_eu: excludeAmazonEU,
+      exclude_sellers: excludeSellers,
+
+      guard_prevent_below_prime: guardPreventBelowPrime,
+      guard_prevent_below_non_prime: guardPreventBelowNonPrime,
+      automation_condition_order: automationConditionOrder,
+      automation_condition_stock_drop: automationConditionStockDrop,
+      automation_condition_stock_age: automationConditionStockAge,
+    }
+
+    if (id) {
+      updateRule({ id, rule }).unwrap().
+        then((res) => {
+          console.log('success', res)
+          refetch();
+          ruleRefetch();
+          navigate(-1)
+        })
+        .catch((err) => {
+          console.log('error', err)
+        })
+    } else {
+      addRule(rule).unwrap()
+        .then((res) => {
+          console.log('success', res)
+          refetch()
+          navigate(-1)
+        })
+        .catch((err) => {
+          console.log('error', err)
+        })
+    }
+  }
+
+  useEffect(() => {
+    if (!isRuleLoading && isRuleSuccess) {
+      setRuleName(rule.rule_name)
+      setGuardPreventBelowPrime(rule.guard_prevent_below_prime)
+      setGuardPreventBelowNonPrime(rule.guard_prevent_below_non_prime)
+      setPrimeAdjustmentType(rule.prime_adjustment_type)
+      setPrimeAdjustmentValue(rule.prime_adjustment_value as string)
+      setPrimeNextDayAdjustmentType(rule.non_prime_next_day_adjustment_type)
+      setPrimeNextDayAdjustmentValue(rule.non_prime_next_day_adjustment_value)
+      setNonPrimeAdjustmentType(rule.non_prime_adjustment_type)
+      setNonPrimeAdjustmentValue(rule.non_prime_adjustment_value as string)
+      if (rule.no_order_30) {
+        setAutomationConditionOrder(rule.no_order_30_rule || "")
+      }
+      if (rule.no_order_60) {
+        setAutomationConditionOrder(rule.no_order_60_rule || "")
+      }
+      if (rule.no_order_90) {
+        setAutomationConditionOrder(rule.no_order_90_rule || "")
+      }
+      if (rule.stock_drop_20) {
+        setAutomationConditionStockDrop(rule.stock_drop_20_rule || "")
+      }
+      if (rule.stock_drop_50) {
+        setAutomationConditionStockDrop(rule.stock_drop_50_rule || "")
+      }
+      if (rule.stock_drop_90) {
+        setAutomationConditionStockDrop(rule.stock_drop_90_rule || "")
+      }
+      if (rule.stock_age_30) {
+        setAutomationConditionStockAge(rule.stock_age_30_rule || "")
+      }
+      if (rule.stock_age_60) {
+        setAutomationConditionStockAge(rule.stock_age_60_rule || "")
+      }
+      if (rule.stock_age_90) {
+        setAutomationConditionStockAge(rule.stock_age_90_rule || "")
+      }
+      setExcludeAmazon(rule.exclude_amazon)
+      setExcludeAmazonEU(rule.exclude_amazon_eu)
+      setExcludeSellers(rule.exclude_merchant || false)
+      setMinRoi(rule.min_roi || "")
+      setMaxRoi(rule.max_roi || "")
+      setAbsRoi(rule.abs_min_roi || "")
+      setIsMinRoi30(rule.is_min_roi_30_days || false)
+      setMinRoi30(rule.min_roi_30_days || "")
+      setIsMinRoi60(rule.is_min_roi_60_days || false)
+      setMinRoi60(rule.min_roi_60_days || "")
+    }
+  }, [id, isRuleLoading, isRuleSuccess, rule]);
+
+
   return (
-    <>
+    <form onSubmit={onSubmit}>
       <Box className="flex justify-between items-center gap-3">
         <div className="flex items-center gap-2 mb-6">
           <img
@@ -103,7 +181,7 @@ const AddEditRulesPage = () => {
             onClick={() => navigate(-1)}
           />
           <h1 className="text-[#1E1E1E] dark:text-[#F2F2F2] font-bold text-xl">
-            Add Rules
+            {id ? "Edit" : "Add"} Rules
           </h1>
         </div>
       </Box>
@@ -322,7 +400,7 @@ const AddEditRulesPage = () => {
                   No Orders
                 </label>
                 <div className="flex gap-y-2 flex-col">
-                  {[30, 60, 90].map((days) => (
+                  {noOrdersArray.map((days) => (
                     <AutomationRule
                       key={`no-orders-${days}-1`}
                       pricingList={pricingList}
@@ -344,7 +422,7 @@ const AddEditRulesPage = () => {
                   Stock Drop
                 </label>
                 <div className="flex gap-y-2 flex-col">
-                  {[20, 50, 90].map((days) => (
+                  {stockDropArray.map((days) => (
                     <AutomationRule
                       key={`no-orders-${days}-2`}
                       pricingList={pricingList}
@@ -365,7 +443,7 @@ const AddEditRulesPage = () => {
                   Stock Ages
                 </label>
                 <div className="flex gap-y-2 flex-col">
-                  {[30, 60, 90].map((days) => (
+                  {stockAgesArray.map((days) => (
                     <AutomationRule
                       key={`no-orders-${days}-3`}
                       pricingList={pricingList}
@@ -379,6 +457,7 @@ const AddEditRulesPage = () => {
             </div>
           </div>
 
+          {/* Minimums & Maximums */}
           <div className="w-full p-[8px]">
             <label
               htmlFor=""
@@ -408,7 +487,7 @@ const AddEditRulesPage = () => {
                           },
                         }}
                         arrow
-                        title={`The total price include VAT`}
+                        title={`This is the minimum ROI criteria ideally when sourcing a product. It will be the price that is matched within the first 30 days.`}
                       >
                         <LuInfo />
                       </Tooltip>
@@ -416,12 +495,18 @@ const AddEditRulesPage = () => {
                   </Box>
                   <div className="relative">
                     <input
+                      id="minRoi"
+                      name="minRoi"
                       className="rounded-md px-3 py-2.5 border text-sm w-full
                                        bg-white dark:bg-[#242424]
                                    border-[#EEEEEE] dark:border-[#373737]
                                    text-[#1E1E1E] dark:text-[#fff]"
                       placeholder="0"
                       type="text"
+                      value={minRoi}
+                      onChange={(e) => {
+                        setMinRoi(e.target.value);
+                      }}
                     />
                     <span className="absolute -translate-y-2/4 text-[#6E8091] font-normal text-sm leading-[150%] tracking-[-1%] right-2.5 top-2/4">
                       %
@@ -448,7 +533,7 @@ const AddEditRulesPage = () => {
                           },
                         }}
                         arrow
-                        title={`The total price include VAT`}
+                        title={`The maximum ROI you are willing to sell a product for.`}
                       >
                         <LuInfo />
                       </Tooltip>
@@ -456,12 +541,18 @@ const AddEditRulesPage = () => {
                   </Box>
                   <div className="relative">
                     <input
+                      id="maxRoi"
+                      name="maxRoi"
                       className="rounded-md px-3 py-2.5 border text-sm w-full
                                        bg-white dark:bg-[#242424]
                                    border-[#EEEEEE] dark:border-[#373737]
                                    text-[#1E1E1E] dark:text-[#fff]"
                       placeholder="0"
                       type="text"
+                      value={maxRoi}
+                      onChange={(e) => {
+                        setMaxRoi(e.target.value);
+                      }}
                     />
                     <span className="absolute -translate-y-2/4 text-[#6E8091] font-normal text-sm leading-[150%] tracking-[-1%] right-2.5 top-2/4">
                       %
@@ -490,7 +581,7 @@ const AddEditRulesPage = () => {
                           },
                         }}
                         arrow
-                        title={`The total price include VAT`}
+                        title={`This is the absolute ROI criteria ideally when sourcing a product. It will be the price that is matched within the first 30 days.`}
                       >
                         <LuInfo />
                       </Tooltip>
@@ -498,12 +589,18 @@ const AddEditRulesPage = () => {
                   </Box>
                   <div className="relative">
                     <input
+                      id="absRoi"
+                      name="absRoi"
                       className="rounded-md px-3 py-2.5 border text-sm w-full
                                        bg-white dark:bg-[#242424]
                                    border-[#EEEEEE] dark:border-[#373737]
                                    text-[#1E1E1E] dark:text-[#fff]"
                       placeholder="0"
                       type="text"
+                      value={absRoi}
+                      onChange={(e) => {
+                        setAbsRoi(e.target.value);
+                      }}
                     />
                     <span className="absolute -translate-y-2/4 text-[#6E8091] font-normal text-sm leading-[150%] tracking-[-1%] right-2.5 top-2/4">
                       %
@@ -518,10 +615,12 @@ const AddEditRulesPage = () => {
               <div className="checkagree-common-s1 flex items-start gap-2">
                 <div className="checkcol">
                   <input
+                    id="isMinRoi30"
+                    name="isMinRoi30"
                     type="checkbox"
-                    name=""
                     className="theme-checkbox-s1"
-                    id=""
+                    checked={isMinRoi30}
+                    onChange={(e) => setIsMinRoi30(e.target.checked)}
                   />
                 </div>
                 <div className="w-full max-w-[240px] ">
@@ -544,7 +643,7 @@ const AddEditRulesPage = () => {
                           },
                         }}
                         arrow
-                        title={`The total price include VAT`}
+                        title={`The ROI you are willing to sell the product at after inventory as aged 30days.`}
                       >
                         <LuInfo />
                       </Tooltip>
@@ -552,12 +651,19 @@ const AddEditRulesPage = () => {
                   </Box>
                   <div className="relative">
                     <input
+                      id="minRoi30"
+                      name="minRoi30"
                       className="rounded-md px-3 py-2.5 border text-sm w-full
                                        bg-white dark:bg-[#242424]
                                    border-[#EEEEEE] dark:border-[#373737]
                                    text-[#1E1E1E] dark:text-[#fff]"
                       placeholder="0"
                       type="text"
+                      value={minRoi30}
+                      onChange={(e) => {
+                        setMinRoi30(e.target.value);
+                      }}
+                      disabled={!isMinRoi30}
                     />
                     <span className="absolute -translate-y-2/4 text-[#6E8091] font-normal text-sm leading-[150%] tracking-[-1%] right-2.5 top-2/4">
                       %
@@ -568,10 +674,12 @@ const AddEditRulesPage = () => {
               <div className="checkagree-common-s1 flex items-start gap-2">
                 <div className="checkcol">
                   <input
+                    id="isMinRoi60"
+                    name="isMinRoi60"
                     type="checkbox"
-                    name=""
                     className="theme-checkbox-s1"
-                    id=""
+                    checked={isMinRoi60}
+                    onChange={(e) => setIsMinRoi60(e.target.checked)}
                   />
                 </div>
                 <div className="w-full max-w-[240px] ">
@@ -594,7 +702,7 @@ const AddEditRulesPage = () => {
                           },
                         }}
                         arrow
-                        title={`The total price include VAT`}
+                        title={`The ROI you are willing to sell the product at after inventory as aged 60days.`}
                       >
                         <LuInfo />
                       </Tooltip>
@@ -602,12 +710,19 @@ const AddEditRulesPage = () => {
                   </Box>
                   <div className="relative">
                     <input
+                      id="minRoi60"
+                      name="minRoi60"
                       className="rounded-md px-3 py-2.5 border text-sm w-full
                                        bg-white dark:bg-[#242424]
                                    border-[#EEEEEE] dark:border-[#373737]
                                    text-[#1E1E1E] dark:text-[#fff]"
                       placeholder="0"
                       type="text"
+                      value={minRoi60}
+                      onChange={(e) => {
+                        setMinRoi60(e.target.value);
+                      }}
+                      disabled={!isMinRoi60}
                     />
                     <span className="absolute -translate-y-2/4 text-[#6E8091] font-normal text-sm leading-[150%] tracking-[-1%] right-2.5 top-2/4">
                       %
@@ -630,16 +745,16 @@ const AddEditRulesPage = () => {
           </div>
 
           <div className="w-full p-[8px]">
-
             <div className="flex flex-col gap-y-2">
-
               <div className="checkagree-common-s1 flex items-start gap-2">
                 <div className="checkcol">
                   <input
+                    id="excludeAmazon"
+                    name="excludeAmazon"
                     type="checkbox"
-                    name=""
                     className="theme-toggle-s1"
-                    id=""
+                    checked={excludeAmazon}
+                    onChange={(e) => setExcludeAmazon(e.target.checked)}
                   />
                 </div>
                 <label
@@ -652,10 +767,12 @@ const AddEditRulesPage = () => {
               <div className="checkagree-common-s1 flex items-start gap-2">
                 <div className="checkcol">
                   <input
+                    id="excludeAmazonEU"
+                    name="excludeAmazonEU"
                     type="checkbox"
-                    name=""
                     className="theme-toggle-s1"
-                    id=""
+                    checked={excludeAmazonEU}
+                    onChange={(e) => setExcludeAmazonEU(e.target.checked)}
                   />
                 </div>
                 <label
@@ -668,10 +785,12 @@ const AddEditRulesPage = () => {
               <div className="checkagree-common-s1 flex items-start gap-2">
                 <div className="checkcol">
                   <input
+                    id="excludeSellers"
+                    name="excludeSellers"
                     type="checkbox"
-                    name=""
                     className="theme-toggle-s1"
-                    id=""
+                    checked={excludeSellers}
+                    onChange={(e) => setExcludeSellers(e.target.checked)}
                   />
                 </div>
                 <label
@@ -688,7 +807,7 @@ const AddEditRulesPage = () => {
         </div>
         <Box className="flex gap-4 pt-4">
           <button
-            type="button"
+            type="submit"
             className="cursor-pointer bg-[#F0F0F0] dark:bg-[#292929] hover:bg-gray-400 
               text-[#6E8091] dark:text-[#696969] text-[12px] font-medium p-0 rounded 
               inline-flex items-center w-[100px] h-[36px] justify-center"
@@ -705,7 +824,7 @@ const AddEditRulesPage = () => {
           </button>
         </Box>
       </Box>
-    </>
+    </form>
   );
 };
 

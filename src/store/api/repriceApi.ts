@@ -1,6 +1,6 @@
 import { parseDateToStandardFormat } from "@/lib/utils.ts";
 import { apiSlice } from "@/store/slices/apiSlice";
-import { RepriceList, RepriceRules } from "@/types/repriceTypes";
+import { createRepriceRules, RepriceList, RepriceRules } from "@/types/repriceTypes";
 
 export const repriceApi = apiSlice.injectEndpoints?.({
     endpoints: (builder) => ({
@@ -46,14 +46,43 @@ export const repriceApi = apiSlice.injectEndpoints?.({
                 results: response.results
             }),
         }),
-        addRepriceRule: builder.mutation<RepriceRules, Omit<RepriceRules, "id">>({
+        addRule: builder.mutation<RepriceRules, createRepriceRules>({
             query: (body) => ({
                 url: `/amazon/repricing_rules/`,
                 method: "POST",
                 body,
             }),
+            invalidatesTags: ["Reprice"],
+        }),
+        getRule: builder.query<RepriceRules, string>({
+            query: (id) => ({
+                url: `/amazon/repricing_rules/${id}/`,
+                method: "GET",
+            }),
+            transformResponse: (response: RepriceRules) => ({
+                ...response,
+                id: response.id.toString(),
+                min_roi_30_days: response.min_roi_30_days ? response.min_roi_30_days.toString() : "",
+                min_roi_60_days: response.min_roi_60_days ? response.min_roi_60_days.toString() : "",
+                min_roi: response.min_roi ? response.min_roi.toString() : "",
+                max_roi: response.max_roi ? response.max_roi.toString() : "",
+                abs_min_roi: response.abs_min_roi ? response.abs_min_roi.toString() : "",
+                prime_adjustment_value: response.prime_adjustment_value ? response.prime_adjustment_value.toString() : "",
+                non_prime_next_day_adjustment_value: response.non_prime_next_day_adjustment_value ? response.non_prime_next_day_adjustment_value.toString() : "",
+                non_prime_adjustment_value: response.non_prime_adjustment_value ? response.non_prime_adjustment_value.toString() : "",
+                is_min_roi_30_days: response.is_min_roi_30_days ? Boolean(response.is_min_roi_30_days) : false,
+                is_min_roi_60_days: response.is_min_roi_60_days ? Boolean(response.is_min_roi_60_days) : false,
+            }), 
+        }),
+        updateRule: builder.mutation<RepriceRules, { id: string; rule: createRepriceRules }>({
+            query: ({ id, rule }) => ({
+                url: `/amazon/repricing_rules/${id}/`,
+                method: "PATCH",
+                body: rule,
+            }),
+            invalidatesTags: ["Reprice"],
         }),
     }),
 })
 
-export const { useGetRepricesQuery, useGetPricingRulesQuery, useAddRepriceRuleMutation } = repriceApi;
+export const { useGetRepricesQuery, useGetPricingRulesQuery, useAddRuleMutation, useGetRuleQuery, useUpdateRuleMutation } = repriceApi;

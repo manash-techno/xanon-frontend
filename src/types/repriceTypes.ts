@@ -42,6 +42,36 @@ export interface RepriceRules {
     stock_age_90_rule: string | null;
 }
 
+export interface createRepriceRules {
+    rule_name: string;
+    min_roi: string,
+    max_roi: string,
+    abs_min_roi: string,
+
+    prime_adjustment_type: string;
+    prime_adjustment_value: string | null;
+    non_prime_next_day_adjustment_type: string;
+    non_prime_next_day_adjustment_value: string | null;
+    non_prime_adjustment_type: string;
+    non_prime_adjustment_value: string | null;
+
+    is_min_roi_30_days?: boolean;
+    min_roi_30_days?: string;
+    is_min_roi_60_days?: boolean;
+    min_roi_60_days?: string;
+    
+    exclude_amazon?: boolean;
+    exclude_amazon_eu?: boolean;
+    exclude_sellers?: boolean;
+
+    guard_prevent_below_prime?: boolean,
+    guard_prevent_below_non_prime?: boolean,
+
+    automation_condition_order: string,
+    automation_condition_stock_drop: string,
+    automation_condition_stock_age: string,
+}
+
 export interface RepriceList {
     id: string;
     marketplace_id: string;
