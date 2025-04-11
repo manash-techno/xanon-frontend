@@ -118,7 +118,8 @@ export const CostOfGoodsModal = ({
               <img src="/assets/images/box-icon.svg" alt="" />
             </Box>
             <Box className="">
-              <Typography className="text-[#1E1E1E] dark:text-[#fff]">
+              <Typography className="text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+              style={{"wordWrap":"break-word","wordBreak":"break-word","display":"-webkit-box","WebkitLineClamp":"1","WebkitBoxOrient":"vertical"}}>
                 {selectedItem?.title}
               </Typography>
               <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
