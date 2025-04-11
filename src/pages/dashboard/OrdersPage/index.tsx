@@ -1104,7 +1104,7 @@ const OrdersPage: () => JSX.Element = () => {
       </Box>
       {/* end: responsive table */}
 
-      <div className="overflow-x-auto rounded-lg shadow-md">
+      <div className="overflow-x-auto rounded-lg shadow-md mt-6">
         {/* Handle errors */}
         {isError && (
           <div className="p-4 rounded-md text-sm font-medium flex items-center space-x-2 bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200">
@@ -1116,7 +1116,7 @@ const OrdersPage: () => JSX.Element = () => {
           </div>
         )}
 
-        <Table className="min-w-full hidden md-block">
+        <Table className="min-w-full hidden md:block">
           <TableHeader className="sticky top-0 bg-gray-100 dark:bg-gray-800 z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
