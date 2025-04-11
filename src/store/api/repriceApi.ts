@@ -45,8 +45,15 @@ export const repriceApi = apiSlice.injectEndpoints?.({
                 previous: response.previous,
                 results: response.results
             }),
-        })
+        }),
+        addRepriceRule: builder.mutation<RepriceRules, Omit<RepriceRules, "id">>({
+            query: (body) => ({
+                url: `/amazon/repricing_rules/`,
+                method: "POST",
+                body,
+            }),
+        }),
     }),
 })
 
-export const { useGetRepricesQuery, useGetPricingRulesQuery } = repriceApi;
+export const { useGetRepricesQuery, useGetPricingRulesQuery, useAddRepriceRuleMutation } = repriceApi;

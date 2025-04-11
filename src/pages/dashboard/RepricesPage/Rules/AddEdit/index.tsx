@@ -1,10 +1,81 @@
 import { AssetsConfig } from "@/config/assetsConfig";
-import { Box, Tooltip } from "@mui/material";
+import { RepriceRules } from "@/types/repriceTypes";
+import { Box, RadioGroup, Tooltip } from "@mui/material";
+import { useState } from "react";
 import { LuInfo } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import PriceOptions from "./PriceOptions";
+
+const defaultState: Omit<RepriceRules, "id"> = {
+  rule_name: "",
+  guard_prevent_below_prime: false,
+  guard_prevent_below_non_prime: false,
+  prime_adjustment_type: "",
+  prime_adjustment_value: 0,
+  non_prime_adjustment_value: 0,
+  prime_next_day_adjustment_type: "",
+  prime_next_day_adjustment_value: 0,
+  non_prime_adjustment_type: "",
+  min_roi: null,
+  max_roi: null,
+  abs_min_roi: null,
+  is_min_roi_30_days: false,
+  min_roi_30_days: null,
+  is_min_roi_60_days: false,
+  min_roi_60_days: null,
+  exclude_amazon: false,
+  exclude_amazon_eu: false,
+  no_order_30: false,
+  no_order_30_rule: null,
+  no_order_60: false,
+  no_order_60_rule: null,
+  no_order_90: false,
+  no_order_90_rule: null,
+  stock_drop_20: false,
+  stock_drop_20_rule: null,
+  stock_drop_50: false,
+  stock_drop_50_rule: null,
+  stock_drop_90: false,
+  stock_drop_90_rule: null,
+  stock_age_30: false,
+  stock_age_30_rule: null,
+  stock_age_60: false,
+  stock_age_60_rule: null,
+  stock_age_90: false,
+  stock_age_90_rule: null,
+  is_default: false,
+  non_prime_next_day_adjustment_type: "",
+  non_prime_next_day_adjustment_value: "",
+  exclude_merchant: false
+}
 
 const AddEditRulesPage = () => {
   const navigate = useNavigate()
+  const [ruleData, setRuleData] = useState(defaultState)
+
+  const [ruleName, setRuleName] = useState("")
+  const [isPriceMatch, setIsPriceMatch] = useState(false)
+  const [guardPreventBelowPrime, setGuardPreventBelowPrime] = useState(false)
+  const [guardPreventBelowNonPrime, setGuardPreventBelowNonPrime] = useState(false)
+  const [primeAdjustmentType, setPrimeAdjustmentType] = useState("do_not_match")
+  const [primeAdjustmentValue, setPrimeAdjustmentValue] = useState("")
+  const [primeNextDayAdjustmentType, setPrimeNextDayAdjustmentType] = useState("do_not_match")
+  const [primeNextDayAdjustmentValue, setPrimeNextDayAdjustmentValue] = useState("")
+  const [nonPrimeAdjustmentType, setNonPrimeAdjustmentType] = useState("do_not_match")
+  const [nonPrimeAdjustmentValue, setNonPrimeAdjustmentValue] = useState("")
+  const [excludeAmazon, setExcludeAmazon] = useState(false)
+  const [automationConditionOrder, setAutomationConditionOrder] = useState("")
+  const [automationConditionStockDrop, setAutomationConditionStockDrop] = useState("")
+  const [automationConditionStockAge, setAutomationConditionStockAge] = useState("")
+  const [excludeAmazonEU, setExcludeAmazonEU] = useState(false)
+  const [excludeSellers, setExcludeSellers] = useState(false)
+  const [minRoi, setMinRoi] = useState("")
+  const [maxRoi, setMaxRoi] = useState("")
+  const [absRoi, setAbsRoi] = useState("")
+  const [isMinRoi30, setIsMinRoi30] = useState(false)
+  const [minRoi30, setMinRoi30] = useState("")
+  const [isMinRoi60, setIsMinRoi60] = useState(false)
+  const [minRoi60, setMinRoi60] = useState("")
 
   return (
     <>
@@ -36,10 +107,13 @@ const AddEditRulesPage = () => {
                 </label>
                 <input
                   type="text"
+                  placeholder="Enter rule name"
                   className="rounded-md px-3 py-2.5 border text-sm w-full
                                        bg-white dark:bg-[#242424]
                                    border-[#EEEEEE] dark:border-[#373737]
                                    text-[#1E1E1E] dark:text-[#fff]"
+                  value={ruleName}
+                  onChange={(e) => setRuleName(e.target.value)}
                 ></input>
               </div>
             </div>
@@ -54,10 +128,10 @@ const AddEditRulesPage = () => {
             </label>
             <div className="checkagree-common-s1 flex items-start gap-2">
               <div className="checkcol">
-                <input type="radio" name="" className="theme-radio-s1" id="" />
+                <input type="radio" name="" checked={isPriceMatch} onChange={(e) => setIsPriceMatch(e.target.checked)} className="theme-radio-s1" id="" />
               </div>
               <label
-                htmlFor=""
+                htmlFor="price-match"
                 className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]"
               >
                 Price Match
@@ -79,6 +153,8 @@ const AddEditRulesPage = () => {
                   <input
                     type="checkbox"
                     name=""
+                    checked={guardPreventBelowPrime}
+                    onChange={(e) => setGuardPreventBelowPrime(e.target.checked)}
                     className="theme-toggle-s1"
                     id=""
                   />
@@ -96,6 +172,8 @@ const AddEditRulesPage = () => {
                   <input
                     type="checkbox"
                     name=""
+                    checked={guardPreventBelowNonPrime}
+                    onChange={(e) => setGuardPreventBelowNonPrime(e.target.checked)}
                     className="theme-toggle-s1"
                     id=""
                   />
@@ -113,7 +191,7 @@ const AddEditRulesPage = () => {
 
           <div className="w-full p-[8px]">
             <div className="flex flex-wrap -m-[8px]">
-              <div className="w-full max-w-[33.33%] p-[8px]">
+              {/* <RadioGroup  className="w-full max-w-[33.33%] p-[8px]">
                 <label
                   htmlFor=""
                   className="text-xs text-[#444444] dark:text-[#F2F2F2] mb-2 block"
@@ -206,7 +284,8 @@ const AddEditRulesPage = () => {
                     </label>
                   </div>
                 </div>
-              </div>
+              </RadioGroup> */}
+              <PriceOptions title="Prime" groupName="Prime" onChange={setPrimeAdjustmentType} setPriceAmount={setPrimeAdjustmentValue} />
               <div className="w-full max-w-[33.33%] p-[8px]">
                 <label
                   htmlFor=""
