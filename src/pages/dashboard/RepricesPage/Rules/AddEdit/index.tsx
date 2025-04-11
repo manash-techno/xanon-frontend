@@ -1,10 +1,12 @@
 import { AssetsConfig } from "@/config/assetsConfig";
 import { RepriceRules } from "@/types/repriceTypes";
 import { Box, RadioGroup, Tooltip } from "@mui/material";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { LuInfo } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import PriceOptions from "./PriceOptions";
+import { useGetPricingRulesQuery } from "@/store/api/repriceApi";
+import AutomationRule from "./AutomationRule";
 
 const defaultState: Omit<RepriceRules, "id"> = {
   rule_name: "",
@@ -76,6 +78,17 @@ const AddEditRulesPage = () => {
   const [minRoi30, setMinRoi30] = useState("")
   const [isMinRoi60, setIsMinRoi60] = useState(false)
   const [minRoi60, setMinRoi60] = useState("")
+
+  const { data: pricingRules, isSuccess
+  } = useGetPricingRulesQuery();
+
+  const pricingList = useMemo(() => {
+    if (!isSuccess || !pricingRules?.results) return [];
+    return pricingRules.results.map((item) => ({
+      label: item.rule_name,
+      value: item.rule_name,
+    }));
+  }, [isSuccess, pricingRules]);
 
   return (
     <>
@@ -286,194 +299,8 @@ const AddEditRulesPage = () => {
                 </div>
               </RadioGroup> */}
               <PriceOptions title="Prime" groupName="Prime" onChange={setPrimeAdjustmentType} setPriceAmount={setPrimeAdjustmentValue} />
-              <div className="w-full max-w-[33.33%] p-[8px]">
-                <label
-                  htmlFor=""
-                  className="text-xs text-[#444444] dark:text-[#F2F2F2] mb-2 block"
-                >
-                  Prime - Not Next Day Delivery
-                </label>
-                <div className="flex gap-y-2 flex-col">
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <label
-                      htmlFor=""
-                      className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]"
-                    >
-                      Do not Match
-                    </label>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        Price above by fixed amount
-                      </label>
-                      <input
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff]"
-                        placeholder="Enter Amount"
-                        type="text"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        Price below by fixed %
-                      </label>
-                      <input
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff]"
-                        placeholder="Enter Amount"
-                        type="text"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <label
-                      htmlFor=""
-                      className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]"
-                    >
-                      Match Price
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full max-w-[33.33%] p-[8px]">
-                <label
-                  htmlFor=""
-                  className="text-xs text-[#444444] dark:text-[#F2F2F2] mb-2 block"
-                >
-                  Non Prime
-                </label>
-                <div className="flex gap-y-2 flex-col">
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <label
-                      htmlFor=""
-                      className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]"
-                    >
-                      Do not Match
-                    </label>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        Price above by fixed amount
-                      </label>
-                      <input
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff]"
-                        placeholder="Enter Amount"
-                        type="text"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        Price below by fixed %
-                      </label>
-                      <input
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff]"
-                        placeholder="Enter Amount"
-                        type="text"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <label
-                      htmlFor=""
-                      className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]"
-                    >
-                      Match Price
-                    </label>
-                  </div>
-                </div>
-              </div>
+              <PriceOptions title="Prime - Next Day Delivery" groupName="prime-next-day" onChange={setPrimeNextDayAdjustmentType} setPriceAmount={setPrimeNextDayAdjustmentValue} />
+              <PriceOptions title="Non Prime" groupName="non-prime" onChange={setNonPrimeAdjustmentType} setPriceAmount={setNonPrimeAdjustmentValue} />
             </div>
           </div>
 
@@ -484,7 +311,9 @@ const AddEditRulesPage = () => {
             >
               Automations
             </label>
+
             <div className="flex flex-wrap -m-[8px]">
+              {/* No Orders */}
               <div className="w-full max-w-[33.33%] p-[8px]">
                 <label
                   htmlFor=""
@@ -493,86 +322,20 @@ const AddEditRulesPage = () => {
                   No Orders
                 </label>
                 <div className="flex gap-y-2 flex-col">
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="checkbox"
-                        name=""
-                        className="theme-checkbox-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        If no orders in last 30 days
-                      </label>
-                      <select
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff] select1"
-                      >
-                        <option value="">Select Rule</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="checkbox"
-                        name=""
-                        className="theme-checkbox-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        If no orders in last 60 days
-                      </label>
-                      <select
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff] select1"
-                      >
-                        <option value="">Select Rule</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="checkbox"
-                        name=""
-                        className="theme-checkbox-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        If no orders in last 90 days
-                      </label>
-                      <select
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff] select1"
-                      >
-                        <option value="">Select Rule</option>
-                      </select>
-                    </div>
-                  </div>
+                  {[30, 60, 90].map((days) => (
+                    <AutomationRule
+                      key={`no-orders-${days}-1`}
+                      pricingList={pricingList}
+                      setAutomationRule={setAutomationConditionOrder}
+                      automationRule={automationConditionOrder}
+                      days={days}
+                      num={1}
+                    />
+                  ))}
                 </div>
               </div>
+
+              {/* Stock Drop */}
               <div className="w-full max-w-[33.33%] p-[8px]">
                 <label
                   htmlFor=""
@@ -581,86 +344,19 @@ const AddEditRulesPage = () => {
                   Stock Drop
                 </label>
                 <div className="flex gap-y-2 flex-col">
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="checkbox"
-                        name=""
-                        className="theme-checkbox-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        If no orders in last 30 days
-                      </label>
-                      <select
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff] select1"
-                      >
-                        <option value="">Select Rule</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="checkbox"
-                        name=""
-                        className="theme-checkbox-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        If no orders in last 60 days
-                      </label>
-                      <select
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff] select1"
-                      >
-                        <option value="">Select Rule</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="checkbox"
-                        name=""
-                        className="theme-checkbox-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        If no orders in last 90 days
-                      </label>
-                      <select
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff] select1"
-                      >
-                        <option value="">Select Rule</option>
-                      </select>
-                    </div>
-                  </div>
+                  {[20, 50, 90].map((days) => (
+                    <AutomationRule
+                      key={`no-orders-${days}-2`}
+                      pricingList={pricingList}
+                      setAutomationRule={setAutomationConditionStockDrop}
+                      automationRule={automationConditionStockDrop}
+                      days={days}
+                      num={2} />
+                  ))}
                 </div>
               </div>
+
+              {/* Stock Ages */}
               <div className="w-full max-w-[33.33%] p-[8px]">
                 <label
                   htmlFor=""
@@ -669,84 +365,15 @@ const AddEditRulesPage = () => {
                   Stock Ages
                 </label>
                 <div className="flex gap-y-2 flex-col">
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="checkbox"
-                        name=""
-                        className="theme-checkbox-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        If no orders in last 30 days
-                      </label>
-                      <select
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff] select1"
-                      >
-                        <option value="">Select Rule</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="checkbox"
-                        name=""
-                        className="theme-checkbox-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        If no orders in last 60 days
-                      </label>
-                      <select
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff] select1"
-                      >
-                        <option value="">Select Rule</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="checkbox"
-                        name=""
-                        className="theme-checkbox-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        If no orders in last 90 days
-                      </label>
-                      <select
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff] select1"
-                      >
-                        <option value="">Select Rule</option>
-                      </select>
-                    </div>
-                  </div>
+                  {[30, 60, 90].map((days) => (
+                    <AutomationRule
+                      key={`no-orders-${days}-3`}
+                      pricingList={pricingList}
+                      setAutomationRule={setAutomationConditionStockAge}
+                      automationRule={automationConditionStockAge}
+                      days={days}
+                      num={3} />
+                  ))}
                 </div>
               </div>
             </div>
