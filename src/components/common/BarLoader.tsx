@@ -8,7 +8,7 @@ export const BarLoader: ({color}: iBarLoaderProps) => JSX.Element = ({ color = "
     return (
         <div className="w-full h-full flex justify-center items-center">
             <div
-                className="relative w-32 h-[6px] overflow-hidden rounded-full bg-gradient-to-r shadow-md"
+                className="relative w-[90%] h-[6px] overflow-hidden rounded-full bg-gradient-to-r shadow-md"
                 style={{ background: color }}
             >
                 <div

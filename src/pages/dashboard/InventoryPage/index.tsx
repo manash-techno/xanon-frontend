@@ -23,9 +23,11 @@ import { CountryFilter } from "./CountryFilter";
 import { StatusFilter } from "./StatusFilter";
 import { Link } from "react-router-dom";
 import { pagePaths } from "@/config/pagePaths";
+import { NotepadModal } from "@/components/modals/NotepadModal";
 
 const InventoryPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
+    const [showNotepadModal, setShowNotepadModal] = useState(false)
 
     const {
         search,
@@ -70,6 +72,7 @@ const InventoryPage: () => JSX.Element = () => {
         return inventoryData.results.map((item) => ({
             id: item.id ?? 0,
             image_url: item.image_url?.trim() || AssetsConfig.icons.defaultProductImage.src,
+            category: parseValue(item.category, "Unknown"),
             title: parseValue(item.title, "Unknown Product"),
             sku: parseValue(item.sku, "N/A"),
             asin: parseValue(item.asin, "N/A"),
@@ -181,7 +184,7 @@ const InventoryPage: () => JSX.Element = () => {
                 return <div>
                     <div className="flex justify-between">
                         <span>Total</span>
-                        <span>{row.original.total_quantity}</span>
+                        <span>{row.original.totalQuantity}</span>
                     </div>
                     <div className="text-right">
                         <div className="flex justify-between text-xs text-[#6E8091]">
@@ -312,7 +315,7 @@ const InventoryPage: () => JSX.Element = () => {
                                     className="flex items-center text-[#0077E5] cursor-pointer">
                                     Notepad
                                 </span>
-                                <Link to={`${pagePaths.dashboard.inventoryDetails}}`} replace>
+                                <Link to={`${pagePaths.dashboard.inventoryDetails}`} replace>
                                     <span className="flex items-center text-[#0077E5]">
                                         Inventory
                                     </span>
@@ -351,6 +354,7 @@ const InventoryPage: () => JSX.Element = () => {
     };
 
     return (
+
         <div className="w-full">
             <div className="relative mb-4 w-60">
                 <div className="absolute -translate-y-2/4 top-2/4 left-3">
@@ -415,6 +419,7 @@ const InventoryPage: () => JSX.Element = () => {
             </div>
 
             <PaginationControls currentPage={currentPage} onPageChange={(page) => dispatch(setCurrentPage(page))} totalPages={inventoryData?.count ? Math.ceil(inventoryData.count / 10) : 1} />
+            <NotepadModal showNotepadModal={showNotepadModal} setShowNotepadModal={setShowNotepadModal} />
         </div>
     );
 };

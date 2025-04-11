@@ -117,7 +117,7 @@ const InvetoryDetailsReplenishmentsPage: React.FC<InvetoryDetailsReplenishmentsP
             <div className="p-4 rounded-md text-sm font-medium flex items-center space-x-2 bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200">
                 <span>❌</span>
                 <span>
-                    Error fetching orders:{" "}
+                    Error fetching replenishments:{" "}
                     {error instanceof Error ? error.message : "Unknown error"}
                 </span>
             </div>

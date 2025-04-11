@@ -140,7 +140,7 @@ export const CostOfGoodsModal = ({
             </Box>
           </Box>
           <Box className="flex flex-col gap-4">
-            <Box className="w-full max-w-[240px]">
+            {/* <Box className="w-full max-w-[240px]">
               <label className="text-xs text-[#1E1E1E] dark:text-[#fff] mb-2 block">
                 Shipping Cost
               </label>
@@ -159,7 +159,7 @@ export const CostOfGoodsModal = ({
                   £
                 </div>
               </div>
-            </Box>
+            </Box> */}
             <Box className="w-full max-w-[240px]">
               <label className="text-xs text-[#1E1E1E] dark:text-[#fff] mb-2 block">
                 VAT Rate

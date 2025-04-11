@@ -82,12 +82,27 @@ const ExpensesPage: () => JSX.Element = () => {
             accessorKey: "selection-col",
             header: ({ table }) => (
                 <Checkbox
+                    sx={{
+                        "& .MuiSvgIcon-root": {
+                            ".dark &": {
+                                color: "white",
+                            },
+                        }
+                    }}
                     checked={table.getIsAllRowsSelected()}
                     indeterminate={table.getIsSomeRowsSelected()}
                     onChange={table.getToggleAllRowsSelectedHandler()} //or getToggleAllPageRowsSelectedHandler
                 />
             ),
-            cell: ({ row }) => <Checkbox checked={row.getIsSelected()} onChange={row.getToggleSelectedHandler()} />,
+            cell: ({ row }) => <Checkbox
+                sx={{
+                    "& .MuiSvgIcon-root": {
+                        ".dark &": {
+                            color: "white",
+                        },
+                    }
+                }}
+                checked={row.getIsSelected()} onChange={row.getToggleSelectedHandler()} />,
         },
         {
             accessorKey: "date",

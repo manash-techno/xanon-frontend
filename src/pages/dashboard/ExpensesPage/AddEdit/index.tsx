@@ -100,14 +100,29 @@ const AddExpensePage = (): JSX.Element => {
                             color: "#1E1E1E",
                             fontSize: "14px",
                             fontWeight: "400",
-                            width: "240px"
+                            width: "240px",
                         },
                         "& .MuiInputBase-input": {
                             color: "#1E1E1E",
                             fontSize: "14px",
                             fontWeight: "400",
                             padding: "9px 12px",
-                        }
+
+                            ".dark &": {
+                                color: "#FFFFFF",
+                            },
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            ".dark &": {
+                                borderColor: "var(--color-gray-700)",
+                            },
+                        },
+                        "& .MuiButtonBase-root": {
+                            ".dark &": {
+                                fill: "white",
+                                color: "white",
+                            },
+                        },
                     }}
                     format="dd MMMM yyyy"
                     maxDate={new Date()}

@@ -79,7 +79,7 @@ const RegisterPage: () => JSX.Element = () => {
 
     return (
         <AuthFormWrapper onSubmit={handleRegister}>
-            <img className="mx-auto" src={AssetsConfig.images.branding.logoSingle.src} width={60} height={60} alt={AssetsConfig.images.branding.logoSingle.alt}/>
+            <img className="mx-auto" src={AssetsConfig.images.branding.logo.src} width={130} alt={AssetsConfig.images.branding.logo.alt}/>
             <h1 className="text-[#15355E] dark:text-[#F2F2F2] font-bold text-xl">Sign Up</h1>
 
             {/* Success & Error Messages */}
