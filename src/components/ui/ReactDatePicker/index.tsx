@@ -125,22 +125,22 @@ export const ReactDatePicker = ({ onDateRangeChange, className, from, to, label 
     };
 
     const formattedDateLabel: string | JSX.Element = useMemo(() => {
-        if (!(dateRange?.from && dateRange?.to)) return <span className="text-[#6E8091]">Select Date Range</span>;
+        if (!(dateRange?.from && dateRange?.to)) return <span className="text-[#B4B4B4] font-normal text-sm leading-[150%] tracking-[-1%]">Select Date Range</span>;
         if (selectedLabel) return selectedLabel;
         if (dateRange?.from && dateRange?.to) return formatReadableDate(dateRange.from, dateRange.to);
-        return <span className="text-[#6E8091]">Select Date Range</span>;
+        return <span className="text-[#B4B4B4] font-normal text-sm leading-[150%] tracking-[-1%]">Select Date Range</span>;
     }, [selectedLabel, dateRange?.from, dateRange?.to]);
 
     return (
         <div className={`relative ${className}`}>
             <ReactDropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <ReactButton variant="outline" className="w-60 justify-between p-2.5 text-sm">
+                    <ReactButton variant="outline" className="w-full md:w-60 justify-between p-2.5 text-sm">
                         {formattedDateLabel}
                         <ChevronDown className="ml-2 h-5 w-5" />
                     </ReactButton>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-60">
+                <DropdownMenuContent align="start" className="w-full md:w-60">
                     {["Today", "Yesterday", "Last 7 days", "Last 30 days", "Month to date", "Previous month", "Custom"].map(range => (
                         <DropdownMenuItem key={range} onSelect={() => handlePredefinedRange(range as PredefinedRange)}>
                             {range}

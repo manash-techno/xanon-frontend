@@ -13,14 +13,14 @@ export const StatusFilter = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <ReactButton variant="outline" className="w-60 justify-between p-2.5 text-sm">
+                <ReactButton variant="outline" className="w-full md:w-60 justify-between p-2.5 text-sm">
                     {orderStatusList.find(status => status.value === selectedStatus)?.name || "All status"}
                     <ChevronDownIcon className="ml-2 h-5 w-5" />
                 </ReactButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent
                 align="start"
-                className="z-50 w-60 h-60 overflow-y-auto rounded-md border
+                className="z-50 w-full md:w-60 h-60 overflow-y-auto rounded-md border
                 bg-white p-1 text-gray-900 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100
                 transition-all duration-150 ease-in-out"
             >

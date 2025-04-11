@@ -38,6 +38,9 @@ import { StatusFilter } from "@/pages/dashboard/OrdersPage/StatusFilter.tsx";
 import { CountryFilter } from "@/pages/dashboard/OrdersPage/CountryFilter.tsx";
 import { NotepadModal } from "@/components/modals/NotepadModal";
 import { pagePaths } from "@/config/pagePaths";
+import { Box, Typography } from "@mui/material";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import CloseIcon from "@mui/icons-material/Close";
 
 const OrdersPage: () => JSX.Element = () => {
   const dispatch = useDispatch();
@@ -72,8 +75,7 @@ const OrdersPage: () => JSX.Element = () => {
   const [showMoreActions, setShowMoreActions] = useState<{
     [key: string]: boolean;
   }>({});
-  const [showNotepadModal, setShowNotepadModal] = useState(false)
-
+  const [showNotepadModal, setShowNotepadModal] = useState(false);
 
   // Toggle More/Less actions
   const toggleMoreActions = (id: string) => {
@@ -84,31 +86,31 @@ const OrdersPage: () => JSX.Element = () => {
     () =>
       isSuccess
         ? orderData?.results?.map((order) => ({
-          images: order.order_items?.map((item) => item.image_url) || [],
-          products: order.order_items?.map((item) => item.title) || [],
-          skus: order.order_items?.map((item) => item.seller_sku) || [],
-          asins: order.order_items?.map((item) => item.asin) || [],
-          conditions: order.order_items?.map((item) => item.condition) || [],
-          quantities:
-            order.order_items?.map((item) => item.quantity_ordered) || [],
-          itemPrices: order.order_items?.map((item) => item.item_price) || [],
-          vatAmounts: order.order_items?.map((item) => item.vat) || [],
-          roiPercentages: order.order_items?.map((item) => item.roi) || [],
-          costOfGoods:
-            order.order_items?.map((item) => item.cost_of_goods) || [],
-          fees: order.order_items?.map((item) => item.fees) || [],
-          profits: order.order_items?.map((item) => item.profit) || [],
-          margins: order.order_items?.map((item) => item.margin) || [],
-          orderType: order.order_type, // Fixed: `order.order_items.order_type` to `order.order_type`
-          date: formatShortDate(new Date(order.purchase_date)),
-          time: formatTime(new Date(), { hour12: true, showSeconds: false }),
-          orderId: order.amazon_order_id,
-          status: order.order_status,
-          totalAmount: order.order_total_amount,
-          totalCurrency: order.order_total_currency_code || "-",
-          salesChannel: order.sales_channel,
-          fulfillmentChannel: order.fulfillment_channel,
-        })) || []
+            images: order.order_items?.map((item) => item.image_url) || [],
+            products: order.order_items?.map((item) => item.title) || [],
+            skus: order.order_items?.map((item) => item.seller_sku) || [],
+            asins: order.order_items?.map((item) => item.asin) || [],
+            conditions: order.order_items?.map((item) => item.condition) || [],
+            quantities:
+              order.order_items?.map((item) => item.quantity_ordered) || [],
+            itemPrices: order.order_items?.map((item) => item.item_price) || [],
+            vatAmounts: order.order_items?.map((item) => item.vat) || [],
+            roiPercentages: order.order_items?.map((item) => item.roi) || [],
+            costOfGoods:
+              order.order_items?.map((item) => item.cost_of_goods) || [],
+            fees: order.order_items?.map((item) => item.fees) || [],
+            profits: order.order_items?.map((item) => item.profit) || [],
+            margins: order.order_items?.map((item) => item.margin) || [],
+            orderType: order.order_type, // Fixed: `order.order_items.order_type` to `order.order_type`
+            date: formatShortDate(new Date(order.purchase_date)),
+            time: formatTime(new Date(), { hour12: true, showSeconds: false }),
+            orderId: order.amazon_order_id,
+            status: order.order_status,
+            totalAmount: order.order_total_amount,
+            totalCurrency: order.order_total_currency_code || "-",
+            salesChannel: order.sales_channel,
+            fulfillmentChannel: order.fulfillment_channel,
+          })) || []
         : [],
     [orderData, isSuccess]
   );
@@ -151,8 +153,12 @@ const OrdersPage: () => JSX.Element = () => {
         return (
           <div className="flex gap-2.5">
             <ReactImage
-              src={row.original.images[0] || AssetsConfig.icons.defaultProductImage.src}
-              width={48} height={48}
+              src={
+                row.original.images[0] ||
+                AssetsConfig.icons.defaultProductImage.src
+              }
+              width={48}
+              height={48}
               alt={AssetsConfig.icons.defaultProductImage.alt}
               className="rounded-sm w-12 h-12 object-contain"
               fallbackSrc={AssetsConfig.icons.defaultProductImage.src}
@@ -216,10 +222,10 @@ const OrdersPage: () => JSX.Element = () => {
       },
       cell: ({ row }) => {
         return (
-        <Fragment>
-          <div>{row.original.conditions[0]}</div>
-          <span className="block !text-[#6E8091] text-xs">Beauty</span>
-        </Fragment>
+          <Fragment>
+            <div>{row.original.conditions[0]}</div>
+            <span className="block !text-[#6E8091] text-xs">Beauty</span>
+          </Fragment>
         );
       },
       size: 105,
@@ -350,10 +356,14 @@ const OrdersPage: () => JSX.Element = () => {
               <Fragment>
                 <span
                   onClick={() => setShowNotepadModal(true)}
-                  className="flex items-center text-[#0077E5] cursor-pointer">
+                  className="flex items-center text-[#0077E5] cursor-pointer"
+                >
                   Notepad
                 </span>
-                <Link to={`${pagePaths.dashboard.inventoryDetails}/${row.original.skus[0]}`} replace>
+                <Link
+                  to={`${pagePaths.dashboard.inventoryDetails}/${row.original.skus[0]}`}
+                  replace
+                >
                   <span className="flex items-center text-[#0077E5]">
                     Inventory
                   </span>
@@ -366,10 +376,19 @@ const OrdersPage: () => JSX.Element = () => {
             >
               {isMoreActionsVisible ? "Less" : "More"}
               <ReactImage
-                src={isMoreActionsVisible ? AssetsConfig.icons.chevronUp.src : AssetsConfig.icons.chevronDown.src}
-                alt={isMoreActionsVisible ? AssetsConfig.icons.chevronUp.alt : AssetsConfig.icons.chevronDown.alt}
+                src={
+                  isMoreActionsVisible
+                    ? AssetsConfig.icons.chevronUp.src
+                    : AssetsConfig.icons.chevronDown.src
+                }
+                alt={
+                  isMoreActionsVisible
+                    ? AssetsConfig.icons.chevronUp.alt
+                    : AssetsConfig.icons.chevronDown.alt
+                }
                 width={16}
-                height={16} />
+                height={16}
+              />
             </span>
           </div>
         );
@@ -406,41 +425,684 @@ const OrdersPage: () => JSX.Element = () => {
 
   return (
     <div className="w-full">
-      <div className="relative mb-4 w-60">
-        <div className="absolute -translate-y-2/4 top-2/4 left-3">
-          <ReactImage
-            src={AssetsConfig.icons.search.src}
-            width={16}
-            height={16}
-            alt={AssetsConfig.icons.search.alt}
+      <div className="flex items-center gap-2 mb-5 md:mb-6">
+        <h1 className="text-[#1E1E1E] dark:text-[#F2F2F2] font-bold text-xl">
+          Orders
+        </h1>
+      </div>
+
+      <div className="flex flex-wrap items-center mb-6 -m-[4px] md:-m-[8px]">
+        {/* Filter by Date */}
+        <div className="w-full p-[4px] md:p-[8px]">
+          <div className="relative w-60">
+            <div className="absolute -translate-y-2/4 top-2/4 left-3">
+              <ReactImage
+                src={AssetsConfig.icons.search.src}
+                width={16}
+                height={16}
+                alt={AssetsConfig.icons.search.alt}
+              />
+            </div>
+            <ReactInput
+              placeholder="Search order"
+              value={search}
+              onChange={handleSearchEvent}
+              className="w-full h-10 pl-10 text-sm"
+            />
+          </div>
+        </div>
+        <div className="w-[50%] md:w-[auto] p-[4px] md:p-[8px]">
+          <ReactDatePicker
+            onDateRangeChange={handleDateRangeChange}
+            from={startDate}
+            to={endDate}
+            label={dateRangeLabel}
           />
         </div>
-        <ReactInput
-          placeholder="Search order"
-          value={search}
-          onChange={handleSearchEvent}
-          className="w-full h-10 pl-10 text-sm"
-        />
-      </div>
-
-      <div className="flex items-center mb-6 space-x-5">
-        {/* Filter by Date */}
-        <ReactDatePicker
-          onDateRangeChange={handleDateRangeChange}
-          from={startDate}
-          to={endDate}
-          label={dateRangeLabel}
-        />
-
         {/* Filter by Status */}
-        <StatusFilter />
-
+        <div className="w-[50%] md:w-[auto] p-[4px] md:p-[8px]">
+          <StatusFilter />
+        </div>
         {/* Filter by Country */}
-        <CountryFilter />
-
+        <div className="w-[50%] md:w-[auto] p-[4px] md:p-[8px]">
+          <CountryFilter />
+        </div>
         {/* Filter by Fulfillment */}
-        <FulfillmentFilter />
+        <div className="w-[auto] p-[4px] md:p-[8px]">
+          <FulfillmentFilter />
+        </div>
       </div>
+
+      {/* start: responsive table */}
+      <Box className="bg-[#FAFAFA] py-[16px] px-[10px] flex flex-col gap-4 md:hidden mb-4">
+
+        {/* start: table item */}
+        <Box className="flex flex-col gap-3 border-b border-[#b2b2b2] first-child:border-b-0 pb-4">
+          <Box className="flex gap-4">
+            <Typography className="text-[#1E1E1E] dark:text-[#fff] font-light">
+              Jul 25, 24
+            </Typography>
+            <Typography className="text-[#6E8091] dark:text-[#828282] font-light">
+              11:22 AM
+            </Typography>
+          </Box>
+          <Box className="flex gap-1 items-center">
+            <Typography className="text-[#1E1E1E] dark:text-[#fff]">
+              203-4886959-8683560
+            </Typography>
+            <ArrowOutwardIcon
+              className="text-[#6E8091] dark:text-[#828282]"
+              style={{ fontSize: "20px" }}
+            />
+          </Box>
+
+          <Box className="flex gap-4 items-center">
+            <Box className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+              <img src="/assets/images/box-icon.svg" alt="" />
+            </Box>
+            <Box className="">
+              <Typography
+                className="text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+                style={{
+                  wordWrap: "break-word",
+                  wordBreak: "break-word",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "1",
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                Schwarzkopf Silhouette Super Hold Hairspray 300ml
+              </Typography>
+              <Box className="flex flex-wrap gap-2">
+                <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                  3V-YU78-8UOF
+                </Typography>
+                <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                  B007OTJ4D4
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box className="">
+            <table
+              className="w-full w-full border-separate"
+              style={{ borderSpacing: "0 0" }}
+            >
+              <thead>
+                <tr>
+                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[100px]">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      New
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Beauty
+                    </div>
+                  </th>
+                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[120px]">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      Pending
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Amazon.uk
+                    </div>
+                  </th>
+                  <th className="text-right border-b border-[#b2b2b2] pb-2">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      Quantity: 1
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Customer Order
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="pt-2 align-top"></td>
+                  <td className="pt-2 align-top">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                        Sale
+                      </div>
+                      <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px] text-right">
+                        £9.40
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                        ROI
+                      </div>
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal text-right">
+                        45.67%
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                        Profit
+                      </div>
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal text-right">
+                        £0.44
+                      </div>
+                    </div>
+                  </td>
+                  <td className="pt-2 align-top">
+                    <div className="flex flex-col items-end">
+                      <span className="flex items-center text-[#0077E5] text-[14px]">
+                        Invoice{" "}
+                        <ReactImage
+                          src={AssetsConfig.icons.arrowUpRightOrange.src}
+                          width={20}
+                          height={20}
+                          alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                        />
+                      </span>
+                      <span className="flex items-center text-[#0077E5] text-[14px]">
+                        Listing{" "}
+                        <ReactImage
+                          src={AssetsConfig.icons.arrowUpRightOrange.src}
+                          width={20}
+                          height={20}
+                          alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                        />
+                      </span>
+                      <Fragment>
+                        <span className="flex items-center text-[#0077E5] cursor-pointer text-[14px]">
+                          Notepad
+                        </span>
+                        <Link to={`#`} replace>
+                          <span className="flex items-center text-[#0077E5] text-[14px]">
+                            Inventory
+                          </span>
+                        </Link>
+                      </Fragment>
+                      <span className="flex items-center cursor-pointer text-[14px]">
+                        Less
+                        <ReactImage
+                          src={AssetsConfig.icons.chevronUp.src}
+                          width={16}
+                          height={16}
+                        />
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Box>
+        </Box>
+        {/* start: table item */}
+        {/* start: table item */}
+        <Box className="flex flex-col gap-3 border-b border-[#b2b2b2] first-child:border-b-0 pb-4">
+          <Box className="flex gap-4">
+            <Typography className="text-[#1E1E1E] dark:text-[#fff] font-light">
+              Jul 25, 24
+            </Typography>
+            <Typography className="text-[#6E8091] dark:text-[#828282] font-light">
+              11:22 AM
+            </Typography>
+          </Box>
+          <Box className="flex gap-1 items-center">
+            <Typography className="text-[#1E1E1E] dark:text-[#fff]">
+              203-4886959-8683560
+            </Typography>
+            <ArrowOutwardIcon
+              className="text-[#6E8091] dark:text-[#828282]"
+              style={{ fontSize: "20px" }}
+            />
+          </Box>
+
+          <Box className="flex gap-4 items-center">
+            <Box className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+              <img src="/assets/images/box-icon.svg" alt="" />
+            </Box>
+            <Box className="">
+              <Typography
+                className="text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+                style={{
+                  wordWrap: "break-word",
+                  wordBreak: "break-word",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "1",
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                Schwarzkopf Silhouette Super Hold Hairspray 300ml
+              </Typography>
+              <Box className="flex flex-wrap gap-2">
+                <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                  3V-YU78-8UOF
+                </Typography>
+                <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                  B007OTJ4D4
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box className="">
+            <table
+              className="w-full w-full border-separate"
+              style={{ borderSpacing: "0 0" }}
+            >
+              <thead>
+                <tr>
+                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[100px]">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      New
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Beauty
+                    </div>
+                  </th>
+                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[120px]">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      Pending
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Amazon.uk
+                    </div>
+                  </th>
+                  <th className="text-right border-b border-[#b2b2b2] pb-2">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      Quantity: 1
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Customer Order
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="pt-2 align-top"></td>
+                  <td className="pt-2 align-top">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                        Sale
+                      </div>
+                      <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px] text-right">
+                        £9.40
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                        ROI
+                      </div>
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal text-right">
+                        45.67%
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                        Profit
+                      </div>
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal text-right">
+                        £0.44
+                      </div>
+                    </div>
+                  </td>
+                  <td className="pt-2 align-top">
+                    <div className="flex flex-col items-end">
+                      <span className="flex items-center text-[#0077E5] text-[14px]">
+                        Invoice{" "}
+                        <ReactImage
+                          src={AssetsConfig.icons.arrowUpRightOrange.src}
+                          width={20}
+                          height={20}
+                          alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                        />
+                      </span>
+                      <span className="flex items-center text-[#0077E5] text-[14px]">
+                        Listing{" "}
+                        <ReactImage
+                          src={AssetsConfig.icons.arrowUpRightOrange.src}
+                          width={20}
+                          height={20}
+                          alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                        />
+                      </span>
+                      <Fragment>
+                        <span className="flex items-center text-[#0077E5] cursor-pointer text-[14px]">
+                          Notepad
+                        </span>
+                        <Link to={`#`} replace>
+                          <span className="flex items-center text-[#0077E5] text-[14px]">
+                            Inventory
+                          </span>
+                        </Link>
+                      </Fragment>
+                      <span className="flex items-center cursor-pointer text-[14px]">
+                        Less
+                        <ReactImage
+                          src={AssetsConfig.icons.chevronUp.src}
+                          width={16}
+                          height={16}
+                        />
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Box>
+        </Box>
+        {/* start: table item */}
+        {/* start: table item */}
+        <Box className="flex flex-col gap-3 border-b border-[#b2b2b2] first-child:border-b-0 pb-4">
+          <Box className="flex gap-4">
+            <Typography className="text-[#1E1E1E] dark:text-[#fff] font-light">
+              Jul 25, 24
+            </Typography>
+            <Typography className="text-[#6E8091] dark:text-[#828282] font-light">
+              11:22 AM
+            </Typography>
+          </Box>
+          <Box className="flex gap-1 items-center">
+            <Typography className="text-[#1E1E1E] dark:text-[#fff]">
+              203-4886959-8683560
+            </Typography>
+            <ArrowOutwardIcon
+              className="text-[#6E8091] dark:text-[#828282]"
+              style={{ fontSize: "20px" }}
+            />
+          </Box>
+
+          <Box className="flex gap-4 items-center">
+            <Box className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+              <img src="/assets/images/box-icon.svg" alt="" />
+            </Box>
+            <Box className="">
+              <Typography
+                className="text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+                style={{
+                  wordWrap: "break-word",
+                  wordBreak: "break-word",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "1",
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                Schwarzkopf Silhouette Super Hold Hairspray 300ml
+              </Typography>
+              <Box className="flex flex-wrap gap-2">
+                <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                  3V-YU78-8UOF
+                </Typography>
+                <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                  B007OTJ4D4
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box className="">
+            <table
+              className="w-full w-full border-separate"
+              style={{ borderSpacing: "0 0" }}
+            >
+              <thead>
+                <tr>
+                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[100px]">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      New
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Beauty
+                    </div>
+                  </th>
+                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[120px]">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      Pending
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Amazon.uk
+                    </div>
+                  </th>
+                  <th className="text-right border-b border-[#b2b2b2] pb-2">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      Quantity: 1
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Customer Order
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="pt-2 align-top"></td>
+                  <td className="pt-2 align-top">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                        Sale
+                      </div>
+                      <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px] text-right">
+                        £9.40
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                        ROI
+                      </div>
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal text-right">
+                        45.67%
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                        Profit
+                      </div>
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal text-right">
+                        £0.44
+                      </div>
+                    </div>
+                  </td>
+                  <td className="pt-2 align-top">
+                    <div className="flex flex-col items-end">
+                      <span className="flex items-center text-[#0077E5] text-[14px]">
+                        Invoice{" "}
+                        <ReactImage
+                          src={AssetsConfig.icons.arrowUpRightOrange.src}
+                          width={20}
+                          height={20}
+                          alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                        />
+                      </span>
+                      <span className="flex items-center text-[#0077E5] text-[14px]">
+                        Listing{" "}
+                        <ReactImage
+                          src={AssetsConfig.icons.arrowUpRightOrange.src}
+                          width={20}
+                          height={20}
+                          alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                        />
+                      </span>
+                      <Fragment>
+                        <span className="flex items-center text-[#0077E5] cursor-pointer text-[14px]">
+                          Notepad
+                        </span>
+                        <Link to={`#`} replace>
+                          <span className="flex items-center text-[#0077E5] text-[14px]">
+                            Inventory
+                          </span>
+                        </Link>
+                      </Fragment>
+                      <span className="flex items-center cursor-pointer text-[14px]">
+                        Less
+                        <ReactImage
+                          src={AssetsConfig.icons.chevronUp.src}
+                          width={16}
+                          height={16}
+                        />
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Box>
+        </Box>
+        {/* start: table item */}
+        {/* start: table item */}
+        <Box className="flex flex-col gap-3 border-b border-[#b2b2b2] first-child:border-b-0 pb-4">
+          <Box className="flex gap-4">
+            <Typography className="text-[#1E1E1E] dark:text-[#fff] font-light">
+              Jul 25, 24
+            </Typography>
+            <Typography className="text-[#6E8091] dark:text-[#828282] font-light">
+              11:22 AM
+            </Typography>
+          </Box>
+          <Box className="flex gap-1 items-center">
+            <Typography className="text-[#1E1E1E] dark:text-[#fff]">
+              203-4886959-8683560
+            </Typography>
+            <ArrowOutwardIcon
+              className="text-[#6E8091] dark:text-[#828282]"
+              style={{ fontSize: "20px" }}
+            />
+          </Box>
+
+          <Box className="flex gap-4 items-center">
+            <Box className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+              <img src="/assets/images/box-icon.svg" alt="" />
+            </Box>
+            <Box className="">
+              <Typography
+                className="text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+                style={{
+                  wordWrap: "break-word",
+                  wordBreak: "break-word",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "1",
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                Schwarzkopf Silhouette Super Hold Hairspray 300ml
+              </Typography>
+              <Box className="flex flex-wrap gap-2">
+                <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                  3V-YU78-8UOF
+                </Typography>
+                <Typography className="text-[#6E8091] text-[14px] dark:text-[#828282]">
+                  B007OTJ4D4
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box className="">
+            <table
+              className="w-full w-full border-separate"
+              style={{ borderSpacing: "0 0" }}
+            >
+              <thead>
+                <tr>
+                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[100px]">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      New
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Beauty
+                    </div>
+                  </th>
+                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[120px]">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      Pending
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Amazon.uk
+                    </div>
+                  </th>
+                  <th className="text-right border-b border-[#b2b2b2] pb-2">
+                    <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                      Quantity: 1
+                    </div>
+                    <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                      Customer Order
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="pt-2 align-top"></td>
+                  <td className="pt-2 align-top">
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
+                        Sale
+                      </div>
+                      <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px] text-right">
+                        £9.40
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                        ROI
+                      </div>
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal text-right">
+                        45.67%
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal">
+                        Profit
+                      </div>
+                      <div className="text-[#6E8091] text-[12px] text-[#828282] font-normal text-right">
+                        £0.44
+                      </div>
+                    </div>
+                  </td>
+                  <td className="pt-2 align-top">
+                    <div className="flex flex-col items-end">
+                      <span className="flex items-center text-[#0077E5] text-[14px]">
+                        Invoice{" "}
+                        <ReactImage
+                          src={AssetsConfig.icons.arrowUpRightOrange.src}
+                          width={20}
+                          height={20}
+                          alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                        />
+                      </span>
+                      <span className="flex items-center text-[#0077E5] text-[14px]">
+                        Listing{" "}
+                        <ReactImage
+                          src={AssetsConfig.icons.arrowUpRightOrange.src}
+                          width={20}
+                          height={20}
+                          alt={AssetsConfig.icons.arrowUpRightOrange.alt}
+                        />
+                      </span>
+                      <Fragment>
+                        <span className="flex items-center text-[#0077E5] cursor-pointer text-[14px]">
+                          Notepad
+                        </span>
+                        <Link to={`#`} replace>
+                          <span className="flex items-center text-[#0077E5] text-[14px]">
+                            Inventory
+                          </span>
+                        </Link>
+                      </Fragment>
+                      <span className="flex items-center cursor-pointer text-[14px]">
+                        Less
+                        <ReactImage
+                          src={AssetsConfig.icons.chevronUp.src}
+                          width={16}
+                          height={16}
+                        />
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Box>
+        </Box>
+        {/* start: table item */}
+
+      </Box>
+      {/* end: responsive table */}
 
       <div className="overflow-x-auto rounded-lg shadow-md">
         {/* Handle errors */}
@@ -454,7 +1116,7 @@ const OrdersPage: () => JSX.Element = () => {
           </div>
         )}
 
-        <Table className="min-w-full">
+        <Table className="min-w-full hidden md-block">
           <TableHeader className="sticky top-0 bg-gray-100 dark:bg-gray-800 z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -506,8 +1168,10 @@ const OrdersPage: () => JSX.Element = () => {
         onPageChange={(page) => dispatch(setCurrentPage(page))}
         totalPages={orderData?.count ? Math.ceil(orderData.count / 10) : 1}
       />
-      <NotepadModal showNotepadModal={showNotepadModal} setShowNotepadModal={setShowNotepadModal} />
-
+      <NotepadModal
+        showNotepadModal={showNotepadModal}
+        setShowNotepadModal={setShowNotepadModal}
+      />
     </div>
   );
 };

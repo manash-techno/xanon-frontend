@@ -91,8 +91,8 @@ const DashboardLayout = ({
       <div className="flex">
         <div
             className={cn(
-                "sticky left-0 z-50 py-3 px-2 min-h-screen border-r-2 overflow-hidden transition-[width] duration-300",
-                isSidebarOpen ? "w-[248px]" : "w-16",
+                "fixed md:sticky left-0 z-50 py-3 px-2 min-h-screen border-r-2 overflow-hidden transition duration-300",
+                isSidebarOpen ? "-translate-x-full w-full md:w-[248px]" : "w-full md:w-16",
                 "bg-[#F2F5F8] dark:bg-[#1E1E1E] border-r-[#E0E0E0] dark:border-r-[#3B3B3B]"
             )}
         >
@@ -115,8 +115,8 @@ const DashboardLayout = ({
           </Link>
           <div
               className={cn(
-                  "flex flex-col mt-10 transition-all",
-                  isSidebarOpen ? "w-48" : "w-fit"
+                  "flex flex-col mt-4 md:mt-10 transition-all",
+                  isSidebarOpen ? "w-full md:w-48" : "w-full md:w-fit"
               )}
           >
             {ListMenuItem.map((item, index) => {
@@ -142,7 +142,7 @@ const DashboardLayout = ({
                     <span
                         className={cn(
                             "text-sm font-medium transition-opacity duration-300",
-                            { "opacity-0 w-0 overflow-hidden": !isSidebarOpen }
+                            { "md:opacity-0 md:w-0 md:overflow-hidden": !isSidebarOpen }
                         )}
                     >
                   {item.name}
@@ -210,7 +210,7 @@ const DashboardLayout = ({
             </div>
           </div>
 
-          <div className="p-5">{children}</div>
+          <div className="p-4 md:p-5">{children}</div>
         </div>
       </div>
   );
