@@ -4,7 +4,7 @@ import { LuInfo } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
 const AddEditRulesPage = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
   return (
     <>
@@ -116,7 +116,7 @@ const AddEditRulesPage = () => {
               <div className="w-full max-w-[33.33%] p-[8px]">
                 <label
                   htmlFor=""
-                  className="text-xs text-[#1E1E1E] dark:text-[#F2F2F2] mb-2 block"
+                  className="text-xs text-[#444444] dark:text-[#F2F2F2] mb-2 block"
                 >
                   Prime
                 </label>
@@ -210,7 +210,7 @@ const AddEditRulesPage = () => {
               <div className="w-full max-w-[33.33%] p-[8px]">
                 <label
                   htmlFor=""
-                  className="text-xs text-[#1E1E1E] dark:text-[#F2F2F2] mb-2 block"
+                  className="text-xs text-[#444444] dark:text-[#F2F2F2] mb-2 block"
                 >
                   Prime - Not Next Day Delivery
                 </label>
@@ -304,7 +304,7 @@ const AddEditRulesPage = () => {
               <div className="w-full max-w-[33.33%] p-[8px]">
                 <label
                   htmlFor=""
-                  className="text-xs text-[#1E1E1E] dark:text-[#F2F2F2] mb-2 block"
+                  className="text-xs text-[#444444] dark:text-[#F2F2F2] mb-2 block"
                 >
                   Non Prime
                 </label>
@@ -808,20 +808,20 @@ const AddEditRulesPage = () => {
             </div>
           </div>
           <div className="w-full p-[8px]">
-          <div className="flex gap-y-2 flex-col">
-            <div className="checkagree-common-s1 flex items-start gap-2">
-              <div className="checkcol">
-                <input
-                  type="checkbox"
-                  name=""
-                  className="theme-checkbox-s1"
-                  id=""
-                />
-              </div>
-              <div className="w-full max-w-[240px] ">
+            <div className="flex gap-y-2 flex-col">
+              <div className="checkagree-common-s1 flex items-start gap-2">
+                <div className="checkcol">
+                  <input
+                    type="checkbox"
+                    name=""
+                    className="theme-checkbox-s1"
+                    id=""
+                  />
+                </div>
+                <div className="w-full max-w-[240px] ">
                   <Box className="flex items-center mb-2 gap-2">
                     <label className="text-xs text-[#1E1E1E] dark:text-[#fff] block">
-                    Minimum ROI% after 30 days
+                      Minimum ROI% after 30 days
                     </label>
                     <Box className="flex items-center text-[#6E8091] dark:text-[#828282]">
                       <Tooltip
@@ -858,20 +858,20 @@ const AddEditRulesPage = () => {
                     </span>
                   </div>
                 </div>
-            </div>
-            <div className="checkagree-common-s1 flex items-start gap-2">
-              <div className="checkcol">
-                <input
-                  type="checkbox"
-                  name=""
-                  className="theme-checkbox-s1"
-                  id=""
-                />
               </div>
-              <div className="w-full max-w-[240px] ">
+              <div className="checkagree-common-s1 flex items-start gap-2">
+                <div className="checkcol">
+                  <input
+                    type="checkbox"
+                    name=""
+                    className="theme-checkbox-s1"
+                    id=""
+                  />
+                </div>
+                <div className="w-full max-w-[240px] ">
                   <Box className="flex items-center mb-2 gap-2">
                     <label className="text-xs text-[#1E1E1E] dark:text-[#fff] block">
-                    Minimum ROI% after 60 days
+                      Minimum ROI% after 60 days
                     </label>
                     <Box className="flex items-center text-[#6E8091] dark:text-[#828282]">
                       <Tooltip
@@ -908,32 +908,8 @@ const AddEditRulesPage = () => {
                     </span>
                   </div>
                 </div>
-            </div>
-            
-          </div>
-          </div>
-
-
-
-
-
-          <div className="w-full p-[8px]">
-            <div className="flex flex-wrap -m-[8px]">
-              <div className="w-full max-w-[33.33%] p-[8px]">
-                <label
-                  htmlFor=""
-                  className="text-xs text-[#1E1E1E] dark:text-[#F2F2F2] mb-2 block"
-                >
-                  Rules Name
-                </label>
-                <input
-                  type="text"
-                  className="rounded-md px-3 py-2.5 border text-sm w-full
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff]"
-                ></input>
               </div>
+
             </div>
           </div>
 
@@ -944,13 +920,13 @@ const AddEditRulesPage = () => {
             >
               Exclude Sellers
             </label>
-           
+
           </div>
 
           <div className="w-full p-[8px]">
-            
+
             <div className="flex flex-col gap-y-2">
-            
+
               <div className="checkagree-common-s1 flex items-start gap-2">
                 <div className="checkcol">
                   <input
@@ -980,7 +956,7 @@ const AddEditRulesPage = () => {
                   htmlFor=""
                   className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]"
                 >
-                 Exclude Amazon_EU
+                  Exclude Amazon_EU
                 </label>
               </div>
               <div className="checkagree-common-s1 flex items-start gap-2">
