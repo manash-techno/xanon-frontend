@@ -5,4 +5,5 @@ export const API_AUTH_PATHS = {
     VERIFY_OTP: { path: "/auth/users/verify_otp/", method: "POST" },
     FORGOT_PASSWORD: { path: "/auth/users/reset_password/", method: "POST" },
     USER_DETAILS: { path: "/auth/users/me", method: "GET" },
+    RESET_PASSWORD: { path: "/auth/users/reset_password_confirm/", method: "POST" },
 } as const;

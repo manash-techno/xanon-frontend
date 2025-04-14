@@ -69,7 +69,14 @@ export const authApi = apiSlice.injectEndpoints?.({
             }),
             invalidatesTags: ["Auth"],
         }),
+        resetPassword: builder.mutation<void, { uid: string; new_password: string; token: string }>({
+            query: (data) => ({
+                url: API_AUTH_PATHS.RESET_PASSWORD.path,
+                method: API_AUTH_PATHS.RESET_PASSWORD.method,
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useLoginMutation, useOauthLoginQuery, useRegisterMutation, useForgotPasswordMutation, useGetUserDetailsQuery, useLogoutMutation, useVerifyOTPMutation } = authApi;
+export const { useLoginMutation, useOauthLoginQuery, useRegisterMutation, useForgotPasswordMutation, useGetUserDetailsQuery, useLogoutMutation, useVerifyOTPMutation, useResetPasswordMutation } = authApi;

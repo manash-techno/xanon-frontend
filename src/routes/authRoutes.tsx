@@ -31,7 +31,7 @@ export const authRoutes: RouteObject[] = [
                         })
                 ), },
             { path: "forget-password", element: lazyLoader(() => import("@/pages/auth/ForgetPasswordPage"))},
-            { path: "reset-password", element: lazyLoader(() => import("@/pages/auth/ResetPasswordPage"))},
+            { path: "reset-password/:uid/:token", element: lazyLoader(() => import("@/pages/auth/ResetPasswordPage"))},
             { path: "email-verification", element: lazyLoader(() => import("@/pages/auth/EmailVerificationPage"))},
             { path: "subscription", element: lazyLoader(() => import("@/pages/auth/SubscriptionPage"))},
             { path: "*", element: <Navigate to="/auth/login" replace /> },
