@@ -7,15 +7,15 @@ import { ArrowUpIcon, CheckIcon, ChevronDownIcon } from "lucide-react";
 //     CardTitle
 // } from "@/components/ui/card";
 import {
-    ReactDropdownMenu,
-    DropdownMenuContent,
-    // DropdownMenuItem,
-    DropdownMenuTrigger
+  ReactDropdownMenu,
+  DropdownMenuContent,
+  // DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/ReactDropdownMenu.tsx";
 import { ReactButton } from "@/components/ui/ReactButton.tsx";
 import { countryFilter } from "@/constants/filter.ts";
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
-import OverallDashboard from '@/components/OverallDashboard'
+import OverallDashboard from "@/components/OverallDashboard";
 import { ReactDatePicker } from "@/components/ui/ReactDatePicker";
 import { Card, Stack } from "@mui/material";
 import { CardBody } from "@/components/ui/Card";
@@ -35,92 +35,1432 @@ import SalesProfitChart from "@/components/ui/SalesProfitChart";
 // import { TopProduct } from "@/store/useTopProductDashboard";
 
 const DashboardPage: () => JSX.Element = () => {
-    const [selectedCountry, setSelectedCountry] = useState<string | null>("All Country");
+  const [selectedCountry, setSelectedCountry] = useState<string | null>(
+    "All Country"
+  );
 
-    const handleDateRangeChange = (range: string) => {
+  const handleDateRangeChange = (range: string) => {};
 
-    };
+  return (
+    <Fragment>
+      <div className="flex items-center justify-between">
+        <h1 className="font-bold text-2xl leading-[150%] text-[#1E1E1E]">
+          Dashboard
+        </h1>
+        <div className="flex items-center gap-x-[20px]">
+          <div className="w-[240px]">
+            <select
+              className="rounded-md px-3 py-2.5 border text-sm w-full
+                                       bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff] select1"
+            >
+              <option value="">Last 7 days</option>
+            </select>
+          </div>
+          <div className="w-[240px]">
+            <select
+              className="rounded-md px-3 py-2.5 border text-sm w-full
+                                       bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff] select1"
+            >
+              <option value="">All country</option>
+            </select>
+          </div>
+          <button
+            type="button"
+            className="font-semibold text-sm leading-[150%] text-[0077E5] border w-36 h-[39px] text-[#0077E5] rounded-md border-solid border-[#0077E5] cursor-pointer"
+          >
+            Custom Report
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-wrap -m-[10px] mt-[24px]">
+        <div className="w-full max-w-[25%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <h3 className="font-semibold font-bold text-xl leading-[150%]">
+              Sales
+            </h3>
+            <div className="flex justify-center">
+              <div className="w-[100px] h-[100px] flex items-center justify-center rounded-[100%] border-[3px] border-solid border-[#1A91FF]">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%]">
+                  £539.50
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-end gap-[4px]">
+              <img
+                src="/assets/images/arrow-up-right.svg"
+                className="w-[15px] mt-[3px]"
+                alt=""
+              />
+              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                117.5%
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div className="w-full max-w-[25%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <h3 className="font-semibold font-bold text-xl leading-[150%]">
+              Profit
+            </h3>
+            <div className="flex justify-center">
+              <div className="w-[100px] h-[100px] flex items-center justify-center rounded-[100%] border-[3px] border-solid border-[#1A91FF]">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%]">
+                  £72.41
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-end gap-[4px]">
+              <img
+                src="/assets/images/arrow-up-right.svg"
+                className="w-[15px] mt-[3px]"
+                alt=""
+              />
+              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                133.1%
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div className="w-full max-w-[25%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <h3 className="font-semibold font-bold text-xl leading-[150%]">
+              Units
+            </h3>
+            <div className="flex justify-center">
+              <div className="w-[100px] h-[100px] flex items-center justify-center rounded-[100%] border-[3px] border-solid border-[#1A91FF]">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%]">
+                  45
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-end gap-[4px]">
+              <img
+                src="/assets/images/arrow-up-right.svg"
+                className="w-[15px] mt-[3px]"
+                alt=""
+              />
+              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                173.1%
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div className="w-full max-w-[25%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <h3 className="font-semibold font-bold text-xl leading-[150%]">
+              ROI
+            </h3>
+            <div className="flex justify-center">
+              <div className="w-[100px] h-[100px] flex items-center justify-center rounded-[100%] border-[3px] border-solid border-[#1A91FF]">
+                <div className="font-semibold text-base leading-[150%] tracking-[-1%]">
+                  25%
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-end gap-[4px]">
+              <img
+                src="/assets/images/arrow-up-right.svg"
+                className="w-[15px] mt-[3px]"
+                alt=""
+              />
+              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                86.2%
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-wrap -m-[10px]  mt-[10px]">
+        <div className="w-full max-w-[25%] p-[10px]">
+          <div className="flex flex-col gap-[12px]">
+            <div className="w-full bg-[#FAFAFA] rounded-sm p-[16px]">
+              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                Orders
+              </h4>
+              <div className="flex items-center justify-between mt-1">
+                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  37
+                </div>
+                <div className="flex items-center justify-end gap-[4px]">
+                  <img
+                    src="/assets/images/arrow-up-right.svg"
+                    className="w-[15px] mt-[3px]"
+                    alt=""
+                  />
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    13.42%
+                  </h6>
+                </div>
+              </div>
+              <div className="h-1 bg-[#E5F3FF] relative mt-1">
+                <div
+                  className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
+                  style={{ width: "50%" }}
+                ></div>
+              </div>
+            </div>
+            <div className="w-full bg-[#FAFAFA] rounded-sm p-[16px]">
+              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                Margin
+              </h4>
+              <div className="flex items-center justify-between mt-1">
+                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  13.42%
+                </div>
+                <div className="flex items-center justify-end gap-[4px]">
+                  <img
+                    src="/assets/images/arrow-down-right.svg"
+                    className="w-[15px] mt-[3px]"
+                    alt=""
+                  />
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    5.2%
+                  </h6>
+                </div>
+              </div>
+              <div className="h-1 bg-[#E5F3FF] relative mt-1">
+                <div
+                  className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
+                  style={{ width: "50%" }}
+                ></div>
+              </div>
+            </div>
+            <div className="w-full bg-[#FAFAFA] rounded-sm p-[16px]">
+              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                Reimbursement
+              </h4>
+              <div className="flex items-center justify-between mt-1">
+                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  45
+                </div>
+                <div className="flex items-center justify-end gap-[4px]">
+                  <img
+                    src="/assets/images/arrow-up-right.svg"
+                    className="w-[15px] mt-[3px]"
+                    alt=""
+                  />
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    117.5%
+                  </h6>
+                </div>
+              </div>
+              <div className="h-1 bg-[#E5F3FF] relative mt-1">
+                <div
+                  className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
+                  style={{ width: "50%" }}
+                ></div>
+              </div>
+            </div>
+            <div className="w-full bg-[#FAFAFA] rounded-sm p-[16px]">
+              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                Refunds
+              </h4>
+              <div className="flex items-center justify-between mt-1">
+                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  1
+                </div>
+                <div className="flex items-center justify-end gap-[4px]">
+                  <img
+                    src="/assets/images/arrow-up-right.svg"
+                    className="w-[15px] mt-[3px]"
+                    alt=""
+                  />
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    10%
+                  </h6>
+                </div>
+              </div>
+              <div className="h-1 bg-[#E5F3FF] relative mt-1">
+                <div
+                  className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
+                  style={{ width: "50%" }}
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full max-w-[75%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold font-bold text-xl leading-[150%]">
+                Sales & Profit
+              </h3>
+              <button
+                type="button"
+                className=" font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5] bg-[transparent]"
+              >
+                Compare
+              </button>
+            </div>
+            <div className="w-full">
+              <img src="/assets/images/Daily.png" className="w-full" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-    return (
-        <Fragment>
-            <div className="flex justify-end items-center mb-4 space-x-4">
-                <div className="flex flex-wrap justify-end items-center gap-3 mb-4">
-                    <ReactDatePicker onDateRangeChange={handleDateRangeChange} className="w-full md:w-auto" />
+      <div className="flex flex-wrap -m-[10px] mt-[10px]">
+        <div className="w-full max-w-[50%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold font-bold text-xl leading-[150%]">
+                Top Products
+              </h3>
+              <button type="button" className="border-0 flex bg-[transparent]">
+                <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
+              </button>
+            </div>
 
-                    <ReactDropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <ReactButton variant="outline" className="w-60 justify-between">
-                                {selectedCountry ? (
-                                    <div className="flex items-center gap-2">
-                                        {countryFilter.find((c) => c.name === selectedCountry)?.image && (
-                                            <img
-                                                src={countryFilter.find((c) => c.name === selectedCountry)?.image}
-                                                width={20}
-                                                height={14}
-                                                alt={selectedCountry}
-                                                className="rounded-sm shadow-md"
-                                            />
-                                        )}
-                                        <span>{selectedCountry}</span>
-                                    </div>
-                                ) : (
-                                    <span className="text-[#6E8091]">All Country</span>
-                                )}
-                                <ChevronDownIcon className="ml-2 h-5 w-5" />
-                            </ReactButton>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent
-                            align="start"
-                            className="w-60 h-60 overflow-auto rounded-md shadow-lg
-               bg-white border border-gray-200 text-gray-800
-               dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+            <div className="flex items-center">
+              <button
+                type="button"
+                className="flex items-center justify-center text-center w-[80px] h-[32px] bg-[#E5F3FF] text-[#0077E5] rounded-xs font-semibold text-xs leading-[150%] tracking-[-1%]"
+              >
+                Profit
+              </button>
+              <button
+                type="button"
+                className="flex items-center justify-center text-center w-[80px] h-[32px] bg-[transparent] rounded-xs font-normal text-xs leading-[150%] tracking-[-1%]"
+              >
+                ROI %
+              </button>
+              <button
+                type="button"
+                className="flex items-center justify-center text-center w-[80px] h-[32px] bg-[transparent] rounded-xs font-normal text-xs leading-[150%] tracking-[-1%]"
+              >
+                Units
+              </button>
+            </div>
+
+            <table
+              className="border-separate w-full"
+              style={{ borderSpacing: "0 10px" }}
+            >
+              <thead>
+                <tr>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Image
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    <div>
+                      <div>Product</div>
+                      <div className="text-[#6E8091] text-[10px]">
+                        SKU - ASIN
+                      </div>
+                    </div>
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Profit
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    ROI %
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Units
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Total Profit
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    £1.03
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    34.33%
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    32
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-right px-1">
+                    £7,717.4
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    £1.03
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    34.33%
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    32
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-right px-1">
+                    £7,717.4
+                  </td>
+                </tr>
+                <tr>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    £1.03
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    34.33%
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    32
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-right px-1">
+                    £7,717.4
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="w-full max-w-[25%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold font-bold text-xl leading-[150%]">
+                Expenses
+              </h3>
+              <button type="button" className="border-0 flex bg-[transparent]">
+                <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
+              </button>
+            </div>
+            <div className="flex flex-col">
+              <div className="item border-b-[#EEEEEE] border-b border-solid py-2">
+                <div className="flex items-center gap-2">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Jul 25, 24
+                  </div>
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    11:22 AM
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Subscription
+                  </div>
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    Doesn’t Recurs
+                  </div>
+                </div>
+                <div className="mt-2">
+                  <div className="item-center flex justify-between">
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%]">
+                      Developer Apps
+                    </div>
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-right">
+                      -£9.40
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 justify-between">
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      VaT Amount
+                    </div>
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      £0.45
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="item border-b-[#EEEEEE] border-b border-solid py-2">
+                <div className="flex items-center gap-2">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Jul 25, 24
+                  </div>
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    11:22 AM
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Subscription
+                  </div>
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    Doesn’t Recurs
+                  </div>
+                </div>
+                <div className="mt-2">
+                  <div className="item-center flex justify-between">
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%]">
+                      Developer Apps
+                    </div>
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-right">
+                      -£9.40
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 justify-between">
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      VaT Amount
+                    </div>
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      £0.45
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="item py-2">
+                <div className="flex items-center gap-2">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Jul 25, 24
+                  </div>
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    11:22 AM
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Subscription
+                  </div>
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    Doesn’t Recurs
+                  </div>
+                </div>
+                <div className="mt-2">
+                  <div className="item-center flex justify-between">
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%]">
+                      Developer Apps
+                    </div>
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-right">
+                      -£9.40
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 justify-between">
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      VaT Amount
+                    </div>
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      £0.45
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full max-w-[25%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold font-bold text-xl leading-[150%]">
+                Profit and Loss
+              </h3>
+              <button type="button" className="border-0 flex bg-[transparent]">
+                <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
+              </button>
+            </div>
+
+            <div className="flex flex-col">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Description
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Amount
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Profit & Loss
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  £559.54
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Margin
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  4.15%
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Profit on Sales
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  £1,100.35
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Other FBA Fees
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  -£194.86
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Profit on Reimbursements
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  £43.36
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Equipment
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  -£31.21
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Travel expenses
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  -£233.33
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Accountancy Fees
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  -£60.00
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  Office expenses and supplies
+                </div>
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  -£64.77
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full max-w-[50%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold font-bold text-xl leading-[150%]">
+                Inventory by Category
+              </h3>
+              <button type="button" className="border-0 flex bg-[transparent]">
+                <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
+              </button>
+            </div>
+
+            <table
+              className="border-separate w-full"
+              style={{ borderSpacing: "0 10px" }}
+            >
+              <thead>
+                <tr>
+                  <th className="align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Description
+                  </th>
+
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Units
+                  </th>
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Total Unit Cost
+                  </th>
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Resale
+                  </th>
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Potential Profit
+                  </th>
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    % ROI
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    All
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    1052
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £3,706.85
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £10,156.44
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £1,603.58
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    51.58
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Available FBA
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    1052
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £3,706.85
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £10,156.44
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £1,603.58
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    51.58
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Inbound
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    1052
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £3,706.85
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £10,156.44
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £1,603.58
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    51.58
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Researching
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    1052
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £3,706.85
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £10,156.44
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £1,603.58
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    51.58
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                    Transfer
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    1052
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £3,706.85
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £10,156.44
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    £1,603.58
+                  </td>
+                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    51.58
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="w-full max-w-[50%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold font-bold text-xl leading-[150%]">
+                Recent Order
+              </h3>
+              <button type="button" className="border-0 flex bg-[transparent]">
+                <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
+              </button>
+            </div>
+
+            <table
+              className="border-separate w-full"
+              style={{ borderSpacing: "0 10px" }}
+            >
+              <thead>
+                <tr>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Date
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Image
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    <div>
+                      <div>Product</div>
+                      <div className="text-[#6E8091] text-[10px]">
+                        SKU - ASIN
+                      </div>
+                    </div>
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    <div>
+                      <div>Status</div>
+                      <div className="text-[#6E8091] text-[10px]">
+                        Amazon.uk
+                      </div>
+                    </div>
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Available
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    <div>
+                      <div>Quantity</div>
+                      <div className="text-[#6E8091] text-[10px]">
+                        Order Type
+                      </div>
+                    </div>
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    <div>
+                      <div>Total Sale</div>
+                      <div className="text-[#6E8091] text-[10px]">ROI %</div>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className=" px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Jul 25, 24
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        11:22 AM
+                      </div>
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Pending
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Amazon.uk
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="w-[80px]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        <div className="flex item-center justify-between">
+                          <div>Jul 25, 24</div>
+                          <div>21</div>
+                        </div>
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        <div className="flex item-center justify-between">
+                          <div>Inbound</div>
+                          <div>0</div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        2
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Customer Order
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-right px-1">
+                    <div className="flex flex-col items-end">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        £9.40
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        22.1%
+                      </div>
+                      <button
+                        type="button"
+                        className="text-[#1E1E1E] flex items-center gap-1 cursor-pointer"
+                      >
+                        More{" "}
+                        <img src="/assets/images/downarowmore.svg" alt="" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className=" px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Jul 25, 24
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        11:22 AM
+                      </div>
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Pending
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Amazon.uk
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="w-[80px]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        <div className="flex item-center justify-between">
+                          <div>Jul 25, 24</div>
+                          <div>21</div>
+                        </div>
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        <div className="flex item-center justify-between">
+                          <div>Inbound</div>
+                          <div>0</div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        2
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Customer Order
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-right px-1">
+                    <div className="flex flex-col items-end">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        £9.40
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        22.1%
+                      </div>
+                      <button
+                        type="button"
+                        className="text-[#1E1E1E] flex items-center gap-1 cursor-pointer"
+                      >
+                        More{" "}
+                        <img src="/assets/images/downarowmore.svg" alt="" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className=" px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Jul 25, 24
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        11:22 AM
+                      </div>
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Pending
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Amazon.uk
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="w-[80px]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        <div className="flex item-center justify-between">
+                          <div>Jul 25, 24</div>
+                          <div>21</div>
+                        </div>
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        <div className="flex item-center justify-between">
+                          <div>Inbound</div>
+                          <div>0</div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        2
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Customer Order
+                      </div>
+                    </div>
+                  </td>
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-right px-1">
+                    <div className="flex flex-col items-end">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        £9.40
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        22.1%
+                      </div>
+                      <button
+                        type="button"
+                        className="text-[#1E1E1E] flex items-center gap-1 cursor-pointer"
+                      >
+                        More{" "}
+                        <img src="/assets/images/downarowmore.svg" alt="" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="w-full max-w-[50%] p-[10px]">
+          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold font-bold text-xl leading-[150%]">
+                Shipment
+              </h3>
+              <button type="button" className="border-0 flex bg-[transparent]">
+                <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
+              </button>
+            </div>
+
+            <table
+              className="border-separate w-full"
+              style={{ borderSpacing: "0 10px" }}
+            >
+              <thead>
+                <tr>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Date
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    <div>
+                      <div>Shipment</div>
+                      <div className="text-[#6E8091] text-[10px]">
+                        Tracking ID
+                      </div>
+                    </div>
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Image
+                  </th>
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    <div>
+                      <div>Product</div>
+                      <div className="text-[#6E8091] text-[10px]">
+                        SKU - ASIN
+                      </div>
+                    </div>
+                  </th>
+
+                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                    Quantity
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className=" px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Jul 25, 24
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        11:22 AM
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-1">
+                    <div className="w-[140px]">
+                    <div className="flex items-center gap-1">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        M5N1234567
+                      </div>
+                      <button
+                        type="button"
+                        className="border-0 flex bg-[transparent]"
+                      >
+                        <img
+                          src="/assets/images/arrow-up-right-xl.svg"
+                          alt=""
+                        />
+                      </button>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                          203-4886959-8683...
+                        </div>
+                        <button
+                          type="button"
+                          className="border-0 flex bg-[transparent]"
                         >
-                            {countryFilter.map((country) => (
-                                <DropdownMenuItem
-                                    key={country.name}
-                                    onSelect={() => setSelectedCountry(country.name)}
-                                    className={`flex items-center gap-3 px-4 py-2 rounded-md cursor-pointer transition-all
-                ${selectedCountry === country.name
-                                            ? "bg-blue-600 text-white dark:bg-blue-500"
-                                            : "hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
-                                        }`}
-                                >
-                                    {country.image && (
-                                        <img
-                                            src={country.image}
-                                            width={20}
-                                            height={14}
-                                            alt={country.name}
-                                            className="rounded-sm shadow-md"
-                                        />
-                                    )}
-                                    <span className="text-sm">{country.name}</span>
-                                    {selectedCountry === country.name && (
-                                        <CheckIcon className="h-4 w-4 text-white dark:text-gray-200 ml-auto" />
-                                    )}
-                                </DropdownMenuItem>
-                            ))}
-                        </DropdownMenuContent>
-                    </ReactDropdownMenu>
-                </div>
-            </div>
+                          <img
+                            src="/assets/images/arrow-up-right-xl.svg"
+                            alt=""
+                          />
+                        </button>
+                        <span className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5]">+2</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
 
-            <div className="grid gap-3 mb-3">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <OverallDashboard className="col-span-1 md:col-span-1" />
-                    <SalesProfitChart />
-                    {/*<SalesProfitDashboard className="col-span-1 md:col-span-1" />*/}
-                    {/*<ExpensesDashboard data={[]} className="col-span-1 md:col-span-1" />*/}
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {/*<RecentOrderDashboard data={[]} className="col-span-1 md:col-span-1" />*/}
-                    {/*<TopProductDashboard data={[]} className="col-span-1 md:col-span-1" />*/}
-                    {/*<InventoryDashboard data={[]} className="col-span-1 md:col-span-1" />*/}
-                    {/*<ProfitLossDashboard data={[]} className="col-span-1 md:col-span-1" />*/}
-                </div>
-            </div>
-        </Fragment>
-    );
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        6
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className=" px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Jul 25, 24
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        11:22 AM
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-1">
+                    <div className="w-[140px]">
+                    <div className="flex items-center gap-1">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        M5N1234567
+                      </div>
+                      <button
+                        type="button"
+                        className="border-0 flex bg-[transparent]"
+                      >
+                        <img
+                          src="/assets/images/arrow-up-right-xl.svg"
+                          alt=""
+                        />
+                      </button>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                          203-4886959-8683...
+                        </div>
+                        <button
+                          type="button"
+                          className="border-0 flex bg-[transparent]"
+                        >
+                          <img
+                            src="/assets/images/arrow-up-right-xl.svg"
+                            alt=""
+                          />
+                        </button>
+                        <span className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5]">+2</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
+
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        6
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className=" px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Jul 25, 24
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        11:22 AM
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-1">
+                    <div className="w-[140px]">
+                    <div className="flex items-center gap-1">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        M5N1234567
+                      </div>
+                      <button
+                        type="button"
+                        className="border-0 flex bg-[transparent]"
+                      >
+                        <img
+                          src="/assets/images/arrow-up-right-xl.svg"
+                          alt=""
+                        />
+                      </button>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                          203-4886959-8683...
+                        </div>
+                        <button
+                          type="button"
+                          className="border-0 flex bg-[transparent]"
+                        >
+                          <img
+                            src="/assets/images/arrow-up-right-xl.svg"
+                            alt=""
+                          />
+                        </button>
+                        <span className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5]">+2</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
+
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        6
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className=" px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        Jul 25, 24
+                      </div>
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        11:22 AM
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-1">
+                    <div className="w-[140px]">
+                    <div className="flex items-center gap-1">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        M5N1234567
+                      </div>
+                      <button
+                        type="button"
+                        className="border-0 flex bg-[transparent]"
+                      >
+                        <img
+                          src="/assets/images/arrow-up-right-xl.svg"
+                          alt=""
+                        />
+                      </button>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                          203-4886959-8683...
+                        </div>
+                        <button
+                          type="button"
+                          className="border-0 flex bg-[transparent]"
+                        >
+                          <img
+                            src="/assets/images/arrow-up-right-xl.svg"
+                            alt=""
+                          />
+                        </button>
+                        <span className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5]">+2</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                      <img src="assets/images/cube1.svg" alt="" />
+                    </div>
+                  </td>
+                  <td className="text-left px-1">
+                    <div className="w-[140px]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
+                        (...
+                      </div>
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        3V-YU78-8UOF - 3V...
+                      </div>
+                    </div>
+                  </td>
+
+                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
+                    <div className="">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                        6
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  );
 };
 
 export default DashboardPage;
