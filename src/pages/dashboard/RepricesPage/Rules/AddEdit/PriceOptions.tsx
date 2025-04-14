@@ -1,5 +1,6 @@
 import { Radio } from "@mui/material"
 import { RadioGroup } from "@radix-ui/react-dropdown-menu"
+import { error } from "console"
 import { useEffect, useState } from "react"
 
 interface PriceOptionProps {
@@ -7,9 +8,10 @@ interface PriceOptionProps {
     groupName: string
     onChange: (value: string) => void
     setPriceAmount: (value: string) => void
+    validationErrors: string[]
 }
 
-const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, setPriceAmount }) => {
+const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, setPriceAmount, validationErrors }) => {
     const [selectedOption, setSelectedOption] = useState("do_not_match")
     const [aboveAmount, setAboveAmount] = useState("")
     const [abovePercent, setAbovePercent] = useState("")
@@ -74,7 +76,7 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                             onChange={(e) => handleChange(e.target.value)}
                         />
                     </div>
-                    <div>
+                    <div className="flex flex-col">
                         <label
                             htmlFor={`${groupName}-2`}
                             className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
@@ -90,8 +92,11 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                             type="text"
                             value={aboveAmount}
                             onChange={(e) => setAboveAmount(e.target.value)}
-                            required={selectedOption == "fixed_amount_above"}
+                        // required={selectedOption == "fixed_amount_above"}
                         ></input>
+                        {selectedOption === "fixed_amount_above" && validationErrors?.length > 0 && (
+                            <p className="text-red-500 text-sm">{validationErrors[0]}</p>
+                        )}
                     </div>
                 </div>
 
@@ -107,7 +112,7 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                             onChange={(e) => handleChange(e.target.value)}
                         />
                     </div>
-                    <div>
+                    <div className="flex flex-col">
                         <label
                             htmlFor={`${groupName}-3`}
                             className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
@@ -124,9 +129,12 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                             value={abovePercent}
                             onChange={(e) => setAbovePercent(e.target.value)}
                         ></input>
+                        {selectedOption === "percentage_above" && validationErrors?.length > 0 && (
+                            <p className="text-red-500 text-sm">{validationErrors[0]}</p>
+                        )}
                     </div>
                 </div>
-      
+
                 {/* Price below by fixed % */}
                 <div className="checkagree-common-s1 flex items-start gap-2">
                     <div className="checkcol">
@@ -139,7 +147,7 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                             onChange={(e) => handleChange(e.target.value)}
                         />
                     </div>
-                    <div>
+                    <div className="flex flex-col">
                         <label
                             htmlFor={`${groupName}-4`}
                             className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
@@ -156,6 +164,9 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                             value={belowPercent}
                             onChange={(e) => setBelowPercent(e.target.value)}
                         ></input>
+                        {selectedOption === "percentage_below" && validationErrors?.length > 0 && (
+                            <p className="text-red-500 text-sm">{validationErrors[0]}</p>
+                        )}
                     </div>
                 </div>
 

@@ -1,5 +1,5 @@
 import { AssetsConfig } from "@/config/assetsConfig";
-import { pagePaths } from "@/config/pagePaths";
+import { ruleAddSchema } from "@/schema/ruleSchema";
 import { useAddRuleMutation, useGetPricingRulesQuery, useGetRuleQuery, useUpdateRuleMutation } from "@/store/api/repriceApi";
 import { Box, Tooltip } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
@@ -8,12 +8,31 @@ import { useNavigate, useParams } from "react-router-dom";
 import AutomationRule from "./AutomationRule";
 import PriceOptions from "./PriceOptions";
 
+const errorState = {
+  ruleName: [] as string[],
+  primeAdjustmentValue: [] as string[],
+  primeNextDayAdjustmentValue: [] as string[],
+  nonPrimeAdjustmentValue: [] as string[],
+  nonPrimeNextDayAdjustmentType: [] as string[],
+  nonPrimeNextDayAdjustmentValue: [] as string[],
+  noOrders: [] as string[],
+  stockDrop: [] as string[],
+  stockAges: [] as string[],
+  minRoi: [] as string[],
+  maxRoi: [] as string[],
+  minAbsRoi: [] as string[],
+  minRoi30: [] as string[],
+  minRoi60: [] as string[],
+}
+
+
 const AddEditRulesPage = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const noOrdersArray = [30, 60, 90];
   const stockDropArray = [20, 50, 90];
   const stockAgesArray = [30, 60, 90];
+  const [formError, setFormError] = useState(errorState);
 
   const [ruleName, setRuleName] = useState("")
   const [isPriceMatch, setIsPriceMatch] = useState(false)
@@ -61,6 +80,50 @@ const AddEditRulesPage = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const validator = ruleAddSchema.safeParse({
+      rule_name: ruleName,
+      min_roi: +minRoi,
+      max_roi: +maxRoi,
+      abs_min_roi: +absRoi,
+      prime_adjustment_type: primeAdjustmentType,
+      prime_adjustment_value: +primeAdjustmentValue,
+      non_prime_next_day_adjustment_type: primeNextDayAdjustmentType,
+      non_prime_next_day_adjustment_value: +primeNextDayAdjustmentValue,
+      non_prime_adjustment_type: nonPrimeAdjustmentType,
+      non_prime_adjustment_value: +nonPrimeAdjustmentValue,
+      is_min_roi_30_days: isMinRoi30,
+      min_roi_30_days: +minRoi30,
+      is_min_roi_60_days: isMinRoi60,
+      min_roi_60_days: +minRoi60,
+    });
+
+    if (validator.error) {
+      const errors = validator.error.format();
+      console.log('errors', errors)
+      // prepare object 
+      const errorObject = {
+        ruleName: errors.rule_name?._errors || [],
+        minRoi: errors.min_roi?._errors || [],
+        maxRoi: errors.max_roi?._errors || [],
+        minAbsRoi: errors.abs_min_roi?._errors || [],
+        primeAdjustmentValue: errors.prime_adjustment_value?._errors || [],
+        primeNextDayAdjustmentValue: errors.non_prime_next_day_adjustment_value?._errors || [],
+        nonPrimeAdjustmentValue: errors.non_prime_adjustment_value?._errors || [],
+        nonPrimeNextDayAdjustmentType: errors.non_prime_next_day_adjustment_type?._errors || [],
+        nonPrimeNextDayAdjustmentValue: errors.non_prime_next_day_adjustment_value?._errors || [],
+        noOrders: errors.automation_condition_order?._errors || [],
+        stockDrop: errors.automation_condition_stock_ages?._errors || [],
+        stockAges: errors.automation_condition_stock_ages?._errors || [],
+        minRoi30: errors.min_roi_30_days?._errors || [],
+        minRoi60: errors.min_roi_60_days?._errors || []
+      }
+      setFormError((prev) => ({
+        ...prev,
+        ...errorObject
+      }))
+      return;
+    }
 
     const rule = {
       rule_name: ruleName,
@@ -204,8 +267,17 @@ const AddEditRulesPage = () => {
                                    border-[#EEEEEE] dark:border-[#373737]
                                    text-[#1E1E1E] dark:text-[#fff]"
                   value={ruleName}
-                  onChange={(e) => setRuleName(e.target.value)}
+                  onChange={(e) => {
+                    setRuleName(e.target.value)
+                    setFormError((prev) => ({
+                      ...prev,
+                      ruleName: [],
+                    }));
+                  }}
                 ></input>
+                {formError.ruleName.length > 0 && (
+                  <p className="text-red-500 text-sm">{formError.ruleName[0]}</p>
+                )}
               </div>
             </div>
           </div>
@@ -282,103 +354,9 @@ const AddEditRulesPage = () => {
 
           <div className="w-full p-[8px]">
             <div className="flex flex-wrap -m-[8px]">
-              {/* <RadioGroup  className="w-full max-w-[33.33%] p-[8px]">
-                <label
-                  htmlFor=""
-                  className="text-xs text-[#444444] dark:text-[#F2F2F2] mb-2 block"
-                >
-                  Prime
-                </label>
-                <div className="flex gap-y-2 flex-col">
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <label
-                      htmlFor=""
-                      className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]"
-                    >
-                      Do not Match
-                    </label>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        Price above by fixed amount
-                      </label>
-                      <input
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff]"
-                        placeholder="Enter Amount"
-                        type="text"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor=""
-                        className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E] mb-1 block"
-                      >
-                        Price below by fixed %
-                      </label>
-                      <input
-                        className="rounded-md px-3 py-2.5 border text-sm w-[240px]
-                                       bg-white dark:bg-[#242424]
-                                   border-[#EEEEEE] dark:border-[#373737]
-                                   text-[#1E1E1E] dark:text-[#fff]"
-                        placeholder="Enter Amount"
-                        type="text"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="checkagree-common-s1 flex items-start gap-2">
-                    <div className="checkcol">
-                      <input
-                        type="radio"
-                        name=""
-                        className="theme-radio-s1"
-                        id=""
-                      />
-                    </div>
-                    <label
-                      htmlFor=""
-                      className="font-normal text-sm leading-[150%] tracking-[-1%] text-[#1E1E1E]"
-                    >
-                      Match Price
-                    </label>
-                  </div>
-                </div>
-              </RadioGroup> */}
-              <PriceOptions title="Prime" groupName="Prime" onChange={setPrimeAdjustmentType} setPriceAmount={setPrimeAdjustmentValue} />
-              <PriceOptions title="Prime - Next Day Delivery" groupName="prime-next-day" onChange={setPrimeNextDayAdjustmentType} setPriceAmount={setPrimeNextDayAdjustmentValue} />
-              <PriceOptions title="Non Prime" groupName="non-prime" onChange={setNonPrimeAdjustmentType} setPriceAmount={setNonPrimeAdjustmentValue} />
+              <PriceOptions title="Prime" groupName="Prime" onChange={setPrimeAdjustmentType} setPriceAmount={setPrimeAdjustmentValue} validationErrors={formError.primeAdjustmentValue} />
+              <PriceOptions title="Prime - Next Day Delivery" groupName="prime-next-day" onChange={setPrimeNextDayAdjustmentType} setPriceAmount={setPrimeNextDayAdjustmentValue} validationErrors={formError.primeNextDayAdjustmentValue} />
+              <PriceOptions title="Non Prime" groupName="non-prime" onChange={setNonPrimeAdjustmentType} setPriceAmount={setNonPrimeAdjustmentValue} validationErrors={formError.nonPrimeAdjustmentValue} />
             </div>
           </div>
 
@@ -506,12 +484,19 @@ const AddEditRulesPage = () => {
                       value={minRoi}
                       onChange={(e) => {
                         setMinRoi(e.target.value);
+                        setFormError((prev) => ({
+                          ...prev,
+                          minRoi: [],
+                        }));
                       }}
                     />
                     <span className="absolute -translate-y-2/4 text-[#6E8091] font-normal text-sm leading-[150%] tracking-[-1%] right-2.5 top-2/4">
                       %
                     </span>
                   </div>
+                  {formError.minRoi.length > 0 && (
+                    <p className="text-red-500 text-sm">{formError.minRoi[0]}</p>
+                  )}
                 </div>
                 <div className="w-full max-w-[240px] p-[8px]">
                   <Box className="flex items-center mb-2 gap-2">
@@ -552,12 +537,19 @@ const AddEditRulesPage = () => {
                       value={maxRoi}
                       onChange={(e) => {
                         setMaxRoi(e.target.value);
+                        setFormError((prev) => ({
+                          ...prev,
+                          maxRoi: [],
+                        }));
                       }}
                     />
                     <span className="absolute -translate-y-2/4 text-[#6E8091] font-normal text-sm leading-[150%] tracking-[-1%] right-2.5 top-2/4">
                       %
                     </span>
                   </div>
+                  {formError.maxRoi.length > 0 && (
+                    <p className="text-red-500 text-sm">{formError.maxRoi[0]}</p>
+                  )}
                 </div>
               </div>
               <div className="flex flex-wrap -m-[8px]">
@@ -600,12 +592,19 @@ const AddEditRulesPage = () => {
                       value={absRoi}
                       onChange={(e) => {
                         setAbsRoi(e.target.value);
+                        setFormError((prev) => ({
+                          ...prev,
+                          minAbsRoi: [],
+                        }));
                       }}
                     />
                     <span className="absolute -translate-y-2/4 text-[#6E8091] font-normal text-sm leading-[150%] tracking-[-1%] right-2.5 top-2/4">
                       %
                     </span>
                   </div>
+                  {formError.minAbsRoi.length > 0 && (
+                    <p className="text-red-500 text-sm">{formError.minAbsRoi[0]}</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -662,6 +661,10 @@ const AddEditRulesPage = () => {
                       value={minRoi30}
                       onChange={(e) => {
                         setMinRoi30(e.target.value);
+                        setFormError((prev) => ({
+                          ...prev,
+                          minRoi30: [],
+                        }));
                       }}
                       disabled={!isMinRoi30}
                     />
@@ -721,6 +724,10 @@ const AddEditRulesPage = () => {
                       value={minRoi60}
                       onChange={(e) => {
                         setMinRoi60(e.target.value);
+                        setFormError((prev) => ({
+                          ...prev,
+                          minRoi60: [],
+                        }));
                       }}
                       disabled={!isMinRoi60}
                     />
