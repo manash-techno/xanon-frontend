@@ -1,7 +1,6 @@
-import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import PageLoader from "@/components/PageLoader";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
+import {PageTransition} from "@/components/PageTransition.tsx";
 
 /**
  * AuthOutlet Layout:
@@ -10,10 +9,10 @@ import DashboardLayout from "@/components/layouts/DashboardLayout";
  */
 export const DashboardOutlet = () => {
     return (
-        <Suspense fallback={<PageLoader />}>
-            <DashboardLayout>
+        <DashboardLayout>
+            <PageTransition>
                 <Outlet />
-            </DashboardLayout>
-        </Suspense>
+            </PageTransition>
+        </DashboardLayout>
     );
 };

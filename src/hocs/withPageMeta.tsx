@@ -1,4 +1,5 @@
 import { ComponentType, useEffect } from "react";
+import {envConfig} from "@/config/env.ts";
 
 interface PageMetaOptions {
     title: string;
@@ -11,7 +12,7 @@ export function withPageMeta<P>(
 ): ComponentType<P> {
     const WrappedComponent = (props: P) => {
         useEffect(() => {
-            document.title = meta.title;
+            document.title =  `${meta.title} | ${envConfig.APP_NAME}`;
 
             if (meta.description) {
                 let tag = document.querySelector("meta[name='description']");

@@ -18,11 +18,18 @@ export const authRoutes: RouteObject[] = [
                     () => import("@/pages/auth/LoginPage"),
                     (Comp) =>
                         withPageMeta(Comp, {
-                            title: "Login to Your Account | MyAppName",
+                            title: "Login to Your Account",
                             description: "Access your dashboard securely with your credentials.",
                         })
                 ), },
-            { path: "register", element: lazyLoader(() => import("@/pages/auth/RegisterPage.tsx"))},
+            { path: "register", element: lazyLoader(
+                    () => import("@/pages/auth/RegisterPage.tsx"),
+                    (Comp) =>
+                        withPageMeta(Comp, {
+                            title: "Register to Your Account",
+                            description: "Register securely.",
+                        })
+                ), },
             { path: "forget-password", element: lazyLoader(() => import("@/pages/auth/ForgetPasswordPage"))},
             { path: "reset-password", element: lazyLoader(() => import("@/pages/auth/ResetPasswordPage"))},
             { path: "email-verification", element: lazyLoader(() => import("@/pages/auth/EmailVerificationPage"))},

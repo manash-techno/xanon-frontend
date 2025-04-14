@@ -1,4 +1,5 @@
 export const envConfig = {
+    APP_NAME: import.meta.env.VITE_PUBLIC_APP_NAME || "MyAppName",
     API_BASE_URL: import.meta.env.VITE_API_BASE_URL || "https://api.example.com/api/",
     HOMEPAGE: import.meta.env.VITE_HOMEPAGE || "/",
     PUBLIC_URL: import.meta.env.VITE_PUBLIC_URL || "http://localhost:3000/",

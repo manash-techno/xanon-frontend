@@ -72,7 +72,7 @@ export const repriceApi = apiSlice.injectEndpoints?.({
                 non_prime_adjustment_value: response.non_prime_adjustment_value ? response.non_prime_adjustment_value.toString() : "",
                 is_min_roi_30_days: response.is_min_roi_30_days ? Boolean(response.is_min_roi_30_days) : false,
                 is_min_roi_60_days: response.is_min_roi_60_days ? Boolean(response.is_min_roi_60_days) : false,
-            }), 
+            }),
         }),
         updateRule: builder.mutation<RepriceRules, { id: string; rule: createRepriceRules }>({
             query: ({ id, rule }) => ({

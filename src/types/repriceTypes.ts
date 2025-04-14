@@ -59,7 +59,7 @@ export interface createRepriceRules {
     min_roi_30_days?: string;
     is_min_roi_60_days?: boolean;
     min_roi_60_days?: string;
-    
+
     exclude_amazon?: boolean;
     exclude_amazon_eu?: boolean;
     exclude_sellers?: boolean;

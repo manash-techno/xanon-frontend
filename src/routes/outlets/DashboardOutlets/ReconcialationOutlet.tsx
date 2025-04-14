@@ -1,14 +1,13 @@
-import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import PageLoader from "@/components/PageLoader.tsx";
 import {ReconciliationLayout} from "@/components/layouts/DashboardLayout/ReconciliationLayout.tsx";
+import {PageTransition} from "@/components/PageTransition.tsx";
 
-export const DashboardMainOutlet = () => {
+export const ReconcialationOutlet = () => {
     return (
-        <Suspense fallback={<PageLoader />}>
-            <ReconciliationLayout>
+        <ReconciliationLayout>
+            <PageTransition>
                 <Outlet />
-            </ReconciliationLayout>
-        </Suspense>
+            </PageTransition>
+        </ReconciliationLayout>
     );
 };
