@@ -1,8 +1,16 @@
-import { ChangeEvent, Fragment, JSX, useEffect, useMemo, useState } from "react";
+import { BarLoader } from "@/components/common/BarLoader.tsx";
+import { PaginationControls } from "@/components/common/PaginationControls.tsx";
+import { NotepadModal } from "@/components/modals/NotepadModal";
+import CaretSortIcon from "@/components/ui/CaretSortIcon.tsx";
+import { ReactButton } from "@/components/ui/ReactButton.tsx";
 import { ReactImage } from "@/components/ui/ReactImage.tsx";
 import { ReactInput } from "@/components/ui/ReactInput.tsx";
-import { ChevronDownIcon } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/Table.tsx";
+import { AssetsConfig } from "@/config/assetsConfig.ts";
+import { pagePaths } from "@/config/pagePaths";
+import { useGetInventoryQuery } from "@/store/api/inventoryApi.ts";
+import { setCurrentPage, setSearch } from "@/store/slices/inventorySlice.ts";
+import { RootState } from "@/store/store.ts";
 import {
     ColumnDef, flexRender,
     getCoreRowModel,
@@ -10,20 +18,11 @@ import {
     getSortedRowModel,
     useReactTable
 } from "@tanstack/react-table";
-import { useGetInventoryQuery } from "@/store/api/inventoryApi.ts";
-import { RootState } from "@/store/store.ts";
+import { ChangeEvent, Fragment, JSX, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPage, setSearch } from "@/store/slices/inventorySlice.ts";
-import { BarLoader } from "@/components/common/BarLoader.tsx";
-import { PaginationControls } from "@/components/common/PaginationControls.tsx";
-import { AssetsConfig } from "@/config/assetsConfig.ts";
-import CaretSortIcon from "@/components/ui/CaretSortIcon.tsx";
-import { ReactButton } from "@/components/ui/ReactButton.tsx";
+import { Link } from "react-router-dom";
 import { CountryFilter } from "./CountryFilter";
 import { StatusFilter } from "./StatusFilter";
-import { Link } from "react-router-dom";
-import { pagePaths } from "@/config/pagePaths";
-import { NotepadModal } from "@/components/modals/NotepadModal";
 
 const InventoryPage: () => JSX.Element = () => {
     const dispatch = useDispatch();
@@ -41,7 +40,6 @@ const InventoryPage: () => JSX.Element = () => {
         isFetching,
         isSuccess,
         isError,
-        error,
         refetch: inventoryRefetch
     } = useGetInventoryQuery({
         page: currentPage,
@@ -181,19 +179,19 @@ const InventoryPage: () => JSX.Element = () => {
                 const id = row.original.id;
                 const isMoreActionsVisible = showMoreActions[id];
 
-                return <div>
+                return <div className="w-[200px]">
                     <div className="flex justify-between">
-                        <span>Total</span>
+                        <span>Available - 🇬🇧UK</span>
                         <span>{row.original.totalQuantity}</span>
                     </div>
                     <div className="text-right">
                         <div className="flex justify-between text-xs text-[#6E8091]">
                             <span>Available</span>
-                            <span>{row.original.inbound_quantity}</span>
+                            <span>{row.original.inboundQuantity}</span>
                         </div>
                         <div className="flex justify-between text-xs text-[#6E8091]">
                             <span>Inbound</span>
-                            <span>{row.original.inbound_quantity}</span>
+                            <span>{row.original.inboundQuantity}</span>
                         </div>
                         {
                             isMoreActionsVisible &&
@@ -204,7 +202,7 @@ const InventoryPage: () => JSX.Element = () => {
                                 </div>
                                 <div className="flex justify-between text-xs text-[#6E8091]">
                                     <span>Buy box Price</span>
-                                    <span>£{row.original.buy_box_price}</span>
+                                    <span>£{row.original.buyBoxPrice}</span>
                                 </div>
                                 <div className="flex justify-between text-xs text-[#6E8091]">
                                     <span>Position</span>
@@ -238,13 +236,13 @@ const InventoryPage: () => JSX.Element = () => {
                 const id = row.original.id;
                 const isMoreActionsVisible = showMoreActions[id];
                 return (
-                    <div className="text-right">
+                    <div className="text-right w-[140px]">
                         <span>£{row.original.price}</span>
                         {isMoreActionsVisible &&
                             <>
                                 <div className="flex justify-between text-xs text-[#6E8091]">
                                     <span>CoG</span>
-                                    <span>£{row.original?.cost_of_goods}</span>
+                                    <span>£{row.original?.costOfGoods}</span>
                                 </div>
                                 <div className="flex justify-between text-xs text-[#6E8091]">
                                     <span>Fees</span>
@@ -286,7 +284,7 @@ const InventoryPage: () => JSX.Element = () => {
             id: "actions",
             header: "Actions",
             cell: ({ row }) => {
-                const id = row.original.orderId;
+                const id = row.original.id;
                 const isMoreActionsVisible = showMoreActions[id];
 
                 return (
@@ -311,11 +309,11 @@ const InventoryPage: () => JSX.Element = () => {
                         </span>
                         {isMoreActionsVisible && (
                             <Fragment>
-                                <span
+                                <span onClick={() => setShowNotepadModal(true)}
                                     className="flex items-center text-[#0077E5] cursor-pointer">
                                     Notepad
                                 </span>
-                                <Link to={`${pagePaths.dashboard.inventoryDetails}`} replace>
+                                <Link to={`${pagePaths.dashboard.inventoryDetails}/${row.original.sku}`} replace>
                                     <span className="flex items-center text-[#0077E5]">
                                         Inventory
                                     </span>
