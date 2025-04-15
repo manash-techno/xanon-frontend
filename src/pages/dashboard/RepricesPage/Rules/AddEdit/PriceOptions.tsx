@@ -1,6 +1,7 @@
 import { Radio } from "@mui/material"
 import { RadioGroup } from "@radix-ui/react-dropdown-menu"
 import { error } from "console"
+import { set } from "date-fns"
 import { useEffect, useState } from "react"
 
 interface PriceOptionProps {
@@ -9,30 +10,40 @@ interface PriceOptionProps {
     onChange: (value: string) => void
     setPriceAmount: (value: string) => void
     validationErrors: string[]
+    selectedOption: string
+    value: string
 }
 
-const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, setPriceAmount, validationErrors }) => {
-    const [selectedOption, setSelectedOption] = useState("do_not_match")
+const PriceOptions: React.FC<PriceOptionProps> = ({ selectedOption ,title, groupName, onChange, setPriceAmount, validationErrors, value }) => {
     const [aboveAmount, setAboveAmount] = useState("")
     const [abovePercent, setAbovePercent] = useState("")
     const [belowPercent, setBelowPercent] = useState("")
 
     const handleChange = (e: string) => {
-        setSelectedOption(e)
         onChange(e)
+        setAboveAmount("")
+        setAbovePercent("")
+        setBelowPercent("")
+        setPriceAmount("")
     }
 
     useEffect(() => {
         if (selectedOption == "fixed_amount_above") {
-            setPriceAmount(aboveAmount)
+            setAboveAmount(value)
         } else if (selectedOption == "percentage_above") {
-            setPriceAmount(abovePercent)
+            setAbovePercent(value)
         } else if (selectedOption == "percentage_below") {
-            setPriceAmount(belowPercent)
-        } else {
+            setBelowPercent(value)
+        }
+        
+        if (selectedOption == "do_not_match" || selectedOption == "match_price") {
+            setAboveAmount("")
+            setAbovePercent("")
+            setBelowPercent("")
             setPriceAmount("")
         }
-    }, [aboveAmount, abovePercent, belowPercent, selectedOption])
+    }, [selectedOption, value])
+    
 
     return (
         <RadioGroup className="w-full max-w-[33.33%] p-[8px]" value={selectedOption} onValueChange={(e) => handleChange(e)}>
@@ -91,7 +102,11 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                             placeholder="Enter Amount"
                             type="text"
                             value={aboveAmount}
-                            onChange={(e) => setAboveAmount(e.target.value)}
+                            onChange={(e) => {
+                                setAboveAmount(e.target.value)
+                                setPriceAmount(e.target.value)
+                            }}
+                            disabled={selectedOption !== "fixed_amount_above"}
                         // required={selectedOption == "fixed_amount_above"}
                         ></input>
                         {selectedOption === "fixed_amount_above" && validationErrors?.length > 0 && (
@@ -127,7 +142,11 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                             placeholder="Enter Amount"
                             type="text"
                             value={abovePercent}
-                            onChange={(e) => setAbovePercent(e.target.value)}
+                            onChange={(e) => {
+                                setAbovePercent(e.target.value)
+                                setPriceAmount(e.target.value)
+                            }}
+                            disabled={selectedOption !== "percentage_above"}
                         ></input>
                         {selectedOption === "percentage_above" && validationErrors?.length > 0 && (
                             <p className="text-red-500 text-sm">{validationErrors[0]}</p>
@@ -162,7 +181,11 @@ const PriceOptions: React.FC<PriceOptionProps> = ({ title, groupName, onChange, 
                             placeholder="Enter Amount"
                             type="text"
                             value={belowPercent}
-                            onChange={(e) => setBelowPercent(e.target.value)}
+                            onChange={(e) => {
+                                setBelowPercent(e.target.value)
+                                setPriceAmount(e.target.value)
+                            }}
+                            disabled={selectedOption !== "percentage_below"}
                         ></input>
                         {selectedOption === "percentage_below" && validationErrors?.length > 0 && (
                             <p className="text-red-500 text-sm">{validationErrors[0]}</p>

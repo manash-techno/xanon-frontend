@@ -2,7 +2,7 @@ import { AssetsConfig } from "@/config/assetsConfig";
 import { ruleAddSchema } from "@/schema/ruleSchema";
 import { useAddRuleMutation, useGetPricingRulesQuery, useGetRuleQuery, useUpdateRuleMutation } from "@/store/api/repriceApi";
 import { Box, Tooltip } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { LuInfo } from "react-icons/lu";
 import { useNavigate, useParams } from "react-router-dom";
 import AutomationRule from "./AutomationRule";
@@ -13,8 +13,6 @@ const errorState = {
   primeAdjustmentValue: [] as string[],
   primeNextDayAdjustmentValue: [] as string[],
   nonPrimeAdjustmentValue: [] as string[],
-  nonPrimeNextDayAdjustmentType: [] as string[],
-  nonPrimeNextDayAdjustmentValue: [] as string[],
   noOrders: [] as string[],
   stockDrop: [] as string[],
   stockAges: [] as string[],
@@ -33,6 +31,7 @@ const AddEditRulesPage = () => {
   const stockDropArray = [20, 50, 90];
   const stockAgesArray = [30, 60, 90];
   const [formError, setFormError] = useState(errorState);
+  console.log('formError', formError)
 
   const [ruleName, setRuleName] = useState("")
   const [isPriceMatch, setIsPriceMatch] = useState(false)
@@ -66,7 +65,7 @@ const AddEditRulesPage = () => {
 
   const [addRule, { error }] = useAddRuleMutation();
   const [updateRule, { error: updateError }] = useUpdateRuleMutation();
-  const { data: rule, isSuccess: isRuleSuccess, isLoading: isRuleLoading, refetch: ruleRefetch } = useGetRuleQuery(id as string, {
+  const { data: ruleData, isSuccess: isRuleSuccess, isLoading: isRuleLoading, refetch: ruleRefetch } = useGetRuleQuery(id as string, {
     skip: !id,
   });
 
@@ -107,14 +106,15 @@ const AddEditRulesPage = () => {
         minRoi: errors.min_roi?._errors || [],
         maxRoi: errors.max_roi?._errors || [],
         minAbsRoi: errors.abs_min_roi?._errors || [],
+      
         primeAdjustmentValue: errors.prime_adjustment_value?._errors || [],
         primeNextDayAdjustmentValue: errors.non_prime_next_day_adjustment_value?._errors || [],
         nonPrimeAdjustmentValue: errors.non_prime_adjustment_value?._errors || [],
-        nonPrimeNextDayAdjustmentType: errors.non_prime_next_day_adjustment_type?._errors || [],
-        nonPrimeNextDayAdjustmentValue: errors.non_prime_next_day_adjustment_value?._errors || [],
+
         noOrders: errors.automation_condition_order?._errors || [],
         stockDrop: errors.automation_condition_stock_ages?._errors || [],
         stockAges: errors.automation_condition_stock_ages?._errors || [],
+       
         minRoi30: errors.min_roi_30_days?._errors || [],
         minRoi60: errors.min_roi_60_days?._errors || []
       }
@@ -181,54 +181,54 @@ const AddEditRulesPage = () => {
 
   useEffect(() => {
     if (!isRuleLoading && isRuleSuccess) {
-      setRuleName(rule.rule_name)
-      setGuardPreventBelowPrime(rule.guard_prevent_below_prime)
-      setGuardPreventBelowNonPrime(rule.guard_prevent_below_non_prime)
-      setPrimeAdjustmentType(rule.prime_adjustment_type)
-      setPrimeAdjustmentValue(rule.prime_adjustment_value as string)
-      setPrimeNextDayAdjustmentType(rule.non_prime_next_day_adjustment_type)
-      setPrimeNextDayAdjustmentValue(rule.non_prime_next_day_adjustment_value)
-      setNonPrimeAdjustmentType(rule.non_prime_adjustment_type)
-      setNonPrimeAdjustmentValue(rule.non_prime_adjustment_value as string)
-      if (rule.no_order_30) {
-        setAutomationConditionOrder(rule.no_order_30_rule || "")
+      setRuleName(ruleData.rule_name)
+      setGuardPreventBelowPrime(ruleData.guard_prevent_below_prime)
+      setGuardPreventBelowNonPrime(ruleData.guard_prevent_below_non_prime)
+      setPrimeAdjustmentType(ruleData.prime_adjustment_type)
+      setPrimeAdjustmentValue(ruleData.prime_adjustment_value as string)
+      setPrimeNextDayAdjustmentType(ruleData.non_prime_next_day_adjustment_type)
+      setPrimeNextDayAdjustmentValue(ruleData.non_prime_next_day_adjustment_value)
+      setNonPrimeAdjustmentType(ruleData.non_prime_adjustment_type)
+      setNonPrimeAdjustmentValue(ruleData.non_prime_adjustment_value as string)
+      if (ruleData.no_order_30) {
+        setAutomationConditionOrder(ruleData.no_order_30_rule || "")
       }
-      if (rule.no_order_60) {
-        setAutomationConditionOrder(rule.no_order_60_rule || "")
+      if (ruleData.no_order_60) {
+        setAutomationConditionOrder(ruleData.no_order_60_rule || "")
       }
-      if (rule.no_order_90) {
-        setAutomationConditionOrder(rule.no_order_90_rule || "")
+      if (ruleData.no_order_90) {
+        setAutomationConditionOrder(ruleData.no_order_90_rule || "")
       }
-      if (rule.stock_drop_20) {
-        setAutomationConditionStockDrop(rule.stock_drop_20_rule || "")
+      if (ruleData.stock_drop_20) {
+        setAutomationConditionStockDrop(ruleData.stock_drop_20_rule || "")
       }
-      if (rule.stock_drop_50) {
-        setAutomationConditionStockDrop(rule.stock_drop_50_rule || "")
+      if (ruleData.stock_drop_50) {
+        setAutomationConditionStockDrop(ruleData.stock_drop_50_rule || "")
       }
-      if (rule.stock_drop_90) {
-        setAutomationConditionStockDrop(rule.stock_drop_90_rule || "")
+      if (ruleData.stock_drop_90) {
+        setAutomationConditionStockDrop(ruleData.stock_drop_90_rule || "")
       }
-      if (rule.stock_age_30) {
-        setAutomationConditionStockAge(rule.stock_age_30_rule || "")
+      if (ruleData.stock_age_30) {
+        setAutomationConditionStockAge(ruleData.stock_age_30_rule || "")
       }
-      if (rule.stock_age_60) {
-        setAutomationConditionStockAge(rule.stock_age_60_rule || "")
+      if (ruleData.stock_age_60) {
+        setAutomationConditionStockAge(ruleData.stock_age_60_rule || "")
       }
-      if (rule.stock_age_90) {
-        setAutomationConditionStockAge(rule.stock_age_90_rule || "")
+      if (ruleData.stock_age_90) {
+        setAutomationConditionStockAge(ruleData.stock_age_90_rule || "")
       }
-      setExcludeAmazon(rule.exclude_amazon)
-      setExcludeAmazonEU(rule.exclude_amazon_eu)
-      setExcludeSellers(rule.exclude_merchant || false)
-      setMinRoi(rule.min_roi || "")
-      setMaxRoi(rule.max_roi || "")
-      setAbsRoi(rule.abs_min_roi || "")
-      setIsMinRoi30(rule.is_min_roi_30_days || false)
-      setMinRoi30(rule.min_roi_30_days || "")
-      setIsMinRoi60(rule.is_min_roi_60_days || false)
-      setMinRoi60(rule.min_roi_60_days || "")
+      setExcludeAmazon(ruleData.exclude_amazon)
+      setExcludeAmazonEU(ruleData.exclude_amazon_eu)
+      setExcludeSellers(ruleData.exclude_merchant || false)
+      setMinRoi(ruleData.min_roi || "")
+      setMaxRoi(ruleData.max_roi || "")
+      setAbsRoi(ruleData.abs_min_roi || "")
+      setIsMinRoi30(ruleData.is_min_roi_30_days || false)
+      setMinRoi30(ruleData.min_roi_30_days || "")
+      setIsMinRoi60(ruleData.is_min_roi_60_days || false)
+      setMinRoi60(ruleData.min_roi_60_days || "")
     }
-  }, [id, isRuleLoading, isRuleSuccess, rule]);
+  }, [id, isRuleLoading, isRuleSuccess, ruleData]);
 
 
   return (
@@ -354,9 +354,30 @@ const AddEditRulesPage = () => {
 
           <div className="w-full p-[8px]">
             <div className="flex flex-wrap -m-[8px]">
-              <PriceOptions title="Prime" groupName="Prime" onChange={setPrimeAdjustmentType} setPriceAmount={setPrimeAdjustmentValue} validationErrors={formError.primeAdjustmentValue} />
-              <PriceOptions title="Prime - Next Day Delivery" groupName="prime-next-day" onChange={setPrimeNextDayAdjustmentType} setPriceAmount={setPrimeNextDayAdjustmentValue} validationErrors={formError.primeNextDayAdjustmentValue} />
-              <PriceOptions title="Non Prime" groupName="non-prime" onChange={setNonPrimeAdjustmentType} setPriceAmount={setNonPrimeAdjustmentValue} validationErrors={formError.nonPrimeAdjustmentValue} />
+              <PriceOptions
+                title="Prime"
+                groupName="Prime"
+                onChange={setPrimeAdjustmentType}
+                setPriceAmount={setPrimeAdjustmentValue}
+                validationErrors={formError.primeAdjustmentValue}
+                selectedOption={primeAdjustmentType}
+                value={primeAdjustmentValue}/>
+              <PriceOptions
+                title="Prime - Next Day Delivery"
+                groupName="prime-next-day"
+                onChange={setPrimeNextDayAdjustmentType}
+                setPriceAmount={setPrimeNextDayAdjustmentValue}
+                validationErrors={formError.primeNextDayAdjustmentValue}
+                selectedOption={primeNextDayAdjustmentType}
+                value={primeNextDayAdjustmentValue}/>
+              <PriceOptions
+                title="Non Prime"
+                groupName="non-prime"
+                onChange={setNonPrimeAdjustmentType}
+                setPriceAmount={setNonPrimeAdjustmentValue}
+                validationErrors={formError.nonPrimeAdjustmentValue} 
+                selectedOption={nonPrimeAdjustmentType}
+                value={nonPrimeAdjustmentValue}/>
             </div>
           </div>
 

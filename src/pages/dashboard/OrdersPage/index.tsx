@@ -275,55 +275,55 @@ const OrdersPage: () => JSX.Element = () => {
       },
       size: 105,
     },
-    {
-      accessorKey: "sales",
-      header: () => {
-        return <div className="text-right">Sales</div>;
-      },
-      cell: ({ row }) => {
-        const id = row.original.orderId;
-        const isMoreActionsVisible = showMoreActions[id];
+    // {
+    //   accessorKey: "sales",
+    //   header: () => {
+    //     return <div className="text-right">Sales</div>;
+    //   },
+    //   cell: ({ row }) => {
+    //     const id = row.original.orderId;
+    //     const isMoreActionsVisible = showMoreActions[id];
 
-        return (
-          <div className="text-right">
-            {isMoreActionsVisible && (
-              <Fragment>
-                <span>£{row.original.totalAmount}</span>
-                <div className="flex justify-between text-xs text-[#6E8091]">
-                  <span>Profit</span>
-                  <span>£{row.original.profits[0]}</span>
-                </div>
-              </Fragment>
-            )}
-            <div className="flex justify-between text-xs text-[#6E8091]">
-              <span>ROI</span>
-              <span>{row.original.roiPercentages[0]}%</span>
-            </div>
-            {isMoreActionsVisible && (
-              <Fragment>
-                <div className="flex justify-between text-xs text-[#6E8091]">
-                  <span>Margin</span>
-                  <span>{row.original.margins[0]}%</span>
-                </div>
-              </Fragment>
-            )}
-            <div className="flex justify-between text-xs text-[#6E8091]">
-              <span>VAT</span>
-              <span>£{row.original.vatAmounts[0]}</span>
-            </div>
-            {isMoreActionsVisible && (
-              <Fragment>
-                <div className="flex justify-between text-xs text-[#6E8091]">
-                  <span>Fees</span>
-                  <span>£{row.original.fees[0]}</span>
-                </div>
-              </Fragment>
-            )}
-          </div>
-        );
-      },
-      size: 160,
-    },
+    //     return (
+    //       <div className="text-right">
+    //         {isMoreActionsVisible && (
+    //           <Fragment>
+    //             <span>£{row.original.totalAmount}</span>
+    //             <div className="flex justify-between text-xs text-[#6E8091]">
+    //               <span>Profit</span>
+    //               <span>£{row.original.profits[0]}</span>
+    //             </div>
+    //           </Fragment>
+    //         )}
+    //         <div className="flex justify-between text-xs text-[#6E8091]">
+    //           <span>ROI</span>
+    //           <span>{row.original.roiPercentages[0]}%</span>
+    //         </div>
+    //         {isMoreActionsVisible && (
+    //           <Fragment>
+    //             <div className="flex justify-between text-xs text-[#6E8091]">
+    //               <span>Margin</span>
+    //               <span>{row.original.margins[0]}%</span>
+    //             </div>
+    //           </Fragment>
+    //         )}
+    //         <div className="flex justify-between text-xs text-[#6E8091]">
+    //           <span>VAT</span>
+    //           <span>£{row.original.vatAmounts[0]}</span>
+    //         </div>
+    //         {isMoreActionsVisible && (
+    //           <Fragment>
+    //             <div className="flex justify-between text-xs text-[#6E8091]">
+    //               <span>Fees</span>
+    //               <span>£{row.original.fees[0]}</span>
+    //             </div>
+    //           </Fragment>
+    //         )}
+    //       </div>
+    //     );
+    //   },
+    //   size: 160,
+    // },
     {
       id: "actions",
       header: "Action",
@@ -425,11 +425,11 @@ const OrdersPage: () => JSX.Element = () => {
 
   return (
     <div className="w-full">
-      <div className="flex items-center gap-2 mb-5 md:mb-6">
+      {/* <div className="flex items-center gap-2 mb-5 md:mb-6">
         <h1 className="text-[#1E1E1E] dark:text-[#F2F2F2] font-bold text-xl">
           Orders
         </h1>
-      </div>
+      </div> */}
 
       <div className="flex flex-wrap items-center mb-6 -m-[4px] md:-m-[8px]">
         {/* Filter by Date */}
