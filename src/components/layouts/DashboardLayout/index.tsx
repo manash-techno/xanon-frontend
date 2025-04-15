@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils.ts";
 import { FAQs } from "@/components/layouts/DashboardLayout/FAQs";
 import NotificationPopover from "@/components/NotificationPopover.tsx";
 import { ListItemIcon, Menu, MenuItem } from "@mui/material";
+import Settings from "@/components/modals/Settings";
 
 const ListMenuItem = [
   {
@@ -79,6 +80,7 @@ const DashboardLayout = ({
   const open = Boolean(anchorEl);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
+  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(true);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -263,7 +265,10 @@ const DashboardLayout = ({
                 </ListItemIcon>
                 Theme: <p className="capitalize ml-1">{theme}</p>
               </MenuItem>
-              <MenuItem className="w-[200px]" onClick={handleClose}>
+              <MenuItem className="w-[200px]" onClick={() => {
+                setIsSettingsOpen(true);
+                handleClose();
+              }}>
                 <ListItemIcon className="-mr-3">
                   <ReactImage
                     src={AssetsConfig.icons.setting.src}
@@ -295,6 +300,7 @@ const DashboardLayout = ({
         </div>
 
         <div className="p-4 md:p-5">{children}</div>
+        <Settings  open={isSettingsOpen} handleClose={()=>setIsSettingsOpen(false)} />
       </div>
     </div>
   );

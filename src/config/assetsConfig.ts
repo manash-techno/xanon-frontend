@@ -45,9 +45,18 @@ export const AssetsConfig = {
             shipmentActive: { src: `${ASSET_BASE_PATH}/icons/menu/shipment-active.svg`, alt: "Shipment Active Icon" },
             shipment: { src: `${ASSET_BASE_PATH}/icons/menu/shipment.svg`, alt: "Shipment Icon" },
         },
-
+        settings: {
+            account: { src: `${ASSET_BASE_PATH}/icons/settings/account.svg`, alt: "Account Icon" },
+            accountActive: { src: `${ASSET_BASE_PATH}/icons/settings/account-active.svg`, alt: "Account Active Icon" },
+            invoiceDetails: { src: `${ASSET_BASE_PATH}/icons/settings/invoice.svg`, alt: "Invoice Details Icon" },
+            invoiceDetailsActive: { src: `${ASSET_BASE_PATH}/icons/settings/invoice-active.svg`, alt: "Invoice Details Active Icon" },
+            vat: { src: `${ASSET_BASE_PATH}/icons/settings/vat.svg`, alt: "VAT Icon" },
+            vatActive: { src: `${ASSET_BASE_PATH}/icons/settings/vat-active.svg`, alt: "VAT Active Icon" },
+            subscription: { src: `${ASSET_BASE_PATH}/icons/settings/subscription.svg`, alt: "Subscription Icon" },
+            subscriptionActive: { src: `${ASSET_BASE_PATH}/icons/settings/subscription-active.svg`, alt: "Subscription Active Icon" },
+        },
         fallbackImage: { src: `${ASSET_BASE_PATH}/icons/fallback.webp`, alt: "Missing Image" },
-            defaultProductImage: { src: `${ASSET_BASE_PATH}/icons/box.png`, alt: "Missing Product Image" },
+        defaultProductImage: { src: `${ASSET_BASE_PATH}/icons/box.png`, alt: "Missing Product Image" },
         infoIcon: { src: `${ASSET_BASE_PATH}/icons/info.svg`, alt: "Info Icon" }
     },
     images: {
