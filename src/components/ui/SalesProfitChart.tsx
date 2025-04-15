@@ -51,6 +51,11 @@ function SalesProfitChart() {
         '& .MuiChartsAxis-left .MuiChartsAxis-line': {
           stroke: '#E0E0E0',
         },
+        '& .MuiChartsAxis-left .MuiChartsAxis-tickLabel': {
+          ".dark &": {
+            fill: 'white',
+          },
+        },
         '& .MuiChartsAxis-left .MuiChartsAxis-tick': {
           stroke: 'transparent',
         },
@@ -64,6 +69,9 @@ function SalesProfitChart() {
           textAnchor: 'start', // center align
           dominantBaseline: 'hanging',
           transform: 'translateY(6px)',
+          ".dark &": {
+            fill: 'white',
+          },
         },
       }}
     />
