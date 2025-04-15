@@ -106,7 +106,7 @@ const AddEditRulesPage = () => {
         minRoi: errors.min_roi?._errors || [],
         maxRoi: errors.max_roi?._errors || [],
         minAbsRoi: errors.abs_min_roi?._errors || [],
-      
+
         primeAdjustmentValue: errors.prime_adjustment_value?._errors || [],
         primeNextDayAdjustmentValue: errors.non_prime_next_day_adjustment_value?._errors || [],
         nonPrimeAdjustmentValue: errors.non_prime_adjustment_value?._errors || [],
@@ -114,7 +114,7 @@ const AddEditRulesPage = () => {
         noOrders: errors.automation_condition_order?._errors || [],
         stockDrop: errors.automation_condition_stock_ages?._errors || [],
         stockAges: errors.automation_condition_stock_ages?._errors || [],
-       
+
         minRoi30: errors.min_roi_30_days?._errors || [],
         minRoi60: errors.min_roi_60_days?._errors || []
       }
@@ -361,7 +361,7 @@ const AddEditRulesPage = () => {
                 setPriceAmount={setPrimeAdjustmentValue}
                 validationErrors={formError.primeAdjustmentValue}
                 selectedOption={primeAdjustmentType}
-                value={primeAdjustmentValue}/>
+                value={primeAdjustmentValue} />
               <PriceOptions
                 title="Prime - Next Day Delivery"
                 groupName="prime-next-day"
@@ -369,15 +369,15 @@ const AddEditRulesPage = () => {
                 setPriceAmount={setPrimeNextDayAdjustmentValue}
                 validationErrors={formError.primeNextDayAdjustmentValue}
                 selectedOption={primeNextDayAdjustmentType}
-                value={primeNextDayAdjustmentValue}/>
+                value={primeNextDayAdjustmentValue} />
               <PriceOptions
                 title="Non Prime"
                 groupName="non-prime"
                 onChange={setNonPrimeAdjustmentType}
                 setPriceAmount={setNonPrimeAdjustmentValue}
-                validationErrors={formError.nonPrimeAdjustmentValue} 
+                validationErrors={formError.nonPrimeAdjustmentValue}
                 selectedOption={nonPrimeAdjustmentType}
-                value={nonPrimeAdjustmentValue}/>
+                value={nonPrimeAdjustmentValue} />
             </div>
           </div>
 
@@ -693,6 +693,9 @@ const AddEditRulesPage = () => {
                       %
                     </span>
                   </div>
+                  {formError.minRoi30.length > 0 && (
+                    <p className="text-red-500 text-sm">{formError.minRoi30[0]}</p>
+                  )}
                 </div>
               </div>
               <div className="checkagree-common-s1 flex items-start gap-2">
@@ -703,7 +706,13 @@ const AddEditRulesPage = () => {
                     type="checkbox"
                     className="theme-checkbox-s1"
                     checked={isMinRoi60}
-                    onChange={(e) => setIsMinRoi60(e.target.checked)}
+                    onChange={(e) => {
+                      setIsMinRoi60(e.target.checked)
+                      setFormError((prev) => ({
+                        ...prev,
+                        minRoi60: [],
+                      }));
+                    }}
                   />
                 </div>
                 <div className="w-full max-w-[240px] ">
@@ -758,6 +767,9 @@ const AddEditRulesPage = () => {
                   </div>
                 </div>
               </div>
+                {formError.minRoi60.length > 0 && (
+                    <p className="text-red-500 text-sm">{formError.minRoi60[0]}</p>
+                  )}
 
             </div>
           </div>
