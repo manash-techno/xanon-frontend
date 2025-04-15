@@ -25,6 +25,8 @@ export const AssetsConfig = {
         public: { src: `${ASSET_BASE_PATH}/icons/public.svg`, alt: "Public" },
         leave: { src: `${ASSET_BASE_PATH}/icons/leave.svg`, alt: "Leave" },
         profile: { src: `${ASSET_BASE_PATH}/icons/profile.svg`, alt: "Profile" },
+        setting: { src: `${ASSET_BASE_PATH}/icons/setting.svg`, alt: "Settings" },
+        theme: { src: `${ASSET_BASE_PATH}/icons/theme.svg`, alt: "Theme" },
         menu: {
             dashboardActive: { src: `${ASSET_BASE_PATH}/icons/menu/dashboard-active.svg`, alt: "Dashboard Active Icon" },
             dashboard: { src: `${ASSET_BASE_PATH}/icons/menu/dashboard.svg`, alt: "Dashboard Icon" },
