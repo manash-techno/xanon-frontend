@@ -1116,7 +1116,7 @@ const OrdersPage: () => JSX.Element = () => {
           </div>
         )}
 
-        <Table className="min-w-full hidden md:block">
+        <Table className="min-w-full hidden md:table">
           <TableHeader className="sticky top-0 bg-gray-100 dark:bg-gray-800 z-10">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
