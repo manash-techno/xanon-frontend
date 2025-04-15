@@ -297,7 +297,7 @@ const DashboardPage: () => JSX.Element = () => {
               </button>
             </div>
             <div className="w-full">
-              <img src="/assets/images/Daily.png" className="w-full" alt="" />
+              <SalesProfitChart />
             </div>
           </div>
         </div>

@@ -1,6 +1,4 @@
-import { Card } from '@mui/material';
 import { LineChart } from '@mui/x-charts/LineChart';
-import { CardBody } from './Card';
 
 const dataset = [
   { day: 'Mon', sales: 160, profit: 50 },
@@ -14,54 +12,61 @@ const dataset = [
 
 function SalesProfitChart() {
   return (
-    <Card className={`w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-md rounded-lg p-4 md:p-6`}>
-      <CardBody>
-        <div className="flex justify-between">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6">Sales & Profit</h2>
-          <button className='text-[#0077E5] font-semibold cursor-pointer text-right'>Compare</button>
-        </div>
-
-        <LineChart
-          dataset={dataset}
-          xAxis={[
-            {
-              id: 'Days',
-              dataKey: 'day',
-              scaleType: 'band',
-            },
-          ]}
-          series={[
-            {
-              id: 'Sales',
-              label: 'Sales',
-              dataKey: 'sales',
-              stack: 'total',
-              area: true,
-              color: '#42A5F5', // light blue
-              showMark: false,
-            },
-            {
-              id: 'Profit',
-              label: 'Profit',
-              dataKey: 'profit',
-              stack: 'total',
-              area: true,
-              color: '#EF9A9A', // light red
-              showMark: false,
-            },
-          ]}
-          width={800}
-          height={400}
-          margin={{ left: 50, right: 20, top: 40, bottom: 50 }}
-          sx={{
-            backgroundColor: '#fff',
-            borderRadius: 2,
-            p: 2,
-            boxShadow: 1,
-          }}
-        />
-      </CardBody>
-    </Card>
+    <LineChart
+      dataset={dataset}
+      xAxis={[
+        {
+          id: 'Days',
+          dataKey: 'day',
+          scaleType: 'point',
+          label: '',
+        },
+      ]}
+      series={[
+        {
+          id: 'Sales',
+          label: 'Sales',
+          dataKey: 'sales',
+          area: true,
+          color: 'rgba(66, 165, 245, 0.5)', // semi-transparent light blue
+          showMark: false,
+        },
+        {
+          id: 'Profit',
+          label: 'Profit',
+          dataKey: 'profit',
+          area: true,
+          color: 'rgba(239, 154, 154, 0.5)', // semi-transparent light red
+          showMark: false,
+        },
+      ]}
+      // width={}
+      height={300}
+      margin={{ left: 40, right: 30, top: 20, bottom: 40 }}
+      grid={{ vertical: false }}
+      sx={{
+        backgroundColor: 'inherit',
+        borderRadius: 2,
+        width: '100%',
+        '& .MuiChartsAxis-left .MuiChartsAxis-line': {
+          stroke: '#E0E0E0',
+        },
+        '& .MuiChartsAxis-left .MuiChartsAxis-tick': {
+          stroke: 'transparent',
+        },
+        '& .MuiChartsAxis-bottom .MuiChartsAxis-line': {
+          stroke: 'transparent',
+        },
+        '& .MuiChartsAxis-bottom .MuiChartsAxis-tick': {
+          stroke: 'transparent',
+        },
+        '& .MuiChartsAxis-bottom .MuiChartsAxis-tickLabel': {
+          textAnchor: 'start', // center align
+          dominantBaseline: 'hanging',
+          transform: 'translateY(6px)',
+        },
+      }}
+    />
   );
 }
 
