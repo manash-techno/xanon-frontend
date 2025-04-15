@@ -91,10 +91,11 @@ const DashboardLayout = ({
       <div className="flex">
         <div
             className={cn(
-                "fixed md:sticky left-0 z-50 py-3 px-2 min-h-screen border-r-2 overflow-hidden transition duration-300",
+                "fixed md:sticky left-0 z-50 py-3 px-2 min-h-screen border-r-2 overflow-hidden",
                 isSidebarOpen ? "-translate-x-full md:translate-x-[0] w-full md:w-[248px]" : "w-full md:w-16",
                 "bg-[#F2F5F8] dark:bg-[#1E1E1E] border-r-[#E0E0E0] dark:border-r-[#3B3B3B]"
             )}
+            style={{transition: '0.5s'}}
         >
           <Link
               to={pagePaths.dashboard.root}

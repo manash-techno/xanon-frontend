@@ -44,7 +44,7 @@ const DashboardPage: () => JSX.Element = () => {
   return (
     <Fragment>
       <div className="flex items-center justify-between">
-        <h1 className="font-bold text-2xl leading-[150%] text-[#1E1E1E]">
+        <h1 className="font-bold text-2xl leading-[150%] text-[#1E1E1E] dark:text-[#F2F2F2]">
           Dashboard
         </h1>
         <div className="flex items-center gap-x-[20px]">
@@ -78,7 +78,7 @@ const DashboardPage: () => JSX.Element = () => {
       </div>
       <div className="flex flex-wrap -m-[10px] mt-[24px]">
         <div className="w-full max-w-[25%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <h3 className="font-semibold font-bold text-xl leading-[150%]">
               Sales
             </h3>
@@ -95,14 +95,14 @@ const DashboardPage: () => JSX.Element = () => {
                 className="w-[15px] mt-[3px]"
                 alt=""
               />
-              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                 117.5%
               </h6>
             </div>
           </div>
         </div>
         <div className="w-full max-w-[25%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <h3 className="font-semibold font-bold text-xl leading-[150%]">
               Profit
             </h3>
@@ -119,14 +119,14 @@ const DashboardPage: () => JSX.Element = () => {
                 className="w-[15px] mt-[3px]"
                 alt=""
               />
-              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                 133.1%
               </h6>
             </div>
           </div>
         </div>
         <div className="w-full max-w-[25%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <h3 className="font-semibold font-bold text-xl leading-[150%]">
               Units
             </h3>
@@ -143,14 +143,14 @@ const DashboardPage: () => JSX.Element = () => {
                 className="w-[15px] mt-[3px]"
                 alt=""
               />
-              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                 173.1%
               </h6>
             </div>
           </div>
         </div>
         <div className="w-full max-w-[25%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <h3 className="font-semibold font-bold text-xl leading-[150%]">
               ROI
             </h3>
@@ -167,7 +167,7 @@ const DashboardPage: () => JSX.Element = () => {
                 className="w-[15px] mt-[3px]"
                 alt=""
               />
-              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                 86.2%
               </h6>
             </div>
@@ -177,12 +177,12 @@ const DashboardPage: () => JSX.Element = () => {
       <div className="flex flex-wrap -m-[10px]  mt-[10px]">
         <div className="w-full max-w-[25%] p-[10px]">
           <div className="flex flex-col gap-[12px]">
-            <div className="w-full bg-[#FAFAFA] rounded-sm p-[16px]">
-              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+            <div className="w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
+              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                 Orders
               </h4>
               <div className="flex items-center justify-between mt-1">
-                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   37
                 </div>
                 <div className="flex items-center justify-end gap-[4px]">
@@ -191,7 +191,7 @@ const DashboardPage: () => JSX.Element = () => {
                     className="w-[15px] mt-[3px]"
                     alt=""
                   />
-                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     13.42%
                   </h6>
                 </div>
@@ -203,12 +203,12 @@ const DashboardPage: () => JSX.Element = () => {
                 ></div>
               </div>
             </div>
-            <div className="w-full bg-[#FAFAFA] rounded-sm p-[16px]">
-              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+            <div className="w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
+              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                 Margin
               </h4>
               <div className="flex items-center justify-between mt-1">
-                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   13.42%
                 </div>
                 <div className="flex items-center justify-end gap-[4px]">
@@ -217,7 +217,7 @@ const DashboardPage: () => JSX.Element = () => {
                     className="w-[15px] mt-[3px]"
                     alt=""
                   />
-                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     5.2%
                   </h6>
                 </div>
@@ -229,12 +229,12 @@ const DashboardPage: () => JSX.Element = () => {
                 ></div>
               </div>
             </div>
-            <div className="w-full bg-[#FAFAFA] rounded-sm p-[16px]">
-              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+            <div className="w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
+              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                 Reimbursement
               </h4>
               <div className="flex items-center justify-between mt-1">
-                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   45
                 </div>
                 <div className="flex items-center justify-end gap-[4px]">
@@ -243,7 +243,7 @@ const DashboardPage: () => JSX.Element = () => {
                     className="w-[15px] mt-[3px]"
                     alt=""
                   />
-                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     117.5%
                   </h6>
                 </div>
@@ -255,12 +255,12 @@ const DashboardPage: () => JSX.Element = () => {
                 ></div>
               </div>
             </div>
-            <div className="w-full bg-[#FAFAFA] rounded-sm p-[16px]">
-              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+            <div className="w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
+              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                 Refunds
               </h4>
               <div className="flex items-center justify-between mt-1">
-                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   1
                 </div>
                 <div className="flex items-center justify-end gap-[4px]">
@@ -269,7 +269,7 @@ const DashboardPage: () => JSX.Element = () => {
                     className="w-[15px] mt-[3px]"
                     alt=""
                   />
-                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     10%
                   </h6>
                 </div>
@@ -284,7 +284,7 @@ const DashboardPage: () => JSX.Element = () => {
           </div>
         </div>
         <div className="w-full max-w-[75%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
                 Sales & Profit
@@ -305,7 +305,7 @@ const DashboardPage: () => JSX.Element = () => {
 
       <div className="flex flex-wrap -m-[10px] mt-[10px]">
         <div className="w-full max-w-[50%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
                 Top Products
@@ -315,25 +315,27 @@ const DashboardPage: () => JSX.Element = () => {
               </button>
             </div>
 
-            <div className="flex items-center">
-              <button
-                type="button"
-                className="flex items-center justify-center text-center w-[80px] h-[32px] bg-[#E5F3FF] text-[#0077E5] rounded-xs font-semibold text-xs leading-[150%] tracking-[-1%]"
-              >
-                Profit
-              </button>
-              <button
-                type="button"
-                className="flex items-center justify-center text-center w-[80px] h-[32px] bg-[transparent] rounded-xs font-normal text-xs leading-[150%] tracking-[-1%]"
-              >
-                ROI %
-              </button>
-              <button
-                type="button"
-                className="flex items-center justify-center text-center w-[80px] h-[32px] bg-[transparent] rounded-xs font-normal text-xs leading-[150%] tracking-[-1%]"
-              >
-                Units
-              </button>
+            <div className="flex">
+              <div className="flex items-center bg-[transparent] dark:bg-[#242424] rounded-sm">
+                <button
+                  type="button"
+                  className="flex items-center justify-center text-center w-[80px] h-[32px] bg-[#E5F3FF] text-[#0077E5] dark:bg-[#00213D] dark:text-[#1A91FF] rounded-sm font-semibold text-xs leading-[150%] tracking-[-1%]"
+                >
+                  Profit
+                </button>
+                <button
+                  type="button"
+                  className="flex items-center justify-center text-center w-[80px] h-[32px] bg-[transparent] rounded-sm font-normal text-xs leading-[150%] tracking-[-1%] dark:text-[#828282]"
+                >
+                  ROI %
+                </button>
+                <button
+                  type="button"
+                  className="flex items-center justify-center text-center w-[80px] h-[32px] bg-[transparent] rounded-sm font-normal text-xs leading-[150%] tracking-[-1%] dark:text-[#828282]"
+                >
+                  Units
+                </button>
+              </div>
             </div>
 
             <table
@@ -342,27 +344,27 @@ const DashboardPage: () => JSX.Element = () => {
             >
               <thead>
                 <tr>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <th className="border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Image
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <th className="border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     <div>
                       <div>Product</div>
-                      <div className="text-[#6E8091] text-[10px]">
+                      <div className="text-[#6E8091] text-[10px] dark:text-[#828282]">
                         SKU - ASIN
                       </div>
                     </div>
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <th className="border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Profit
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <th className="border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     ROI %
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <th className="border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Units
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <th className="border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Total Profit
                   </th>
                 </tr>
@@ -370,17 +372,17 @@ const DashboardPage: () => JSX.Element = () => {
               <tbody>
                 <tr>
                   <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] dark:bg-[#3B3B3B] rounded-xs flex items-center justify-center">
                       <img src="assets/images/cube1.svg" alt="" />
                     </div>
                   </td>
                   <td className="text-left px-1">
                     <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                         Shiseido Japan Fino Premium Touch Hair Treatment Mask
                         (...
                       </div>
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                         3V-YU78-8UOF - 3V...
                       </div>
                     </div>
@@ -400,17 +402,17 @@ const DashboardPage: () => JSX.Element = () => {
                 </tr>
                 <tr>
                   <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] dark:bg-[#3B3B3B] rounded-xs flex items-center justify-center">
                       <img src="assets/images/cube1.svg" alt="" />
                     </div>
                   </td>
                   <td className="text-left px-1">
                     <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                         Shiseido Japan Fino Premium Touch Hair Treatment Mask
                         (...
                       </div>
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                         3V-YU78-8UOF - 3V...
                       </div>
                     </div>
@@ -430,17 +432,17 @@ const DashboardPage: () => JSX.Element = () => {
                 </tr>
                 <tr>
                   <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] dark:bg-[#3B3B3B] rounded-xs flex items-center justify-center">
                       <img src="assets/images/cube1.svg" alt="" />
                     </div>
                   </td>
                   <td className="text-left px-1">
                     <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                         Shiseido Japan Fino Premium Touch Hair Treatment Mask
                         (...
                       </div>
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                         3V-YU78-8UOF - 3V...
                       </div>
                     </div>
@@ -464,7 +466,7 @@ const DashboardPage: () => JSX.Element = () => {
         </div>
 
         <div className="w-full max-w-[25%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
                 Expenses
@@ -474,73 +476,73 @@ const DashboardPage: () => JSX.Element = () => {
               </button>
             </div>
             <div className="flex flex-col">
-              <div className="item border-b-[#EEEEEE] border-b border-solid py-2">
+              <div className="item border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid py-2">
                 <div className="flex items-center gap-2">
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Jul 25, 24
                   </div>
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                     11:22 AM
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Subscription
                   </div>
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                     Doesn’t Recurs
                   </div>
                 </div>
                 <div className="mt-2">
                   <div className="item-center flex justify-between">
-                    <div className="font-normal text-sm leading-[150%] tracking-[-1%]">
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                       Developer Apps
                     </div>
-                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-right">
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-right dark:text-[#F2F2F2]">
                       -£9.40
                     </div>
                   </div>
                   <div className="flex items-center gap-2 justify-between">
-                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                       VaT Amount
                     </div>
-                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                       £0.45
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="item border-b-[#EEEEEE] border-b border-solid py-2">
+              <div className="item border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid py-2">
                 <div className="flex items-center gap-2">
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Jul 25, 24
                   </div>
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                     11:22 AM
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Subscription
                   </div>
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                     Doesn’t Recurs
                   </div>
                 </div>
                 <div className="mt-2">
                   <div className="item-center flex justify-between">
-                    <div className="font-normal text-sm leading-[150%] tracking-[-1%]">
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                       Developer Apps
                     </div>
-                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-right">
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-right dark:text-[#F2F2F2]">
                       -£9.40
                     </div>
                   </div>
                   <div className="flex items-center gap-2 justify-between">
-                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                       VaT Amount
                     </div>
-                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                       £0.45
                     </div>
                   </div>
@@ -548,35 +550,35 @@ const DashboardPage: () => JSX.Element = () => {
               </div>
               <div className="item py-2">
                 <div className="flex items-center gap-2">
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Jul 25, 24
                   </div>
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                     11:22 AM
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     Subscription
                   </div>
-                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                     Doesn’t Recurs
                   </div>
                 </div>
                 <div className="mt-2">
                   <div className="item-center flex justify-between">
-                    <div className="font-normal text-sm leading-[150%] tracking-[-1%]">
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                       Developer Apps
                     </div>
-                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-right">
+                    <div className="font-normal text-sm leading-[150%] tracking-[-1%] text-right dark:text-[#F2F2F2]">
                       -£9.40
                     </div>
                   </div>
                   <div className="flex items-center gap-2 justify-between">
-                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                       VaT Amount
                     </div>
-                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                    <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                       £0.45
                     </div>
                   </div>
@@ -586,7 +588,7 @@ const DashboardPage: () => JSX.Element = () => {
           </div>
         </div>
         <div className="w-full max-w-[25%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
                 Profit and Loss
@@ -597,83 +599,83 @@ const DashboardPage: () => JSX.Element = () => {
             </div>
 
             <div className="flex flex-col">
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Description
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Amount
                 </div>
               </div>
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Profit & Loss
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                   £559.54
                 </div>
               </div>
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Margin
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                   4.15%
                 </div>
               </div>
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Profit on Sales
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                   £1,100.35
                 </div>
               </div>
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Other FBA Fees
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                   -£194.86
                 </div>
               </div>
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Profit on Reimbursements
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                   £43.36
                 </div>
               </div>
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Equipment
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                   -£31.21
                 </div>
               </div>
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Travel expenses
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                   -£233.33
                 </div>
               </div>
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Accountancy Fees
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                   -£60.00
                 </div>
               </div>
-              <div className="flex items-center justify-between border-b-[#EEEEEE] border-b border-solid ga-1 px-1 py-2">
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+              <div className="flex items-center justify-between border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid ga-1 px-1 py-2">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   Office expenses and supplies
                 </div>
-                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                   -£64.77
                 </div>
               </div>
@@ -682,7 +684,7 @@ const DashboardPage: () => JSX.Element = () => {
         </div>
 
         <div className="w-full max-w-[50%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
                 Inventory by Category
@@ -698,125 +700,125 @@ const DashboardPage: () => JSX.Element = () => {
             >
               <thead>
                 <tr>
-                  <th className="align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2] px-1">
                     Description
                   </th>
 
-                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1 dark:text-[#F2F2F2]">
                     Units
                   </th>
-                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1 dark:text-[#F2F2F2]">
                     Total Unit Cost
                   </th>
-                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1 dark:text-[#F2F2F2]">
                     Resale
                   </th>
-                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1 dark:text-[#F2F2F2]">
                     Potential Profit
                   </th>
-                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1 dark:text-[#F2F2F2]">
                     % ROI
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <td className="dark:text-[#F2F2F2] px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
                     All
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     1052
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £3,706.85
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £10,156.44
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £1,603.58
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     51.58
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <td className="dark:text-[#F2F2F2] px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
                     Available FBA
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     1052
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £3,706.85
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £10,156.44
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £1,603.58
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     51.58
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <td className="dark:text-[#F2F2F2] px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
                     Inbound
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     1052
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £3,706.85
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £10,156.44
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £1,603.58
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     51.58
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <td className="dark:text-[#F2F2F2] px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
                     Researching
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     1052
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £3,706.85
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £10,156.44
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £1,603.58
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     51.58
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                  <td className="dark:text-[#F2F2F2] px-1 align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E]">
                     Transfer
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     1052
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £3,706.85
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £10,156.44
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     £1,603.58
                   </td>
-                  <td className="px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
+                  <td className="dark:text-[#828282] px-1 align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#6E8091]">
                     51.58
                   </td>
                 </tr>
@@ -826,7 +828,7 @@ const DashboardPage: () => JSX.Element = () => {
         </div>
 
         <div className="w-full max-w-[50%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
                 Recent Order
@@ -842,43 +844,45 @@ const DashboardPage: () => JSX.Element = () => {
             >
               <thead>
                 <tr>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="dark:text-[#F2F2F2] border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     Date
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="dark:text-[#F2F2F2] border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     Image
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="dark:text-[#F2F2F2] border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     <div>
                       <div>Product</div>
-                      <div className="text-[#6E8091] text-[10px]">
+                      <div className="text-[#6E8091] text-[10px] dark:text-[#828282]">
                         SKU - ASIN
                       </div>
                     </div>
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="dark:text-[#F2F2F2] border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     <div>
                       <div>Status</div>
-                      <div className="text-[#6E8091] text-[10px]">
+                      <div className="text-[#6E8091] text-[10px] dark:text-[#828282]">
                         Amazon.uk
                       </div>
                     </div>
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="dark:text-[#F2F2F2] border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     Available
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="dark:text-[#F2F2F2] border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     <div>
                       <div>Quantity</div>
-                      <div className="text-[#6E8091] text-[10px]">
+                      <div className="text-[#6E8091] text-[10px] dark:text-[#828282]">
                         Order Type
                       </div>
                     </div>
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="dark:text-[#F2F2F2] border-b-[#EEEEEE] dark:border-b-[#3B3B3B] border-b border-solid align-top text-right font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     <div>
                       <div>Total Sale</div>
-                      <div className="text-[#6E8091] text-[10px]">ROI %</div>
+                      <div className="text-[#6E8091] text-[10px] dark:text-[#828282]">
+                        ROI %
+                      </div>
                     </div>
                   </th>
                 </tr>
@@ -887,49 +891,49 @@ const DashboardPage: () => JSX.Element = () => {
                 <tr>
                   <td className=" px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Jul 25, 24
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         11:22 AM
                       </div>
                     </div>
                   </td>
                   <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] dark:bg-[#3B3B3B] rounded-xs flex items-center justify-center">
                       <img src="assets/images/cube1.svg" alt="" />
                     </div>
                   </td>
                   <td className="text-left px-1">
                     <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                         Shiseido Japan Fino Premium Touch Hair Treatment Mask
                         (...
                       </div>
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                         3V-YU78-8UOF - 3V...
                       </div>
                     </div>
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Pending
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         Amazon.uk
                       </div>
                     </div>
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="w-[80px]">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         <div className="flex item-center justify-between">
                           <div>Jul 25, 24</div>
                           <div>21</div>
                         </div>
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         <div className="flex item-center justify-between">
                           <div>Inbound</div>
                           <div>0</div>
@@ -939,20 +943,20 @@ const DashboardPage: () => JSX.Element = () => {
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         2
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         Customer Order
                       </div>
                     </div>
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-right px-1">
                     <div className="flex flex-col items-end">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         £9.40
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         22.1%
                       </div>
                       <button
@@ -968,49 +972,49 @@ const DashboardPage: () => JSX.Element = () => {
                 <tr>
                   <td className=" px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Jul 25, 24
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         11:22 AM
                       </div>
                     </div>
                   </td>
                   <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] dark:bg-[#3B3B3B] rounded-xs flex items-center justify-center">
                       <img src="assets/images/cube1.svg" alt="" />
                     </div>
                   </td>
                   <td className="text-left px-1">
                     <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                         Shiseido Japan Fino Premium Touch Hair Treatment Mask
                         (...
                       </div>
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                         3V-YU78-8UOF - 3V...
                       </div>
                     </div>
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Pending
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         Amazon.uk
                       </div>
                     </div>
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="w-[80px]">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         <div className="flex item-center justify-between">
                           <div>Jul 25, 24</div>
                           <div>21</div>
                         </div>
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         <div className="flex item-center justify-between">
                           <div>Inbound</div>
                           <div>0</div>
@@ -1020,20 +1024,20 @@ const DashboardPage: () => JSX.Element = () => {
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         2
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         Customer Order
                       </div>
                     </div>
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-right px-1">
                     <div className="flex flex-col items-end">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         £9.40
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         22.1%
                       </div>
                       <button
@@ -1049,49 +1053,49 @@ const DashboardPage: () => JSX.Element = () => {
                 <tr>
                   <td className=" px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Jul 25, 24
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         11:22 AM
                       </div>
                     </div>
                   </td>
                   <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] dark:bg-[#3B3B3B] rounded-xs flex items-center justify-center">
                       <img src="assets/images/cube1.svg" alt="" />
                     </div>
                   </td>
                   <td className="text-left px-1">
                     <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                         Shiseido Japan Fino Premium Touch Hair Treatment Mask
                         (...
                       </div>
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#828282]">
                         3V-YU78-8UOF - 3V...
                       </div>
                     </div>
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Pending
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         Amazon.uk
                       </div>
                     </div>
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="w-[80px]">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         <div className="flex item-center justify-between">
                           <div>Jul 25, 24</div>
                           <div>21</div>
                         </div>
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         <div className="flex item-center justify-between">
                           <div>Inbound</div>
                           <div>0</div>
@@ -1101,20 +1105,20 @@ const DashboardPage: () => JSX.Element = () => {
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         2
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         Customer Order
                       </div>
                     </div>
                   </td>
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-right px-1">
                     <div className="flex flex-col items-end">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         £9.40
                       </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#828282]">
                         22.1%
                       </div>
                       <button
@@ -1133,7 +1137,7 @@ const DashboardPage: () => JSX.Element = () => {
         </div>
 
         <div className="w-full max-w-[50%] p-[10px]">
-          <div className="h-full bg-[#FAFAFA] px-[16px] py-[12px] rounded-md">
+          <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
                 Shipment
@@ -1149,30 +1153,30 @@ const DashboardPage: () => JSX.Element = () => {
             >
               <thead>
                 <tr>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="border-b-[#EEEEEE] dark:text-[#F2F2F2] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     Date
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="border-b-[#EEEEEE] dark:text-[#F2F2F2] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     <div>
                       <div>Shipment</div>
-                      <div className="text-[#6E8091] text-[10px]">
+                      <div className="text-[#6E8091] dark:border-b-[#3B3B3B] dark:text-[#828282] text-[10px]">
                         Tracking ID
                       </div>
                     </div>
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="border-b-[#EEEEEE] dark:text-[#F2F2F2] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     Image
                   </th>
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="border-b-[#EEEEEE] dark:text-[#F2F2F2] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     <div>
                       <div>Product</div>
-                      <div className="text-[#6E8091] text-[10px]">
+                      <div className="text-[#6E8091] dark:border-b-[#3B3B3B] dark:text-[#828282] text-[10px]">
                         SKU - ASIN
                       </div>
                     </div>
                   </th>
 
-                  <th className="border-b-[#EEEEEE] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className="border-b-[#EEEEEE] dark:text-[#F2F2F2] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     Quantity
                   </th>
                 </tr>
@@ -1181,7 +1185,7 @@ const DashboardPage: () => JSX.Element = () => {
                 <tr>
                   <td className=" px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Jul 25, 24
                       </div>
                       <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
@@ -1191,22 +1195,22 @@ const DashboardPage: () => JSX.Element = () => {
                   </td>
                   <td className="px-1">
                     <div className="w-[140px]">
-                    <div className="flex items-center gap-1">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
-                        M5N1234567
-                      </div>
-                      <button
-                        type="button"
-                        className="border-0 flex bg-[transparent]"
-                      >
-                        <img
-                          src="/assets/images/arrow-up-right-xl.svg"
-                          alt=""
-                        />
-                      </button>
+                      <div className="flex items-center gap-1">
+                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                          M5N1234567
+                        </div>
+                        <button
+                          type="button"
+                          className="border-0 flex bg-[transparent]"
+                        >
+                          <img
+                            src="/assets/images/arrow-up-right-xl.svg"
+                            alt=""
+                          />
+                        </button>
                       </div>
                       <div className="flex items-center gap-1">
-                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
+                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091] dark:text-[#F2F2F2]">
                           203-4886959-8683...
                         </div>
                         <button
@@ -1218,18 +1222,20 @@ const DashboardPage: () => JSX.Element = () => {
                             alt=""
                           />
                         </button>
-                        <span className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5]">+2</span>
+                        <span className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5]">
+                          +2
+                        </span>
                       </div>
                     </div>
                   </td>
                   <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
+                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] dark:bg-[#3B3B3B] rounded-xs flex items-center justify-center">
                       <img src="assets/images/cube1.svg" alt="" />
                     </div>
                   </td>
                   <td className="text-left px-1">
                     <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
+                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                         Shiseido Japan Fino Premium Touch Hair Treatment Mask
                         (...
                       </div>
@@ -1241,219 +1247,15 @@ const DashboardPage: () => JSX.Element = () => {
 
                   <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
                     <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
+                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         6
                       </div>
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td className=" px-1">
-                    <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
-                        Jul 25, 24
-                      </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
-                        11:22 AM
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-1">
-                    <div className="w-[140px]">
-                    <div className="flex items-center gap-1">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
-                        M5N1234567
-                      </div>
-                      <button
-                        type="button"
-                        className="border-0 flex bg-[transparent]"
-                      >
-                        <img
-                          src="/assets/images/arrow-up-right-xl.svg"
-                          alt=""
-                        />
-                      </button>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
-                          203-4886959-8683...
-                        </div>
-                        <button
-                          type="button"
-                          className="border-0 flex bg-[transparent]"
-                        >
-                          <img
-                            src="/assets/images/arrow-up-right-xl.svg"
-                            alt=""
-                          />
-                        </button>
-                        <span className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5]">+2</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
-                      <img src="assets/images/cube1.svg" alt="" />
-                    </div>
-                  </td>
-                  <td className="text-left px-1">
-                    <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
-                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
-                        (...
-                      </div>
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
-                        3V-YU78-8UOF - 3V...
-                      </div>
-                    </div>
-                  </td>
+                
 
-                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
-                    <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
-                        6
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td className=" px-1">
-                    <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
-                        Jul 25, 24
-                      </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
-                        11:22 AM
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-1">
-                    <div className="w-[140px]">
-                    <div className="flex items-center gap-1">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
-                        M5N1234567
-                      </div>
-                      <button
-                        type="button"
-                        className="border-0 flex bg-[transparent]"
-                      >
-                        <img
-                          src="/assets/images/arrow-up-right-xl.svg"
-                          alt=""
-                        />
-                      </button>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
-                          203-4886959-8683...
-                        </div>
-                        <button
-                          type="button"
-                          className="border-0 flex bg-[transparent]"
-                        >
-                          <img
-                            src="/assets/images/arrow-up-right-xl.svg"
-                            alt=""
-                          />
-                        </button>
-                        <span className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5]">+2</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
-                      <img src="assets/images/cube1.svg" alt="" />
-                    </div>
-                  </td>
-                  <td className="text-left px-1">
-                    <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
-                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
-                        (...
-                      </div>
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
-                        3V-YU78-8UOF - 3V...
-                      </div>
-                    </div>
-                  </td>
 
-                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
-                    <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
-                        6
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td className=" px-1">
-                    <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
-                        Jul 25, 24
-                      </div>
-                      <div className="text-[#6E8091] font-normal text-[10px] leading-[150%] tracking-[-1%]">
-                        11:22 AM
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-1">
-                    <div className="w-[140px]">
-                    <div className="flex items-center gap-1">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
-                        M5N1234567
-                      </div>
-                      <button
-                        type="button"
-                        className="border-0 flex bg-[transparent]"
-                      >
-                        <img
-                          src="/assets/images/arrow-up-right-xl.svg"
-                          alt=""
-                        />
-                      </button>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
-                          203-4886959-8683...
-                        </div>
-                        <button
-                          type="button"
-                          className="border-0 flex bg-[transparent]"
-                        >
-                          <img
-                            src="/assets/images/arrow-up-right-xl.svg"
-                            alt=""
-                          />
-                        </button>
-                        <span className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#0077E5]">+2</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-left px-1">
-                    <div className="w-[48px] h-[48px] bg-[#F0F0F0] rounded-xs flex items-center justify-center">
-                      <img src="assets/images/cube1.svg" alt="" />
-                    </div>
-                  </td>
-                  <td className="text-left px-1">
-                    <div className="w-[140px]">
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#1E1E1E]">
-                        Shiseido Japan Fino Premium Touch Hair Treatment Mask
-                        (...
-                      </div>
-                      <div className="font-normal text-[10px] leading-[150%] tracking-[-1%] text-[#6E8091]">
-                        3V-YU78-8UOF - 3V...
-                      </div>
-                    </div>
-                  </td>
-
-                  <td className="font-normal text-xs leading-[150%] tracking-[-1%] text-left px-1">
-                    <div className="">
-                      <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%]">
-                        6
-                      </div>
-                    </div>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>

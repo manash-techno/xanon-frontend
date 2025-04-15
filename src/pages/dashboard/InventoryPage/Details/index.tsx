@@ -155,9 +155,10 @@ const OrdersPage: () => JSX.Element = () => {
       </div>
       <Box className="flex flex-wrap -m-[15px] mb-6">
         <Box className="w-full lg:max-w-[50%] p-[15px]">
-          <Box className="flex gap-4 items-center">
-            <Box className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
-              <img src={productDetails?.[0]?.image_url} alt="" />
+          <Box className="flex gap-4 items-start">
+            <Box className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] 
+            flex items-center justify-center flex-[0_0_auto] mt-2">
+              <img src={productDetails?.[0]?.image_url} alt="" className="w-[100%] h-[100%] object-cover rounded-[6px]" />
             </Box>
             <Box className="">
               <Typography className="text-[#1E1E1E] dark:text-[#fff]">
