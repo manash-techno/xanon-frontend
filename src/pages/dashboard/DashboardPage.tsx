@@ -44,11 +44,11 @@ const DashboardPage: () => JSX.Element = () => {
   return (
     <Fragment>
       <div className="flex items-center justify-between">
-        <h1 className="font-bold text-2xl leading-[150%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+        <h1 className="font-bold text-xl xl:text-2xl leading-[150%] text-[#1E1E1E] dark:text-[#F2F2F2]">
           Dashboard
         </h1>
         <div className="flex items-center gap-x-[20px]">
-          <div className="w-[240px]">
+          <div className="w-[240px] hidden xl:block">
             <select
               className="rounded-md px-3 py-2.5 border text-sm w-full
                                        bg-white dark:bg-[#242424]
@@ -58,7 +58,7 @@ const DashboardPage: () => JSX.Element = () => {
               <option value="">Last 7 days</option>
             </select>
           </div>
-          <div className="w-[240px]">
+          <div className="w-[240px] hidden xl:block">
             <select
               className="rounded-md px-3 py-2.5 border text-sm w-full
                                        bg-white dark:bg-[#242424]
@@ -76,23 +76,58 @@ const DashboardPage: () => JSX.Element = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap -m-[10px] mt-[24px]">
-        <div className="w-full max-w-[25%] p-[10px]">
-          <div className="w-full relative pt-[50%]">
+      <div className="flex items-center gap-x-[10px] xl:gap-x-[20px] justify-end xl:hidden mt-4">
+        <div className="w-[50%] lg:w-[240px]">
+          <select
+            className="rounded-md px-3 py-2.5 border text-sm w-full
+                                       bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff] select1"
+          >
+            <option value="">Last 7 days</option>
+          </select>
+        </div>
+        <div className="w-[50%] lg:w-[240px]">
+          <select
+            className="rounded-md px-3 py-2.5 border text-sm w-full
+                                       bg-white dark:bg-[#242424]
+                                   border-[#EEEEEE] dark:border-[#373737]
+                                   text-[#1E1E1E] dark:text-[#fff] select1"
+          >
+            <option value="">All country</option>
+          </select>
+        </div>
+      </div>
+      <div className="flex flex-wrap -m-[5px] sm:-m-[10px] mt-4 lg:mt-[24px]">
+        <div className="w-full w-full max-w-[50%] xl:max-w-[25%] p-[5px] sm:p-[10px]">
+          <div className="w-full relative pt-[80%] sm:pt-[50%] xl:pt-[80%] 2xl:pt-[65%]">
             <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md absolute top-0 left-0 w-full flex flex-col">
-              <h3 className="font-semibold font-bold text-xl leading-[150%]">
-                Sales
-              </h3>
+              <div className="flex justify-between items-center">
+                <h3 className="font-semibold font-bold text-md sm:text-xl leading-[150%]">
+                  Sales
+                </h3>
+                <div className="items-center justify-end gap-[4px] flex sm:hidden">
+                  <img
+                    src="/assets/images/arrow-up-right.svg"
+                    className="w-[15px] mt-[3px]"
+                    alt=""
+                  />
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                    117.5%
+                  </h6>
+                </div>
+              </div>
+
               <div className="flex justify-center my-auto">
-              <div className="p-[15%] relative">
+                <div className="p-[28%] sm:p-[18%] xl:p-[24%] 2xl:p-[18%] relative">
                   <div className="absolute top-0 left-0 w-[100%] h-[100%] flex items-center justify-center rounded-[100%] border-[3px] border-solid border-[#1A91FF]">
-                    <div className="font-semibold text-base leading-[150%] tracking-[-1%]">
-                    £539.50
-                  </div>
+                    <div className="font-semibold text-sm sm:text-base leading-[150%] tracking-[-1%]">
+                      £539.50
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-end gap-[4px]">
+              <div className="items-center justify-end gap-[4px] hidden sm:flex">
                 <img
                   src="/assets/images/arrow-up-right.svg"
                   className="w-[15px] mt-[3px]"
@@ -105,203 +140,254 @@ const DashboardPage: () => JSX.Element = () => {
             </div>
           </div>
         </div>
-        <div className="w-full max-w-[25%] p-[10px]">
-          <div className="w-full relative pt-[50%]">
+
+        <div className="w-full w-full max-w-[50%] xl:max-w-[25%] p-[5px] sm:p-[10px]">
+          <div className="w-full relative pt-[80%] sm:pt-[50%] xl:pt-[80%] 2xl:pt-[65%]">
             <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md absolute top-0 left-0 w-full flex flex-col">
-              <h3 className="font-semibold font-bold text-xl leading-[150%]">
+              <div className="flex justify-between items-center">
+                <h3 className="font-semibold font-bold text-md sm:text-xl leading-[150%]">
                 Profit
-              </h3>
-              <div className="flex justify-center my-auto">
-              <div className="p-[15%] relative">
-                  <div className="absolute top-0 left-0 w-[100%] h-[100%] flex items-center justify-center rounded-[100%] border-[3px] border-solid border-[#1A91FF]">
-                    <div className="font-semibold text-base leading-[150%] tracking-[-1%]">
-                    £72.41
-                  </div>
-                </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-end gap-[4px]">
-                <img
-                  src="/assets/images/arrow-up-right.svg"
-                  className="w-[15px] mt-[3px]"
-                  alt=""
-                />
-                <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                </h3>
+                <div className="items-center justify-end gap-[4px] flex sm:hidden">
+                  <img
+                    src="/assets/images/arrow-up-right.svg"
+                    className="w-[15px] mt-[3px]"
+                    alt=""
+                  />
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                   133.1%
-                </h6>
+                  </h6>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full max-w-[25%] p-[10px]">
-          <div className="w-full relative pt-[50%]">
-            <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md absolute top-0 left-0 w-full flex flex-col">
-              <h3 className="font-semibold font-bold text-xl leading-[150%]">
-                Units
-              </h3>
+
               <div className="flex justify-center my-auto">
-              <div className="p-[15%] relative">
+                <div className="p-[28%] sm:p-[18%] xl:p-[24%] 2xl:p-[18%] relative">
                   <div className="absolute top-0 left-0 w-[100%] h-[100%] flex items-center justify-center rounded-[100%] border-[3px] border-solid border-[#1A91FF]">
-                    <div className="font-semibold text-base leading-[150%] tracking-[-1%]">
-                  <div className="font-semibold text-base leading-[150%] tracking-[-1%]">
-                    45
+                    <div className="font-semibold text-sm sm:text-base leading-[150%] tracking-[-1%]">
+                    £72.41
+                    </div>
                   </div>
-                  </div>
-                </div>
                 </div>
               </div>
-              <div className="flex items-center justify-end gap-[4px]">
+              <div className="items-center justify-end gap-[4px] hidden sm:flex">
                 <img
                   src="/assets/images/arrow-up-right.svg"
                   className="w-[15px] mt-[3px]"
                   alt=""
                 />
                 <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                  173.1%
+                133.1%
                 </h6>
               </div>
             </div>
           </div>
         </div>
-        <div className="w-full max-w-[25%] p-[10px]">
-          <div className="w-full relative pt-[50%]">
+
+        <div className="w-full w-full max-w-[50%] xl:max-w-[25%] p-[5px] sm:p-[10px]">
+          <div className="w-full relative pt-[80%] sm:pt-[50%] xl:pt-[80%] 2xl:pt-[65%]">
             <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md absolute top-0 left-0 w-full flex flex-col">
-              <h3 className="font-semibold font-bold text-xl leading-[150%]">
-                ROI
-              </h3>
+              <div className="flex justify-between items-center">
+                <h3 className="font-semibold font-bold text-md sm:text-xl leading-[150%]">
+                Units
+                </h3>
+                <div className="items-center justify-end gap-[4px] flex sm:hidden">
+                  <img
+                    src="/assets/images/arrow-up-right.svg"
+                    className="w-[15px] mt-[3px]"
+                    alt=""
+                  />
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                  173.1%
+                  </h6>
+                </div>
+              </div>
+
               <div className="flex justify-center my-auto">
-                <div className="p-[15%] relative">
+                <div className="p-[28%] sm:p-[18%] xl:p-[24%] 2xl:p-[18%] relative">
                   <div className="absolute top-0 left-0 w-[100%] h-[100%] flex items-center justify-center rounded-[100%] border-[3px] border-solid border-[#1A91FF]">
-                    <div className="font-semibold text-base leading-[150%] tracking-[-1%]">
+                    <div className="font-semibold text-sm sm:text-base leading-[150%] tracking-[-1%]">
+                      45
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="items-center justify-end gap-[4px] hidden sm:flex">
+                <img
+                  src="/assets/images/arrow-up-right.svg"
+                  className="w-[15px] mt-[3px]"
+                  alt=""
+                />
+                <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                173.1%
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full w-full max-w-[50%] xl:max-w-[25%] p-[5px] sm:p-[10px]">
+          <div className="w-full relative pt-[80%] sm:pt-[50%] xl:pt-[80%] 2xl:pt-[65%]">
+            <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md absolute top-0 left-0 w-full flex flex-col">
+              <div className="flex justify-between items-center">
+                <h3 className="font-semibold font-bold text-md sm:text-xl leading-[150%]">
+                ROI
+                </h3>
+                <div className="items-center justify-end gap-[4px] flex sm:hidden">
+                  <img
+                    src="/assets/images/arrow-up-right.svg"
+                    className="w-[15px] mt-[3px]"
+                    alt=""
+                  />
+                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                  86.2%
+                  </h6>
+                </div>
+              </div>
+
+              <div className="flex justify-center my-auto">
+                <div className="p-[28%] sm:p-[18%] xl:p-[24%] 2xl:p-[18%] relative">
+                  <div className="absolute top-0 left-0 w-[100%] h-[100%] flex items-center justify-center rounded-[100%] border-[3px] border-solid border-[#1A91FF]">
+                    <div className="font-semibold text-sm sm:text-base leading-[150%] tracking-[-1%]">
                       25%
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-end gap-[4px]">
+              <div className="items-center justify-end gap-[4px] hidden sm:flex">
                 <img
                   src="/assets/images/arrow-up-right.svg"
                   className="w-[15px] mt-[3px]"
                   alt=""
                 />
                 <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                  86.2%
+                86.2%
                 </h6>
               </div>
             </div>
           </div>
         </div>
+
+
+
       </div>
       <div className="flex flex-wrap -m-[10px]  mt-[10px]">
-        <div className="w-full max-w-[25%] p-[10px]">
-          <div className="flex flex-col gap-[12px]">
-            <div className="w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
-              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                Orders
-              </h4>
-              <div className="flex items-center justify-between mt-1">
-                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                  37
+        <div className="w-full xl:max-w-[25%] p-[10px]">
+          <div className="flex flex-wrap -m-[6px]">
+            <div className="w-full max-w-[50%] xl:max-w-full p-[6px]">
+              <div className="bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
+                <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                  Orders
+                </h4>
+                <div className="flex items-center justify-between mt-1">
+                  <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                    37
+                  </div>
+                  <div className="flex items-center justify-end gap-[4px]">
+                    <img
+                      src="/assets/images/arrow-up-right.svg"
+                      className="w-[15px] mt-[3px]"
+                      alt=""
+                    />
+                    <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                      13.42%
+                    </h6>
+                  </div>
                 </div>
-                <div className="flex items-center justify-end gap-[4px]">
-                  <img
-                    src="/assets/images/arrow-up-right.svg"
-                    className="w-[15px] mt-[3px]"
-                    alt=""
-                  />
-                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                <div className="h-1 bg-[#E5F3FF] relative mt-1">
+                  <div
+                    className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
+                    style={{ width: "50%" }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div className="w-full max-w-[50%] xl:max-w-full p-[6px]">
+              <div className="bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
+                <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                  Margin
+                </h4>
+                <div className="flex items-center justify-between mt-1">
+                  <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
                     13.42%
-                  </h6>
+                  </div>
+                  <div className="flex items-center justify-end gap-[4px]">
+                    <img
+                      src="/assets/images/arrow-down-right.svg"
+                      className="w-[15px] mt-[3px]"
+                      alt=""
+                    />
+                    <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                      5.2%
+                    </h6>
+                  </div>
                 </div>
-              </div>
-              <div className="h-1 bg-[#E5F3FF] relative mt-1">
-                <div
-                  className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
-                  style={{ width: "50%" }}
-                ></div>
+                <div className="h-1 bg-[#E5F3FF] relative mt-1">
+                  <div
+                    className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
+                    style={{ width: "50%" }}
+                  ></div>
+                </div>
               </div>
             </div>
-            <div className="w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
-              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                Margin
-              </h4>
-              <div className="flex items-center justify-between mt-1">
-                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                  13.42%
+            <div className="w-full max-w-[50%] xl:max-w-full p-[6px]">
+              <div className="bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
+                <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                  Reimbursement
+                </h4>
+                <div className="flex items-center justify-between mt-1">
+                  <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                    45
+                  </div>
+                  <div className="flex items-center justify-end gap-[4px]">
+                    <img
+                      src="/assets/images/arrow-up-right.svg"
+                      className="w-[15px] mt-[3px]"
+                      alt=""
+                    />
+                    <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                      117.5%
+                    </h6>
+                  </div>
                 </div>
-                <div className="flex items-center justify-end gap-[4px]">
-                  <img
-                    src="/assets/images/arrow-down-right.svg"
-                    className="w-[15px] mt-[3px]"
-                    alt=""
-                  />
-                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                    5.2%
-                  </h6>
+                <div className="h-1 bg-[#E5F3FF] relative mt-1">
+                  <div
+                    className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
+                    style={{ width: "50%" }}
+                  ></div>
                 </div>
-              </div>
-              <div className="h-1 bg-[#E5F3FF] relative mt-1">
-                <div
-                  className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
-                  style={{ width: "50%" }}
-                ></div>
               </div>
             </div>
-            <div className="w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
-              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                Reimbursement
-              </h4>
-              <div className="flex items-center justify-between mt-1">
-                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                  45
+            <div className="w-full max-w-[50%] xl:max-w-full p-[6px]">
+              <div className="bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
+                <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                  Refunds
+                </h4>
+                <div className="flex items-center justify-between mt-1">
+                  <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                    1
+                  </div>
+                  <div className="flex items-center justify-end gap-[4px]">
+                    <img
+                      src="/assets/images/arrow-up-right.svg"
+                      className="w-[15px] mt-[3px]"
+                      alt=""
+                    />
+                    <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
+                      10%
+                    </h6>
+                  </div>
                 </div>
-                <div className="flex items-center justify-end gap-[4px]">
-                  <img
-                    src="/assets/images/arrow-up-right.svg"
-                    className="w-[15px] mt-[3px]"
-                    alt=""
-                  />
-                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                    117.5%
-                  </h6>
+                <div className="h-1 bg-[#E5F3FF] relative mt-1">
+                  <div
+                    className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
+                    style={{ width: "50%" }}
+                  ></div>
                 </div>
-              </div>
-              <div className="h-1 bg-[#E5F3FF] relative mt-1">
-                <div
-                  className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
-                  style={{ width: "50%" }}
-                ></div>
-              </div>
-            </div>
-            <div className="w-full bg-[#FAFAFA] dark:bg-[#1A1A1A] rounded-sm p-[16px]">
-              <h4 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                Refunds
-              </h4>
-              <div className="flex items-center justify-between mt-1">
-                <div className="font-normal text-base leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                  1
-                </div>
-                <div className="flex items-center justify-end gap-[4px]">
-                  <img
-                    src="/assets/images/arrow-up-right.svg"
-                    className="w-[15px] mt-[3px]"
-                    alt=""
-                  />
-                  <h6 className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">
-                    10%
-                  </h6>
-                </div>
-              </div>
-              <div className="h-1 bg-[#E5F3FF] relative mt-1">
-                <div
-                  className="absolute h-full bg-[#0077E5] z-[1] left-0 top-0"
-                  style={{ width: "50%" }}
-                ></div>
               </div>
             </div>
           </div>
         </div>
-        <div className="w-full max-w-[75%] p-[10px]">
+        <div className="w-full xl:max-w-[75%] p-[10px]">
           <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
@@ -322,7 +408,7 @@ const DashboardPage: () => JSX.Element = () => {
       </div>
 
       <div className="flex flex-wrap -m-[10px] mt-[10px]">
-        <div className="w-full max-w-[50%] p-[10px]">
+        <div className="w-full xl:max-w-[50%] p-[10px]">
           <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
@@ -355,7 +441,7 @@ const DashboardPage: () => JSX.Element = () => {
                 </button>
               </div>
             </div>
-
+            <div className="w-full overflow-x-auto overflow-y-hidden">
             <table
               className="border-separate w-full"
               style={{ borderSpacing: "0 10px" }}
@@ -481,9 +567,10 @@ const DashboardPage: () => JSX.Element = () => {
               </tbody>
             </table>
           </div>
+          </div>
         </div>
 
-        <div className="w-full max-w-[25%] p-[10px]">
+        <div className="w-full xl:max-w-[25%] p-[10px]">
           <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
@@ -605,7 +692,7 @@ const DashboardPage: () => JSX.Element = () => {
             </div>
           </div>
         </div>
-        <div className="w-full max-w-[25%] p-[10px]">
+        <div className="w-full xl:max-w-[25%] p-[10px]">
           <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
@@ -701,7 +788,7 @@ const DashboardPage: () => JSX.Element = () => {
           </div>
         </div>
 
-        <div className="w-full max-w-[50%] p-[10px]">
+        <div className="w-full xl:max-w-[50%] p-[10px]">
           <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
@@ -711,7 +798,7 @@ const DashboardPage: () => JSX.Element = () => {
                 <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
               </button>
             </div>
-
+            <div className="w-full overflow-x-auto overflow-y-hidden">
             <table
               className="border-separate w-full"
               style={{ borderSpacing: "0 10px" }}
@@ -843,9 +930,10 @@ const DashboardPage: () => JSX.Element = () => {
               </tbody>
             </table>
           </div>
+          </div>
         </div>
 
-        <div className="w-full max-w-[50%] p-[10px]">
+        <div className="w-full xl:max-w-[50%] p-[10px]">
           <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
@@ -855,7 +943,7 @@ const DashboardPage: () => JSX.Element = () => {
                 <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
               </button>
             </div>
-
+            <div className="w-full overflow-x-auto overflow-y-hidden">
             <table
               className="border-separate w-full"
               style={{ borderSpacing: "0 10px" }}
@@ -907,7 +995,7 @@ const DashboardPage: () => JSX.Element = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td className=" px-1">
+                  <td className="min-w-[60px] px-1">
                     <div className="">
                       <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Jul 25, 24
@@ -988,7 +1076,7 @@ const DashboardPage: () => JSX.Element = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td className=" px-1">
+                  <td className="min-w-[60px] px-1">
                     <div className="">
                       <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Jul 25, 24
@@ -1069,7 +1157,7 @@ const DashboardPage: () => JSX.Element = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td className=" px-1">
+                  <td className="min-w-[60px] px-1">
                     <div className="">
                       <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Jul 25, 24
@@ -1152,9 +1240,10 @@ const DashboardPage: () => JSX.Element = () => {
               </tbody>
             </table>
           </div>
+          </div>
         </div>
 
-        <div className="w-full max-w-[50%] p-[10px]">
+        <div className="w-full xl:max-w-[50%] p-[10px]">
           <div className="h-full bg-[#FAFAFA] dark:bg-[#1A1A1A] px-[16px] py-[12px] rounded-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold font-bold text-xl leading-[150%]">
@@ -1164,14 +1253,14 @@ const DashboardPage: () => JSX.Element = () => {
                 <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
               </button>
             </div>
-
+            <div className="w-full overflow-x-auto overflow-y-hidden">
             <table
               className="border-separate w-full"
               style={{ borderSpacing: "0 10px" }}
             >
               <thead>
                 <tr>
-                  <th className="border-b-[#EEEEEE] dark:text-[#F2F2F2] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
+                  <th className=" border-b-[#EEEEEE] dark:text-[#F2F2F2] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
                     Date
                   </th>
                   <th className="border-b-[#EEEEEE] dark:text-[#F2F2F2] dark:border-b-[#3B3B3B] border-b border-solid align-top text-left font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] px-1">
@@ -1201,7 +1290,7 @@ const DashboardPage: () => JSX.Element = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td className=" px-1">
+                  <td className="min-w-[60px] px-1">
                     <div className="">
                       <div className="text-[#1E1E1E] font-normal text-[10px] leading-[150%] tracking-[-1%] dark:text-[#F2F2F2]">
                         Jul 25, 24
@@ -1273,6 +1362,7 @@ const DashboardPage: () => JSX.Element = () => {
                 </tr>
               </tbody>
             </table>
+          </div>
           </div>
         </div>
       </div>
