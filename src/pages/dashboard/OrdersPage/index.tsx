@@ -477,7 +477,7 @@ const OrdersPage: () => JSX.Element = () => {
       <Box className="bg-[#FAFAFA] py-[16px] px-[10px] flex flex-col gap-4 md:hidden mb-4">
 
         {/* start: table item */}
-        <Box className="flex flex-col gap-3 border-b border-[#b2b2b2] first-child:border-b-0 pb-4">
+        <Box className="flex flex-col gap-3 border-b border-[#eaeaea] first-child:border-b-0 pb-4">
           <Box className="flex gap-4">
             <Typography className="text-[#1E1E1E] dark:text-[#fff] font-light">
               Jul 25, 24
@@ -530,7 +530,7 @@ const OrdersPage: () => JSX.Element = () => {
             >
               <thead>
                 <tr>
-                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[100px]">
+                  <th className="border-b border-[#eaeaea] text-left pb-2 w-[100px]">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       New
                     </div>
@@ -538,7 +538,7 @@ const OrdersPage: () => JSX.Element = () => {
                       Beauty
                     </div>
                   </th>
-                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[120px]">
+                  <th className="border-b border-[#eaeaea] text-left pb-2 w-[120px]">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       Pending
                     </div>
@@ -546,7 +546,7 @@ const OrdersPage: () => JSX.Element = () => {
                       Amazon.uk
                     </div>
                   </th>
-                  <th className="text-right border-b border-[#b2b2b2] pb-2">
+                  <th className="text-right border-b border-[#eaeaea] pb-2">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       Quantity: 1
                     </div>
@@ -633,7 +633,7 @@ const OrdersPage: () => JSX.Element = () => {
         </Box>
         {/* start: table item */}
         {/* start: table item */}
-        <Box className="flex flex-col gap-3 border-b border-[#b2b2b2] first-child:border-b-0 pb-4">
+        <Box className="flex flex-col gap-3 border-b border-[#eaeaea] first-child:border-b-0 pb-4">
           <Box className="flex gap-4">
             <Typography className="text-[#1E1E1E] dark:text-[#fff] font-light">
               Jul 25, 24
@@ -686,7 +686,7 @@ const OrdersPage: () => JSX.Element = () => {
             >
               <thead>
                 <tr>
-                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[100px]">
+                  <th className="border-b border-[#eaeaea] text-left pb-2 w-[100px]">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       New
                     </div>
@@ -694,7 +694,7 @@ const OrdersPage: () => JSX.Element = () => {
                       Beauty
                     </div>
                   </th>
-                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[120px]">
+                  <th className="border-b border-[#eaeaea] text-left pb-2 w-[120px]">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       Pending
                     </div>
@@ -702,7 +702,7 @@ const OrdersPage: () => JSX.Element = () => {
                       Amazon.uk
                     </div>
                   </th>
-                  <th className="text-right border-b border-[#b2b2b2] pb-2">
+                  <th className="text-right border-b border-[#eaeaea] pb-2">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       Quantity: 1
                     </div>
@@ -789,7 +789,7 @@ const OrdersPage: () => JSX.Element = () => {
         </Box>
         {/* start: table item */}
         {/* start: table item */}
-        <Box className="flex flex-col gap-3 border-b border-[#b2b2b2] first-child:border-b-0 pb-4">
+        <Box className="flex flex-col gap-3 border-b border-[#eaeaea] first-child:border-b-0 pb-4">
           <Box className="flex gap-4">
             <Typography className="text-[#1E1E1E] dark:text-[#fff] font-light">
               Jul 25, 24
@@ -842,7 +842,7 @@ const OrdersPage: () => JSX.Element = () => {
             >
               <thead>
                 <tr>
-                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[100px]">
+                  <th className="border-b border-[#eaeaea] text-left pb-2 w-[100px]">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       New
                     </div>
@@ -850,7 +850,7 @@ const OrdersPage: () => JSX.Element = () => {
                       Beauty
                     </div>
                   </th>
-                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[120px]">
+                  <th className="border-b border-[#eaeaea] text-left pb-2 w-[120px]">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       Pending
                     </div>
@@ -858,7 +858,7 @@ const OrdersPage: () => JSX.Element = () => {
                       Amazon.uk
                     </div>
                   </th>
-                  <th className="text-right border-b border-[#b2b2b2] pb-2">
+                  <th className="text-right border-b border-[#eaeaea] pb-2">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       Quantity: 1
                     </div>
@@ -945,7 +945,7 @@ const OrdersPage: () => JSX.Element = () => {
         </Box>
         {/* start: table item */}
         {/* start: table item */}
-        <Box className="flex flex-col gap-3 border-b border-[#b2b2b2] first-child:border-b-0 pb-4">
+        <Box className="flex flex-col gap-3 border-b border-[#eaeaea] first-child:border-b-0 pb-4">
           <Box className="flex gap-4">
             <Typography className="text-[#1E1E1E] dark:text-[#fff] font-light">
               Jul 25, 24
@@ -998,7 +998,7 @@ const OrdersPage: () => JSX.Element = () => {
             >
               <thead>
                 <tr>
-                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[100px]">
+                  <th className="border-b border-[#eaeaea] text-left pb-2 w-[100px]">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       New
                     </div>
@@ -1006,7 +1006,7 @@ const OrdersPage: () => JSX.Element = () => {
                       Beauty
                     </div>
                   </th>
-                  <th className="border-b border-[#b2b2b2] text-left pb-2 w-[120px]">
+                  <th className="border-b border-[#eaeaea] text-left pb-2 w-[120px]">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       Pending
                     </div>
@@ -1014,7 +1014,7 @@ const OrdersPage: () => JSX.Element = () => {
                       Amazon.uk
                     </div>
                   </th>
-                  <th className="text-right border-b border-[#b2b2b2] pb-2">
+                  <th className="text-right border-b border-[#eaeaea] pb-2">
                     <div className="text-[#1E1E1E] dark:text-[#fff] font-normal text-[14px]">
                       Quantity: 1
                     </div>

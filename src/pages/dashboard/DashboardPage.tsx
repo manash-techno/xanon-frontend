@@ -441,7 +441,155 @@ const DashboardPage: () => JSX.Element = () => {
                 </button>
               </div>
             </div>
-            <div className="w-full overflow-x-auto overflow-y-hidden">
+
+
+            <div className="bg-[#FAFAFA] py-[16px] px-[10px] flex flex-col gap-4 max-h-[460px] overflow-x-hidden overflow-y-auto xl:hidden">
+              <div className="flex flex-col gap-3 border-b border-[#eaeaea] first-child:border-b-0 pb-4">
+                <div className="flex gap-4 items-center">
+                  <div className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+                    <img alt="" src="/assets/images/box-icon.svg" />
+                  </div>
+                  <div className="MuiBox-root css-0">
+                    <p
+                      className=" text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+                      style={{
+                        overflowWrap: "break-word",
+                        wordBreak: "break-word",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 1,
+                        WebkitBoxOrient: "vertical"
+                      }}
+                    >
+                      Schwarzkopf Silhouette Super Hold Hairspray 300ml
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+                        3V-YU78-8UOF
+                      </p>
+                      <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+                        B007OTJ4D4
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-x-[35px] gap-y-[14px]">
+                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Profit: £1.03</div>
+                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">ROI %: 34.33%</div>
+                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Units: 32</div>
+                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Total Profit: £7,717.4</div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3 first-child:border-b-0 pb-4">
+                  <div className="flex gap-4 items-center">
+                    <div className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+                      <img alt="" src="/assets/images/box-icon.svg" />
+                    </div>
+                    <div className="MuiBox-root css-0">
+                      <p
+                        className=" text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+                        style={{
+                          overflowWrap: "break-word",
+                          wordBreak: "break-word",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 1,
+                          WebkitBoxOrient: "vertical"
+                        }}
+                      >
+                        Schwarzkopf Silhouette Super Hold Hairspray 300ml
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+                          3V-YU78-8UOF
+                        </p>
+                        <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+                          B007OTJ4D4
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-x-[35px] gap-y-[14px]">
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Profit: £1.03</div>
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">ROI %: 34.33%</div>
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Units: 32</div>
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Total Profit: £7,717.4</div>
+                  </div>
+                </div>
+              <div className="flex flex-col gap-3 first-child:border-b-0 pb-4">
+                  <div className="flex gap-4 items-center">
+                    <div className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+                      <img alt="" src="/assets/images/box-icon.svg" />
+                    </div>
+                    <div className="MuiBox-root css-0">
+                      <p
+                        className=" text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+                        style={{
+                          overflowWrap: "break-word",
+                          wordBreak: "break-word",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 1,
+                          WebkitBoxOrient: "vertical"
+                        }}
+                      >
+                        Schwarzkopf Silhouette Super Hold Hairspray 300ml
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+                          3V-YU78-8UOF
+                        </p>
+                        <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+                          B007OTJ4D4
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-x-[35px] gap-y-[14px]">
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Profit: £1.03</div>
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">ROI %: 34.33%</div>
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Units: 32</div>
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Total Profit: £7,717.4</div>
+                  </div>
+                </div>
+              <div className="flex flex-col gap-3 first-child:border-b-0 pb-4">
+                  <div className="flex gap-4 items-center">
+                    <div className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+                      <img alt="" src="/assets/images/box-icon.svg" />
+                    </div>
+                    <div className="MuiBox-root css-0">
+                      <p
+                        className=" text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+                        style={{
+                          overflowWrap: "break-word",
+                          wordBreak: "break-word",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 1,
+                          WebkitBoxOrient: "vertical"
+                        }}
+                      >
+                        Schwarzkopf Silhouette Super Hold Hairspray 300ml
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+                          3V-YU78-8UOF
+                        </p>
+                        <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+                          B007OTJ4D4
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-x-[35px] gap-y-[14px]">
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Profit: £1.03</div>
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">ROI %: 34.33%</div>
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Units: 32</div>
+                                  <div className="font-normal text-xs leading-[150%] tracking-[-1%] text-[#1E1E1E] dark:text-[#F2F2F2]">Total Profit: £7,717.4</div>
+                  </div>
+                </div>
+
+            </div>
+
+
+
+            <div className="w-full overflow-x-auto overflow-y-hidden hidden xl:block">
             <table
               className="border-separate w-full"
               style={{ borderSpacing: "0 10px" }}
@@ -1253,7 +1401,240 @@ const DashboardPage: () => JSX.Element = () => {
                 <img src="/assets/images/arrow-up-right-xl.svg" alt="" />
               </button>
             </div>
-            <div className="w-full overflow-x-auto overflow-y-hidden">
+
+            <div className="bg-[#FAFAFA] py-[16px] px-[10px] flex flex-col gap-4 xl:hidden max-h-[481px] overflow-x-hidden overflow-y-auto">
+  <div className="flex flex-col gap-3 border-b border-[#eaeaea] first-child:border-b-0 pb-4">
+    <div className="flex gap-2">
+      <p className=" text-[#1E1E1E] dark:text-[#fff] font-light">
+        Jul 25, 24
+      </p>
+      <p className=" text-[#6E8091] dark:text-[#828282] font-light">
+        11:22 AM
+      </p>
+    </div>
+    <div className="flex gap-1 items-center">
+      <p className=" text-[#1E1E1E] dark:text-[#fff]">
+        203-4886959-8683560
+      </p>
+      <svg
+        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium text-[#6E8091] dark:text-[#828282] css-1umw9bq-MuiSvgIcon-root"
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ArrowOutwardIcon"
+        style={{ fontSize: 20 }}
+      >
+        <path d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z" />
+      </svg>
+    </div>
+    <div className="flex gap-1 items-center">
+    <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+            B007OTJ4D4
+          </p>
+      <svg
+        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium text-[#6E8091] dark:text-[#828282] css-1umw9bq-MuiSvgIcon-root"
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ArrowOutwardIcon"
+        style={{ fontSize: 20 }}
+      >
+        <path d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z" />
+      </svg>
+      <div className="font-normal text-md leading-[150%] tracking-[-1%] text-[#0077E5]">+2</div>
+    </div>
+    <div className="flex gap-4 items-center">
+      <div className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+        <img alt="" src="/assets/images/box-icon.svg" />
+      </div>
+      <div className="MuiBox-root css-0">
+        <p
+          className=" text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+          style={{
+            overflowWrap: "break-word",
+            wordBreak: "break-word",
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: "vertical"
+          }}
+        >
+          Schwarzkopf Silhouette Super Hold Hairspray 300ml
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+            3V-YU78-8UOF
+          </p>
+          <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+            B007OTJ4D4
+          </p>
+        </div>
+      </div>
+      <div className="text-[#1E1E1E] dark:text-[#F2F2F2] font-normal text-[14px] leading-[150%] tracking-[-1%] flex-[0_0_auto] ml-auto pl-2">6</div>
+    </div>
+  </div>
+  <div className="flex flex-col gap-3 border-b border-[#eaeaea] first-child:border-b-0 pb-4">
+    <div className="flex gap-2">
+      <p className=" text-[#1E1E1E] dark:text-[#fff] font-light">
+        Jul 25, 24
+      </p>
+      <p className=" text-[#6E8091] dark:text-[#828282] font-light">
+        11:22 AM
+      </p>
+    </div>
+    <div className="flex gap-1 items-center">
+      <p className=" text-[#1E1E1E] dark:text-[#fff]">
+        203-4886959-8683560
+      </p>
+      <svg
+        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium text-[#6E8091] dark:text-[#828282] css-1umw9bq-MuiSvgIcon-root"
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ArrowOutwardIcon"
+        style={{ fontSize: 20 }}
+      >
+        <path d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z" />
+      </svg>
+    </div>
+    <div className="flex gap-4 items-center">
+      <div className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+        <img alt="" src="/assets/images/box-icon.svg" />
+      </div>
+      <div className="MuiBox-root css-0">
+        <p
+          className=" text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+          style={{
+            overflowWrap: "break-word",
+            wordBreak: "break-word",
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: "vertical"
+          }}
+        >
+          Schwarzkopf Silhouette Super Hold Hairspray 300ml
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+            3V-YU78-8UOF
+          </p>
+          <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+            B007OTJ4D4
+          </p>
+        </div>
+      </div>
+      <div className="text-[#1E1E1E] dark:text-[#F2F2F2] font-normal text-[14px] leading-[150%] tracking-[-1%] flex-[0_0_auto] ml-auto pl-2">12</div>
+    </div>
+  </div>
+  <div className="flex flex-col gap-3 border-b border-[#eaeaea] first-child:border-b-0 pb-4">
+    <div className="flex gap-2">
+      <p className=" text-[#1E1E1E] dark:text-[#fff] font-light">
+        Jul 25, 24
+      </p>
+      <p className=" text-[#6E8091] dark:text-[#828282] font-light">
+        11:22 AM
+      </p>
+    </div>
+    <div className="flex gap-1 items-center">
+      <p className=" text-[#1E1E1E] dark:text-[#fff]">
+        203-4886959-8683560
+      </p>
+      <svg
+        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium text-[#6E8091] dark:text-[#828282] css-1umw9bq-MuiSvgIcon-root"
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ArrowOutwardIcon"
+        style={{ fontSize: 20 }}
+      >
+        <path d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z" />
+      </svg>
+    </div>
+    <div className="flex gap-4 items-center">
+      <div className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+        <img alt="" src="/assets/images/box-icon.svg" />
+      </div>
+      <div className="MuiBox-root css-0">
+        <p
+          className=" text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+          style={{
+            overflowWrap: "break-word",
+            wordBreak: "break-word",
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: "vertical"
+          }}
+        >
+          Schwarzkopf Silhouette Super Hold Hairspray 300ml
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+            3V-YU78-8UOF
+          </p>
+          <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+            B007OTJ4D4
+          </p>
+        </div>
+      </div>
+      <div className="text-[#1E1E1E] dark:text-[#F2F2F2] font-normal text-[14px] leading-[150%] tracking-[-1%] flex-[0_0_auto] ml-auto pl-2">12</div>
+    </div>
+  </div>
+  <div className="flex flex-col gap-3 border-b border-[#eaeaea] first-child:border-b-0 pb-4">
+    <div className="flex gap-2">
+      <p className=" text-[#1E1E1E] dark:text-[#fff] font-light">
+        Jul 25, 24
+      </p>
+      <p className=" text-[#6E8091] dark:text-[#828282] font-light">
+        11:22 AM
+      </p>
+    </div>
+    <div className="flex gap-1 items-center">
+      <p className=" text-[#1E1E1E] dark:text-[#fff]">
+        203-4886959-8683560
+      </p>
+      <svg
+        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium text-[#6E8091] dark:text-[#828282] css-1umw9bq-MuiSvgIcon-root"
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ArrowOutwardIcon"
+        style={{ fontSize: 20 }}
+      >
+        <path d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z" />
+      </svg>
+    </div>
+    <div className="flex gap-4 items-center">
+      <div className="bg-[#F0F0F0] dark:bg-[#292929] w-[60px] h-[60px] rounded-[6px] flex items-center justify-center flex-[0_0_auto]">
+        <img alt="" src="/assets/images/box-icon.svg" />
+      </div>
+      <div className="MuiBox-root css-0">
+        <p
+          className=" text-[#1E1E1E] dark:text-[#fff] break-words whitespace-normal overflow-hidden text-ellipsis"
+          style={{
+            overflowWrap: "break-word",
+            wordBreak: "break-word",
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: "vertical"
+          }}
+        >
+          Schwarzkopf Silhouette Super Hold Hairspray 300ml
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+            3V-YU78-8UOF
+          </p>
+          <p className=" text-[#6E8091] text-[14px] dark:text-[#828282]">
+            B007OTJ4D4
+          </p>
+        </div>
+      </div>
+      <div className="text-[#1E1E1E] dark:text-[#F2F2F2] font-normal text-[14px] leading-[150%] tracking-[-1%] flex-[0_0_auto] ml-auto pl-2">12</div>
+    </div>
+  </div>
+</div>
+
+
+            <div className="w-full overflow-x-auto overflow-y-hidden hidden xl:block">
             <table
               className="border-separate w-full"
               style={{ borderSpacing: "0 10px" }}
